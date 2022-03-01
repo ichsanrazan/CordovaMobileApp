@@ -1,7 +1,7 @@
 # Authentication - REST API
 
 ## API Documentation
-Base URL for endpoints `https://localhost/restapi_activitylog/api`
+Base URL for endpoints `https://localhost/restapi_authentication`
 
 ## Endpoints
 - `POST /login.php` Login
