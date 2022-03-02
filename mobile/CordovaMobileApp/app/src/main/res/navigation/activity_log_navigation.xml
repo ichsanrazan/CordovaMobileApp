@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_log_navigation"
+    app:startDestination="@id/activityLogFragment">
+
+    <fragment
+        android:id="@+id/activityLogFragment"
+        android:name="cordova.telkomsel.cordovamobileapp.activityLog.fragment.ActivityLogFragment"
+        android:label="Activity Log"
+        tools:layout="@layout/fragment_activity_log">
+        <action
+            android:id="@+id/action_activityLogFragment_to_addPICFragment"
+            app:destination="@id/addPICFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_activityLogFragment_to_addCRQFragment"
+            app:destination="@id/addCRQFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_activityLogFragment_to_addINCFragment"
+            app:destination="@id/addINCFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_activityLogFragment_to_addBroadcastFragment"
+            app:destination="@id/addBroadcastFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/addPICFragment"
+        android:name="cordova.telkomsel.cordovamobileapp.activityLog.fragment.AddPICFragment"
+        android:label="Form Add PIC Partner"
+        tools:layout="@layout/fragment_activity_add_pic" >
+        <action
+            android:id="@+id/action_addPICFragment_to_activityLogFragment"
+            app:destination="@id/activityLogFragment"
+            app:popUpTo="@id/activityLogFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/addCRQFragment"
+        android:name="cordova.telkomsel.cordovamobileapp.activityLog.fragment.AddCRQFragment"
+        android:label="Form Add Activity CRQ/WO"
+        tools:layout="@layout/fragment_activity_crq" />
+    <fragment
+        android:id="@+id/addINCFragment"
+        android:name="cordova.telkomsel.cordovamobileapp.activityLog.fragment.AddINCFragment"
+        android:label="Form Add Troubleshoot INC/IM"
+        tools:layout="@layout/fragment_activity_inc" />
+    <fragment
+        android:id="@+id/addBroadcastFragment"
+        android:name="cordova.telkomsel.cordovamobileapp.activityLog.fragment.AddBroadcastFragment"
+        android:label="Form Broadcast Activity"
+        tools:layout="@layout/fragment_activity_broadcast" />
+</navigation>
