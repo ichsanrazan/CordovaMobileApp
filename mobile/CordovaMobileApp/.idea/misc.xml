@@ -3,9 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/activity_main_log.xml" value="0.536" />
-        <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/fragment_activity_add_pic.xml" value="0.14933166248955723" />
-        <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/fragment_activity_log.xml" value="0.33589743589743587" />
+        <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/drawable/custom_floating_button.xml" value="0.19444444444444445" />
+        <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/activity_login.xml" value="0.4" />
+        <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/activity_main_log.xml" value="0.264" />
+        <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/fragment_activity_add_pic.xml" value="0.264" />
+        <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/fragment_activity_log.xml" value="0.264" />
+        <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/recycler_row_activity.xml" value="0.6" />
         <entry key="..\:/Users/Archangel/AndroidStudioProjects/CordovaMobileApp/app/src/main/res/font/productsans.xml" value="0.3606837606837607" />
         <entry key="..\:/Users/Archangel/AndroidStudioProjects/CordovaMobileApp/app/src/main/res/layout/activity_login.xml" value="0.23385416666666667" />
         <entry key="..\:/Users/Archangel/AndroidStudioProjects/CordovaMobileApp/app/src/main/res/layout/activity_main.xml" value="0.4" />
@@ -36,7 +39,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

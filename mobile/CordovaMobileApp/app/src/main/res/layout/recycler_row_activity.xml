@@ -13,7 +13,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="DATE"
-        android:textSize="12dp"
+        android:textSize="14dp"
         app:layout_constraintEnd_toStartOf="@+id/tvRecyclerDate"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,13 +21,14 @@
 
     <TextView
         android:id="@+id/tvRecyclerDate"
+        android:textColor="@color/textColor"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:text="2021-01-11"
         android:textAlignment="textEnd"
-        android:textSize="12dp"
+        android:textSize="14dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -42,12 +43,13 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="CRQ/INC/IM"
-        android:textSize="12dp"
+        android:textSize="14dp"
         app:layout_constraintEnd_toStartOf="@+id/tvRecyclerNo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDateColumn" />
 
     <TextView
+        android:textColor="@color/textColor"
         android:id="@+id/tvRecyclerNo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -55,7 +57,7 @@
         android:layout_marginEnd="16dp"
         android:text="CRQ#708338"
         android:textAlignment="textEnd"
-        android:textSize="12dp"
+        android:textSize="14dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -70,12 +72,13 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="SUBJECT"
-        android:textSize="12dp"
+        android:textSize="14dp"
         app:layout_constraintEnd_toStartOf="@+id/tvRecyclerSubject"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvNoColumn" />
 
     <TextView
+        android:textColor="@color/textColor"
         android:id="@+id/tvRecyclerSubject"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -83,7 +86,7 @@
         android:layout_marginEnd="16dp"
         android:text="datacomm"
         android:textAlignment="textEnd"
-        android:textSize="12dp"
+        android:textSize="14dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -97,12 +100,13 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="PIC ACTIVITY"
-        android:textSize="12dp"
+        android:textSize="14dp"
         app:layout_constraintEnd_toStartOf="@+id/tvRecyclerPICActivity"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvSubjectColumn" />
 
     <TextView
+        android:textColor="@color/textColor"
         android:id="@+id/tvRecyclerPICActivity"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -110,7 +114,7 @@
         android:layout_marginEnd="16dp"
         android:text="Hasian"
         android:textAlignment="textEnd"
-        android:textSize="12dp"
+        android:textSize="14dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -124,12 +128,13 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="CATEGORY"
-        android:textSize="12dp"
+        android:textSize="14dp"
         app:layout_constraintEnd_toStartOf="@+id/tvRecyclerCategory"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvRecyclerPICActivity" />
 
     <TextView
+        android:textColor="@color/textColor"
         android:id="@+id/tvRecyclerCategory"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -137,7 +142,7 @@
         android:layout_marginEnd="16dp"
         android:text="PROJECT"
         android:textAlignment="textEnd"
-        android:textSize="12dp"
+        android:textSize="14dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -145,18 +150,20 @@
         app:layout_constraintTop_toBottomOf="@+id/tvRecyclerPICActivity" />
 
     <TextView
+
         android:id="@+id/tvDescriptionColumn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="DESCRIPTION"
-        android:textSize="12dp"
+        android:textSize="14dp"
         app:layout_constraintEnd_toStartOf="@+id/tvRecyclerDescription"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvCategoryColumn" />
 
     <TextView
+        android:textColor="@color/textColor"
         android:id="@+id/tvRecyclerDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -167,7 +174,7 @@
         android:maxLines="2"
         android:text="Air Filter Cleaning sr-meruya.1&amp;2"
         android:textAlignment="textEnd"
-        android:textSize="12dp"
+        android:textSize="14dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
