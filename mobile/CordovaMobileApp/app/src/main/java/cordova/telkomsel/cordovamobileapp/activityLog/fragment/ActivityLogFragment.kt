@@ -26,20 +26,20 @@ class ActivityLogFragment : Fragment(R.layout.fragment_activity_log) {
         initRecyclerView()
         initViewModel()
 
-        //TEMPORARY Buttons
-        btn_navigate1.setOnClickListener {
+//        Floating Action Buttons Click
+        fab_addPICPartner.setOnClickListener {
             val action = ActivityLogFragmentDirections.actionActivityLogFragmentToAddPICFragment()
             findNavController().navigate(action)
         }
-        btn_navigate2.setOnClickListener {
+        fab_addActivityCRQ.setOnClickListener {
             val action = ActivityLogFragmentDirections.actionActivityLogFragmentToAddCRQFragment()
             findNavController().navigate(action)
         }
-        btn_navigate3.setOnClickListener {
+        fab_addTroubleshootINC.setOnClickListener {
             val action = ActivityLogFragmentDirections.actionActivityLogFragmentToAddINCFragment()
             findNavController().navigate(action)
         }
-        btn_navigate4.setOnClickListener {
+        fab_addBroadcast.setOnClickListener {
             val action = ActivityLogFragmentDirections.actionActivityLogFragmentToAddBroadcastFragment()
             findNavController().navigate(action)
         }

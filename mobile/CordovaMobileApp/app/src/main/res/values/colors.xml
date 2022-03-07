@@ -16,8 +16,7 @@
     <color name="secondaryTextColor">#ffffff</color>
 
     <color name="cardBg">#E8E4E3</color>
-
-
+    <color name="textColor">#151515</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>

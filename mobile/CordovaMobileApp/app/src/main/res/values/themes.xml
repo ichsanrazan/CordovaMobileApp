@@ -14,4 +14,9 @@
         <!-- Customize your theme here. -->
         <item name="fontFamily">@font/productsans</item>
     </style>
+
+    <style name="custom_floating_buttons">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/custom_floating_button</item>
+    </style>
 </resources>
