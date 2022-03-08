@@ -39,7 +39,7 @@
                     android:id="@+id/spinnerActivitySubject"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:entries="@array/activitySubject"/>
+                    android:entries="@array/subject"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -54,7 +54,7 @@
                     android:id="@+id/spinnerActivityReporter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:entries="@array/activityReporter"/>
+                    android:entries="@array/piccdso"/>
             </LinearLayout>
         </LinearLayout>
 
