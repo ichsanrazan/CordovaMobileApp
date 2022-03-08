@@ -1,6 +1,7 @@
 package cordova.telkomsel.cordovamobileapp.activityLog.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import cordova.telkomsel.cordovamobileapp.R
 import cordova.telkomsel.cordovamobileapp.activityLog.ActivityLogViewModel
 import cordova.telkomsel.cordovamobileapp.activityLog.adapter.ActivityAdapter
+import cordova.telkomsel.cordovamobileapp.activityLog.model.Activity
 import cordova.telkomsel.cordovamobileapp.activityLog.model.ActivityList
 import kotlinx.android.synthetic.main.fragment_activity_log.*
 
@@ -65,6 +67,7 @@ class ActivityLogFragment : Fragment(R.layout.fragment_activity_log) {
             }
         })
         viewModel.getActivityList()
+
     }
 
 }
