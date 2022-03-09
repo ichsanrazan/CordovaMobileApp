@@ -10,19 +10,14 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import cordova.telkomsel.cordovamobileapp.R
 import kotlinx.android.synthetic.main.fragment_activity_add_pic.*
+import kotlinx.android.synthetic.main.fragment_activity_crq.*
 import kotlinx.android.synthetic.main.fragment_activity_inc.*
+import kotlinx.android.synthetic.main.fragment_activity_inc.btnActivityDatePicker
 import kotlinx.android.synthetic.main.fragment_activity_log.*
+import java.text.SimpleDateFormat
 import java.util.*
 
-class AddINCFragment : Fragment(R.layout.fragment_activity_inc), DatePickerDialog.OnDateSetListener {
-
-    //Calendar
-    var day = 0
-    var month = 0
-    var year = 0
-    var savedDay = 0
-    var savedMonth = 0
-    var savedYear = 0
+class AddINCFragment : Fragment(R.layout.fragment_activity_inc) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,7 +36,7 @@ class AddINCFragment : Fragment(R.layout.fragment_activity_inc), DatePickerDialo
         autoCompleteTvCategory.setAdapter(arrayCategoryAdapter)
 
 
-        pickDate()
+        initDatePickerListener()
 
         submit_add_inc.setOnClickListener {
             val action = AddINCFragmentDirections.actionAddINCFragmentToActivityLogFragment()
@@ -49,30 +44,25 @@ class AddINCFragment : Fragment(R.layout.fragment_activity_inc), DatePickerDialo
         }
     }
 
-    private fun getDateTimeCalendar() {
-        val cal = Calendar.getInstance()
-        day = cal.get(Calendar.DAY_OF_MONTH)
-        month = cal.get(Calendar.MONTH)
-        year = cal.get(Calendar.YEAR)
-    }
+    fun initDatePickerListener() {
+        val calendar = Calendar.getInstance()
+        val datePicker = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+            calendar.set(Calendar.YEAR, year)
+            calendar.set(Calendar.MONTH, month)
+            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+            updateButtonLabelDate(calendar)
+        }
 
-    private fun pickDate() {
-
-        btn_datePicker.setOnClickListener {
-            getDateTimeCalendar()
-
-            DatePickerDialog(requireActivity(),this,year,month,day).show()
+        btnActivityDatePicker.setOnClickListener {
+            DatePickerDialog(requireContext(), datePicker, calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show()
         }
     }
 
-    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        savedDay = dayOfMonth
-        savedMonth = (month+1)
-        savedYear = year
-
-        getDateTimeCalendar()
-        btn_datePicker.setText("$savedDay-$savedMonth-$savedYear")
-
+    fun updateButtonLabelDate(calendar: Calendar) {
+        val txtFormat = "dd-MM-yyyy"
+        val sdf = SimpleDateFormat(txtFormat, Locale.UK)
+        btnActivityDatePicker.text = sdf.format(calendar.time)
     }
 
 }
