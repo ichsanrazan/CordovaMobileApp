@@ -209,6 +209,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ADD"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewPICDetail"
+            android:paddingBottom="8dp"
+            tools:itemCount="2"
+            tools:listitem="@layout/recycler_row_pic_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
         <Button
             android:id="@+id/submit_add_activity"
             android:layout_width="wrap_content"

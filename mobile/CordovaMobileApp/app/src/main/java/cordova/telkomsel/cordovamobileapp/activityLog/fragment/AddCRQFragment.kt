@@ -9,31 +9,40 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import cordova.telkomsel.cordovamobileapp.R
 import cordova.telkomsel.cordovamobileapp.activityLog.ActivityLogViewModel
 import cordova.telkomsel.cordovamobileapp.activityLog.PICListViewModel
+import cordova.telkomsel.cordovamobileapp.activityLog.adapter.PICDetailAdapter
 import cordova.telkomsel.cordovamobileapp.activityLog.model.ActivityList
 import cordova.telkomsel.cordovamobileapp.activityLog.model.PIC
 import cordova.telkomsel.cordovamobileapp.activityLog.model.PICList
 import kotlinx.android.synthetic.main.fragment_activity_crq.*
+import okhttp3.internal.checkOffsetAndCount
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class AddCRQFragment : Fragment(R.layout.fragment_activity_crq) {
 
     lateinit var viewModel: PICListViewModel
+    lateinit var picDetailAdapter: PICDetailAdapter
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        queryPICData()
         initRadioListener()
         initDatePickerListener()
-        queryAndPopulateSpinner()
-
     }
 
-    private fun queryAndPopulateSpinner() {
+    private fun queryPICData() {
+
+        //Handle Dynamic Spinner Data
         var listPIC = mutableListOf<PIC>()
         var listOfCompany = mutableListOf<String>()
 
@@ -74,8 +83,39 @@ class AddCRQFragment : Fragment(R.layout.fragment_activity_crq) {
 
         })
         viewModel.getPICList()
+
+
+        //Handle Add PIC Detail
+        var picDetailList = mutableListOf<PIC>()
+        val decoration = DividerItemDecoration(activity, DividerItemDecoration.VERTICAL)
+        picDetailAdapter = PICDetailAdapter(requireContext(), picDetailList as ArrayList<PIC>)
+
+        recyclerViewPICDetail.addItemDecoration(decoration)
+        recyclerViewPICDetail.layoutManager = LinearLayoutManager(activity)
+        recyclerViewPICDetail.adapter = picDetailAdapter
+
+        addPICDetail.setOnClickListener {
+            var company: String = spinnerPICDetailCompany.selectedItem.toString()
+            var fullName: String = spinnerPICDetailName.selectedItem.toString()
+
+            var findPhoneNumber = listPIC.find{it.full_name == fullName && it.company == company}
+            var phoneNumber = findPhoneNumber?.phone_number.toString()
+
+
+            //Check for duplicates
+            var flag = true
+            if(picDetailList.isNotEmpty()){
+                for(i in picDetailList){
+                    if(i.phone_number == phoneNumber) flag = false
+                }
+            }
+            if(flag) picDetailList.add(PIC(company, fullName, phoneNumber)) else Toast.makeText(activity, "PIC sudah terdaftar", Toast.LENGTH_SHORT).show()
+            picDetailAdapter.notifyDataSetChanged()
+        }
+
+
         //When I wrote this, only God and I understood what I was doing
-        //Now, God only knows.
+        //Now, only God knows.
     }
 
     fun initDatePickerListener() {
