@@ -49,10 +49,8 @@ class AddCRQFragment : Fragment(R.layout.fragment_activity_crq) {
         viewModel = ViewModelProvider(this).get(PICListViewModel::class.java)
         viewModel.getPICListObservableData().observe(viewLifecycleOwner, androidx.lifecycle.Observer {
             if(it == null) { Toast.makeText(activity, "No Result Found", Toast.LENGTH_SHORT).show() }
-            else{
-                //Get PIC List and assign it to the listPIC
-                listPIC = it.data.toMutableList()
-            }
+            //Get PIC List and assign it to the listPIC
+            else listPIC = it.data.toMutableList()
 
             //Get all unique company
             var uniqueCompany = listPIC.distinctBy { it.company }
@@ -94,6 +92,7 @@ class AddCRQFragment : Fragment(R.layout.fragment_activity_crq) {
         recyclerViewPICDetail.layoutManager = LinearLayoutManager(activity)
         recyclerViewPICDetail.adapter = picDetailAdapter
 
+        //Handle add PIC button click
         addPICDetail.setOnClickListener {
             var company: String = spinnerPICDetailCompany.selectedItem.toString()
             var fullName: String = spinnerPICDetailName.selectedItem.toString()
@@ -101,19 +100,16 @@ class AddCRQFragment : Fragment(R.layout.fragment_activity_crq) {
             var findPhoneNumber = listPIC.find{it.full_name == fullName && it.company == company}
             var phoneNumber = findPhoneNumber?.phone_number.toString()
 
-
             //Check for duplicates
             var flag = true
             if(picDetailList.isNotEmpty()){
                 for(i in picDetailList){
-                    if(i.phone_number == phoneNumber) flag = false
+                    if(i.phone_number == phoneNumber && i.full_name == fullName && i.company == company) flag = false
                 }
             }
             if(flag) picDetailList.add(PIC(company, fullName, phoneNumber)) else Toast.makeText(activity, "PIC sudah terdaftar", Toast.LENGTH_SHORT).show()
             picDetailAdapter.notifyDataSetChanged()
         }
-
-
         //When I wrote this, only God and I understood what I was doing
         //Now, only God knows.
     }
