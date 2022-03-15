@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import cordova.telkomsel.cordovamobileapp.MainActivity
 import cordova.telkomsel.cordovamobileapp.R
 import cordova.telkomsel.cordovamobileapp.authentication.model.UserRequest
@@ -42,7 +43,12 @@ class LoginActivity : AppCompatActivity() {
                 val username = inputUser.text.toString().trim()
                 val password = inputPassword.text.toString().trim()
                 if(validateLogin(username, password)){
-                    startActivity(Intent(this@LoginActivity,MainActivity::class.java))
+                    if(response.body()!!.status!! == 0) {
+                        Toast.makeText(this@LoginActivity, "Login Berhasil", Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                    }else{
+                        Toast.makeText(this@LoginActivity, "Login gagal", Toast.LENGTH_SHORT).show()
+                    }
                 }
 
 

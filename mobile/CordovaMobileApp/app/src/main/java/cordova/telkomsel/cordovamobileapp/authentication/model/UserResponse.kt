@@ -7,4 +7,8 @@ class UserResponse {
     @SerializedName("message")
     @Expose
     var message: String? = null
+
+    @SerializedName("status")
+    @Expose
+    var status: Int? = null
 }
