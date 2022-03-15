@@ -30,6 +30,7 @@ class AddCRQFragment : Fragment(R.layout.fragment_activity_crq) {
     lateinit var viewModel: PICListViewModel
     lateinit var picDetailAdapter: PICDetailAdapter
 
+    var selectedPIC: String = ""
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -38,6 +39,13 @@ class AddCRQFragment : Fragment(R.layout.fragment_activity_crq) {
         queryPICData()
         initRadioListener()
         initDatePickerListener()
+        submitListener()
+    }
+
+    private fun submitListener() {
+        submit_add_activity.setOnClickListener {
+            Log.e("LIST", selectedPIC)
+        }
     }
 
     private fun queryPICData() {
@@ -108,6 +116,7 @@ class AddCRQFragment : Fragment(R.layout.fragment_activity_crq) {
                 }
             }
             if(flag) picDetailList.add(PIC(company, fullName, phoneNumber)) else Toast.makeText(activity, "PIC sudah terdaftar", Toast.LENGTH_SHORT).show()
+            selectedPIC += "$company|$fullName|$phoneNumber,"
             picDetailAdapter.notifyDataSetChanged()
         }
         //When I wrote this, only God and I understood what I was doing
