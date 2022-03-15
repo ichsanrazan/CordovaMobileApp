@@ -6,6 +6,7 @@ import cordova.telkomsel.cordovamobileapp.activityLog.model.ActivityResponse
 import cordova.telkomsel.cordovamobileapp.activityLog.model.PICList
 import cordova.telkomsel.cordovamobileapp.authentication.model.UserRequest
 import cordova.telkomsel.cordovamobileapp.authentication.model.UserResponse
+import cordova.telkomsel.cordovamobileapp.activityLog.model.*
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -29,4 +30,7 @@ interface RetrofitService {
         @Body userRequest: UserRequest
     ): Call<UserResponse>
 
+    @POST("pic/create.php")
+    @Headers("Content-Type: application/json")
+    fun createPIC(@Body params: PIC): Call<PICResponse>
 }
