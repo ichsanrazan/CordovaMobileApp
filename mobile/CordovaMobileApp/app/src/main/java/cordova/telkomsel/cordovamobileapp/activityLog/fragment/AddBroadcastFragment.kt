@@ -2,16 +2,21 @@ package cordova.telkomsel.cordovamobileapp.activityLog.fragment
 
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import cordova.telkomsel.cordovamobileapp.R
+import cordova.telkomsel.cordovamobileapp.activityLog.ActivityLogViewModel
+import cordova.telkomsel.cordovamobileapp.activityLog.model.Activity
 import kotlinx.android.synthetic.main.fragment_activity_broadcast.*
-import kotlinx.android.synthetic.main.fragment_activity_crq.*
-import kotlinx.android.synthetic.main.fragment_activity_crq.btnActivityDatePicker
-import kotlinx.android.synthetic.main.fragment_activity_inc.*
 import java.text.SimpleDateFormat
 import java.util.*
+import android.text.method.ScrollingMovementMethod
+import android.widget.Scroller
+
 
 class AddBroadcastFragment : Fragment(R.layout.fragment_activity_broadcast) {
 
@@ -22,7 +27,6 @@ class AddBroadcastFragment : Fragment(R.layout.fragment_activity_broadcast) {
         val selectSubject = resources.getStringArray(R.array.subject)
         val arraySelectSubjectAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, selectSubject)
         autoCompleteTvSelectSubject.setAdapter(arraySelectSubjectAdapter)
-
 
         initRadioListener()
         initDatePickerListener()

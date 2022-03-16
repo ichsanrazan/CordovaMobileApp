@@ -54,7 +54,13 @@
         android:id="@+id/addCRQFragment"
         android:name="cordova.telkomsel.cordovamobileapp.activityLog.fragment.AddCRQFragment"
         android:label="Form Add Activity CRQ/WO"
-        tools:layout="@layout/fragment_activity_crq" />
+        tools:layout="@layout/fragment_activity_crq" >
+        <action
+            android:id="@+id/action_addCRQFragment_to_activityLogFragment"
+            app:destination="@id/activityLogFragment"
+            app:popUpTo="@id/activityLogFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/addINCFragment"
         android:name="cordova.telkomsel.cordovamobileapp.activityLog.fragment.AddINCFragment"

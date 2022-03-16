@@ -9,17 +9,19 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cordova.telkomsel.cordovamobileapp.R
 import cordova.telkomsel.cordovamobileapp.activityLog.ActivityLogViewModel
+import cordova.telkomsel.cordovamobileapp.activityLog.CreateActivityViewModel
 import cordova.telkomsel.cordovamobileapp.activityLog.PICListViewModel
 import cordova.telkomsel.cordovamobileapp.activityLog.adapter.PICDetailAdapter
-import cordova.telkomsel.cordovamobileapp.activityLog.model.ActivityList
-import cordova.telkomsel.cordovamobileapp.activityLog.model.PIC
-import cordova.telkomsel.cordovamobileapp.activityLog.model.PICList
+import cordova.telkomsel.cordovamobileapp.activityLog.model.*
 import kotlinx.android.synthetic.main.fragment_activity_crq.*
+import kotlinx.android.synthetic.main.fragment_activity_crq.btnActivityDatePicker
+import kotlinx.android.synthetic.main.fragment_activity_inc.*
 import okhttp3.internal.checkOffsetAndCount
 import java.text.SimpleDateFormat
 import java.util.*
@@ -27,7 +29,9 @@ import kotlin.collections.ArrayList
 
 class AddCRQFragment : Fragment(R.layout.fragment_activity_crq) {
 
-    lateinit var viewModel: PICListViewModel
+    lateinit var createActivityViewModel: CreateActivityViewModel
+    lateinit var viewModelActivityList: ActivityLogViewModel
+    lateinit var viewModelPICList: PICListViewModel
     lateinit var picDetailAdapter: PICDetailAdapter
 
     var selectedPIC: String = ""
@@ -36,15 +40,82 @@ class AddCRQFragment : Fragment(R.layout.fragment_activity_crq) {
         super.onViewCreated(view, savedInstanceState)
 
 
+        //Dropdown Subject
+        val subject = resources.getStringArray(R.array.subject)
+        val arraySubjectAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, subject)
+        autoCompleteTvActivitySubject.setAdapter(arraySubjectAdapter)
+
+        //Dropdown PIC CDSO
+        val piccdso = resources.getStringArray(R.array.piccdso)
+        val arrayPicCdsoAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, piccdso)
+        autoCompleteTvActivityReporter.setAdapter(arrayPicCdsoAdapter)
+
+        //Dropdown PIC CDSO
+        val category = resources.getStringArray(R.array.activityResource)
+        val arrayCategoryAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, category)
+        autoCompleteTvActivityCategory.setAdapter(arrayCategoryAdapter)
+
+
+        initCreateActivityViewModel()
         queryPICData()
         initRadioListener()
         initDatePickerListener()
         submitListener()
+
+    }
+
+    private fun initCreateActivityViewModel() {
+        createActivityViewModel = ViewModelProvider(this).get(CreateActivityViewModel::class.java)
+        createActivityViewModel.getCreateActivityObservable().observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            if(it == null) { Toast.makeText(activity, "Activity gagal untuk ditambahkan", Toast.LENGTH_SHORT).show() }
+            else{
+                Toast.makeText(activity, "Activity berhasil untuk ditambahkan", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     private fun submitListener() {
+
+        //Get List of Activity to check for duplicates
+        var listActivity = mutableListOf<Activity>()
+        viewModelActivityList = ViewModelProvider(this).get(ActivityLogViewModel::class.java)
+        viewModelActivityList.getActivityListObservableData().observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            if(it == null) { Toast.makeText(activity, "No Result Found", Toast.LENGTH_SHORT).show() }
+            //Get Activity List and assign it to the listPIC
+            else listActivity = it.data.toMutableList()
+        })
+        viewModelActivityList.getActivityList()
+
+
         submit_add_activity.setOnClickListener {
-            Log.e("LIST", selectedPIC)
+//            Log.e("LIST", selectedPIC)
+            val activityDate: String = btnActivityDatePicker.text.toString().trim()
+            val activitySubject: String = spinnerActivitySubject.editText?.text.toString().trim()
+            val activityReporter: String = spinnerActivityReporter.editText?.text.toString().trim()
+            val activityCategory: String = spinnerActivityCategory.editText?.text.toString().trim()
+            val activityNumber: String = "CRQ#" + inputActivityNumber.editText?.text.toString().trim()
+            val activityName: String = inputActivityName.editText?.text.toString().trim()
+            val activityDescription: String = inputActivityDescription.editText?.text.toString().trim()
+
+            if(activityDate.isNotEmpty() && activitySubject.isNotEmpty()
+                && activityReporter.isNotEmpty() && activityCategory.isNotEmpty()
+                && activityNumber.isNotEmpty() && activityName.isNotEmpty()){
+
+                if(checkDuplicate(listActivity, activityNumber, activityDate)){
+                    val activity = Activity(activityDate, activitySubject, activityReporter, activityCategory,
+                        activityNumber, activityName, activityDescription, selectedPIC)
+                    createActivityViewModel.createActivity(activity)
+
+//                    val action = AddCRQFragmentDirections.actionAddCRQFragmentToActivityLogFragment()
+//                    findNavController().navigate(action)
+                    Toast.makeText(requireContext(), "Activity berhasil untuk ditambahkan", Toast.LENGTH_SHORT).show()
+
+                    //Show toast if data exist on database
+                } else Toast.makeText(activity, "Data sudah ada, coba lagi", Toast.LENGTH_SHORT).show()
+
+            // Show toast if field is empty
+            } else Toast.makeText(activity, "Mohon isi semua field yang tersedia", Toast.LENGTH_SHORT).show()
+
         }
     }
 
@@ -54,8 +125,8 @@ class AddCRQFragment : Fragment(R.layout.fragment_activity_crq) {
         var listPIC = mutableListOf<PIC>()
         var listOfCompany = mutableListOf<String>()
 
-        viewModel = ViewModelProvider(this).get(PICListViewModel::class.java)
-        viewModel.getPICListObservableData().observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+        viewModelPICList = ViewModelProvider(this).get(PICListViewModel::class.java)
+        viewModelPICList.getPICListObservableData().observe(viewLifecycleOwner, androidx.lifecycle.Observer {
             if(it == null) { Toast.makeText(activity, "No Result Found", Toast.LENGTH_SHORT).show() }
             //Get PIC List and assign it to the listPIC
             else listPIC = it.data.toMutableList()
@@ -88,7 +159,7 @@ class AddCRQFragment : Fragment(R.layout.fragment_activity_crq) {
             }
 
         })
-        viewModel.getPICList()
+        viewModelPICList.getPICList()
 
 
         //Handle Add PIC Detail
@@ -159,6 +230,17 @@ class AddCRQFragment : Fragment(R.layout.fragment_activity_crq) {
             showHide(layoutPICDetail)
             showHide(addPICDetail)
         }
+    }
+
+    //Function to check if data input exist on the database
+    private fun checkDuplicate(listActivity: MutableList<Activity>, activityNumber: String, activityDate: String): Boolean {
+        var flag = true
+        for(i in listActivity){
+            if(i.crq_no == activityNumber && i.crq_date == activityDate){
+                flag = false
+            }
+        }
+        return flag
     }
 
     fun showHide(view:View) {

@@ -26,14 +26,10 @@ class AddPICFragment : Fragment(R.layout.fragment_activity_add_pic) {
         initViewModel()
         initRadioListener()
         initSubmitListener()
-        createPICObservable()
     }
 
     fun initViewModel() {
         viewModel = ViewModelProvider(this).get(CreatePICViewModel::class.java)
-    }
-
-    fun createPICObservable() {
         viewModel.getCreatePICObservable().observe(viewLifecycleOwner, Observer<PICResponse?> {
             if(it == null) { Toast.makeText(activity, "PIC gagal untuk ditambahkan", Toast.LENGTH_SHORT).show() }
             else{
@@ -75,11 +71,12 @@ class AddPICFragment : Fragment(R.layout.fragment_activity_add_pic) {
 
         submit_add_pic.setOnClickListener {
             if(radioTsel.isChecked){
-                val fullNameTSELString: String = fullNameTSEL.editText?.text.toString()
-                val phoneNumberTSELString: String = phoneNumberTSEL.editText?.text.toString()
+                val fullNameTSELString: String = fullNameTSEL.editText?.text.toString().trim()
+                val phoneNumberTSELString: String = phoneNumberTSEL.editText?.text.toString().trim()
 
                 //Check if input is empty
-                if( fullNameTSELString.trim().isNotEmpty() && phoneNumberTSELString.trim().isNotEmpty()){
+                if( fullNameTSELString.isNotEmpty() &&
+                    phoneNumberTSELString.isNotEmpty()){
 
                     if(checkDuplicate(listPIC, "TELKOMSEL", fullNameTSELString, phoneNumberTSELString)){
 
@@ -99,12 +96,14 @@ class AddPICFragment : Fragment(R.layout.fragment_activity_add_pic) {
                 } else Toast.makeText(activity, "Mohon isi semua field yang tersedia", Toast.LENGTH_SHORT).show()
 
             } else if(radioVendor.isChecked){
-                val companyNameVendorString = companyNameVENDOR.editText?.text.toString()
-                val fullNameVendorString = fullNameVENDOR.editText?.text.toString()
-                val phoneNumberVendorString = phoneNumberVENDOR.editText?.text.toString()
+                val companyNameVendorString = companyNameVENDOR.editText?.text.toString().trim()
+                val fullNameVendorString = fullNameVENDOR.editText?.text.toString().trim()
+                val phoneNumberVendorString = phoneNumberVENDOR.editText?.text.toString().trim()
 
                 //Check if input is empty
-                if( companyNameVendorString.trim().isNotEmpty() && fullNameVendorString.trim().isNotEmpty() && phoneNumberVendorString.trim().isNotEmpty()){
+                if( companyNameVendorString.isNotEmpty() &&
+                    fullNameVendorString.isNotEmpty() &&
+                    phoneNumberVendorString.isNotEmpty()){
 
                     if(checkDuplicate(listPIC, companyNameVendorString, fullNameVendorString, phoneNumberVendorString)){
                         //Call function createPIC at viewModel

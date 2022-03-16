@@ -25,12 +25,12 @@ interface RetrofitService {
     @GET("pic/read.php")
     fun getPICList(): Call<PICList>
 
+    @POST("pic/create.php")
+    @Headers("Content-Type: application/json")
+    fun createPIC(@Body params: PIC): Call<PICResponse>
+
     @POST("login.php")
     fun login(
         @Body userRequest: UserRequest
     ): Call<UserResponse>
-
-    @POST("pic/create.php")
-    @Headers("Content-Type: application/json")
-    fun createPIC(@Body params: PIC): Call<PICResponse>
 }

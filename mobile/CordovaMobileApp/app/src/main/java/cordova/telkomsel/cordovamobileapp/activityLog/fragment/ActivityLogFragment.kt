@@ -25,8 +25,25 @@ class ActivityLogFragment : Fragment(R.layout.fragment_activity_log) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initRecyclerView()
-        initViewModel()
+        viewModel = ViewModelProvider(this).get(ActivityLogViewModel::class.java)
+        viewModel.getActivityListObservableData().observe(viewLifecycleOwner, Observer<ActivityList>{
+            if(it == null) { Toast.makeText(activity, "No Result Found", Toast.LENGTH_SHORT).show() }
+            else{
+                activityAdapter.activityList = it.data.toMutableList()
+                activityAdapter.notifyDataSetChanged()
+            }
+        })
+        viewModel.getActivityList()
+
+        recyclerViewActivityLog.apply{
+            layoutManager = LinearLayoutManager(activity)
+            val decoration = DividerItemDecoration(activity, DividerItemDecoration.VERTICAL)
+            addItemDecoration(decoration)
+
+            activityAdapter = ActivityAdapter()
+            adapter = activityAdapter
+
+        }
 
 //        Floating Action Buttons Click
         fab_addPICPartner.setOnClickListener {
@@ -46,28 +63,12 @@ class ActivityLogFragment : Fragment(R.layout.fragment_activity_log) {
             findNavController().navigate(action)
         }
     }
-    private fun initRecyclerView(){
-        recyclerViewActivityLog.apply{
-            layoutManager = LinearLayoutManager(activity)
-            val decoration = DividerItemDecoration(activity, DividerItemDecoration.VERTICAL)
-            addItemDecoration(decoration)
-
-            activityAdapter = ActivityAdapter()
-            adapter = activityAdapter
-
-        }
-    }
-    fun initViewModel(){
-        viewModel = ViewModelProvider(this).get(ActivityLogViewModel::class.java)
-        viewModel.getActivityListObservableData().observe(viewLifecycleOwner, Observer<ActivityList>{
-            if(it == null) { Toast.makeText(activity, "No Result Found", Toast.LENGTH_SHORT).show() }
-            else{
-                activityAdapter.activityList = it.data.toMutableList()
-                activityAdapter.notifyDataSetChanged()
-            }
-        })
-        viewModel.getActivityList()
-
-    }
+//    private fun initRecyclerView(){
+//
+//    }
+//    fun initViewModel(){
+//
+//
+//    }
 
 }
