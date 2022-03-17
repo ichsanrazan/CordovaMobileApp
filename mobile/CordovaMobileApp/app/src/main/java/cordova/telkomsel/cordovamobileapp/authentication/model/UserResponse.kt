@@ -4,9 +4,9 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 class UserResponse {
-    @SerializedName("message")
+    @SerializedName("full_name")
     @Expose
-    var message: String? = null
+    var full_name: String? = null
 
     @SerializedName("status")
     @Expose

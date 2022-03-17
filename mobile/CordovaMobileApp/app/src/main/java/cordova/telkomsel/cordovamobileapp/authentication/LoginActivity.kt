@@ -7,6 +7,8 @@ import android.util.Log
 import android.widget.Toast
 import cordova.telkomsel.cordovamobileapp.MainActivity
 import cordova.telkomsel.cordovamobileapp.R
+import cordova.telkomsel.cordovamobileapp.authentication.helper.Constant
+import cordova.telkomsel.cordovamobileapp.authentication.helper.PreferencesHelper
 import cordova.telkomsel.cordovamobileapp.authentication.model.UserRequest
 import cordova.telkomsel.cordovamobileapp.authentication.model.UserResponse
 import cordova.telkomsel.cordovamobileapp.retrofit.RetrofitInstance
@@ -18,12 +20,25 @@ import retrofit2.Response
 import retrofit2.create
 
 class LoginActivity : AppCompatActivity() {
+
+    lateinit var sharedpref : PreferencesHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         supportActionBar?.hide()
 
+        sharedpref = PreferencesHelper(this)
+
         initAction()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if (sharedpref.getBoolean( Constant.PREF_IS_LOGIN)){
+            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+            finish()
+        }
     }
 
     fun initAction() {
@@ -42,8 +57,10 @@ class LoginActivity : AppCompatActivity() {
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                 val username = inputUser.text.toString().trim()
                 val password = inputPassword.text.toString().trim()
+                val user = response.body()
                 if(validateLogin(username, password)){
-                    if(response.body()!!.status!! == 0) {
+                    if(user!!.status!! == 0) {
+                        saveSession( inputUser.text.toString(), inputPassword.text.toString(), user!!.full_name!!.toString())
                         Toast.makeText(this@LoginActivity, "Login Berhasil", Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                     }else{
@@ -51,8 +68,6 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
 
-
-                //startActivity(Intent(this@LoginActivity,MainActivity::class.java))
             }
 
             override fun onFailure(call: Call<UserResponse>, t: Throwable) {
@@ -60,6 +75,13 @@ class LoginActivity : AppCompatActivity() {
             }
 
         })
+    }
+
+    private fun saveSession( username: String, password: String, fullname: String ){
+        sharedpref.put( Constant.PREF_USERNAME, username)
+        sharedpref.put( Constant.PREF_PASSWORD, password)
+        sharedpref.put( Constant.PREF_FULLNAME, fullname)
+        sharedpref.put( Constant.PREF_IS_LOGIN, true)
     }
 
     fun validateLogin(username: String, password: String) : Boolean{

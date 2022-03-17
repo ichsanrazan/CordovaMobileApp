@@ -15,7 +15,25 @@ class PreferencesHelper (context: Context) {
     }
 
     fun put(key: String, value: String){
-        editor
+        editor.putString ( key, value )
+            .apply()
     }
 
+    fun getString(key: String) : String? {
+        return sharedpref.getString( key, null)
+    }
+
+    fun put(key: String, value: Boolean){
+        editor.putBoolean ( key, value )
+            .apply()
+    }
+
+    fun getBoolean(key: String) : Boolean {
+        return sharedpref.getBoolean( key, false)
+    }
+
+    fun clear() {
+        editor.clear()
+            .apply()
+    }
 }
