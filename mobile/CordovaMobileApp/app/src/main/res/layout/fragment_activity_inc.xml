@@ -46,27 +46,23 @@
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
+
+        <Button
             android:id="@+id/incPicCdso"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            style="?android:spinnerStyle"
+            android:outlineProvider="bounds"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="25dp"
+            android:text=""
+            android:textColor="@color/black"
+            android:clickable="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/incSubject">
+            app:layout_constraintTop_toBottomOf="@+id/incSubject"/>
 
-            <AutoCompleteTextView
-                android:id="@+id/autoCompleteTvPicCdso"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:hint="PIC CDSO"
-                android:inputType="none"
-                android:textColor="@color/black" />
-        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/incCategory"
@@ -98,8 +94,6 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="25dp"
             app:helperTextTextColor="@color/primaryColor"
-            app:helperTextEnabled="true"
-            app:helperText="INC/IM Format (IMXXXXX or INCXXXXX) - where X is Number in range 6-12 digits"
             android:hint="INC/IM No"
             app:counterEnabled="true"
             app:counterMaxLength="12"

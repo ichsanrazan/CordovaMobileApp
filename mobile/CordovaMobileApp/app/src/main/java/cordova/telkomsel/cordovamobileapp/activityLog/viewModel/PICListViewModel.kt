@@ -1,8 +1,7 @@
-package cordova.telkomsel.cordovamobileapp.activityLog
+package cordova.telkomsel.cordovamobileapp.activityLog.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import cordova.telkomsel.cordovamobileapp.activityLog.model.ActivityList
 import cordova.telkomsel.cordovamobileapp.activityLog.model.PICList
 import cordova.telkomsel.cordovamobileapp.retrofit.RetrofitInstance
 import cordova.telkomsel.cordovamobileapp.retrofit.RetrofitService

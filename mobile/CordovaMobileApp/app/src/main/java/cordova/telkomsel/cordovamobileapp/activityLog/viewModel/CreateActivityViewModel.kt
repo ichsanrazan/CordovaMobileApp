@@ -1,10 +1,9 @@
-package cordova.telkomsel.cordovamobileapp.activityLog
+package cordova.telkomsel.cordovamobileapp.activityLog.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import cordova.telkomsel.cordovamobileapp.activityLog.model.Activity
 import cordova.telkomsel.cordovamobileapp.activityLog.model.ActivityResponse
-import cordova.telkomsel.cordovamobileapp.activityLog.model.PICResponse
 import cordova.telkomsel.cordovamobileapp.retrofit.RetrofitInstance
 import cordova.telkomsel.cordovamobileapp.retrofit.RetrofitService
 import retrofit2.Call

@@ -1,4 +1,4 @@
-package cordova.telkomsel.cordovamobileapp.activityLog
+package cordova.telkomsel.cordovamobileapp.activityLog.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

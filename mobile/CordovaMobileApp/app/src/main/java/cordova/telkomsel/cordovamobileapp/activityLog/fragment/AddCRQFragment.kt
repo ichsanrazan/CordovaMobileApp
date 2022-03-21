@@ -1,69 +1,51 @@
 package cordova.telkomsel.cordovamobileapp.activityLog.fragment
 
-import android.app.DatePickerDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import cordova.telkomsel.cordovamobileapp.R
-import cordova.telkomsel.cordovamobileapp.activityLog.ActivityLogViewModel
-import cordova.telkomsel.cordovamobileapp.activityLog.CreateActivityViewModel
-import cordova.telkomsel.cordovamobileapp.activityLog.PICListViewModel
+import cordova.telkomsel.cordovamobileapp.activityLog.viewModel.ActivityLogViewModel
+import cordova.telkomsel.cordovamobileapp.activityLog.viewModel.CreateActivityViewModel
+import cordova.telkomsel.cordovamobileapp.activityLog.viewModel.PICListViewModel
 import cordova.telkomsel.cordovamobileapp.activityLog.adapter.PICDetailAdapter
 import cordova.telkomsel.cordovamobileapp.activityLog.model.*
+import cordova.telkomsel.cordovamobileapp.activityLog.utils.Utils
+import cordova.telkomsel.cordovamobileapp.authentication.helper.Constant
+import cordova.telkomsel.cordovamobileapp.authentication.helper.PreferencesHelper
 import kotlinx.android.synthetic.main.fragment_activity_crq.*
 import kotlinx.android.synthetic.main.fragment_activity_crq.btnActivityDatePicker
-import kotlinx.android.synthetic.main.fragment_activity_inc.*
-import okhttp3.internal.checkOffsetAndCount
-import java.text.SimpleDateFormat
-import java.util.*
 import kotlin.collections.ArrayList
 
 class AddCRQFragment : Fragment(R.layout.fragment_activity_crq) {
 
-    lateinit var createActivityViewModel: CreateActivityViewModel
-    lateinit var viewModelActivityList: ActivityLogViewModel
-    lateinit var viewModelPICList: PICListViewModel
-    lateinit var picDetailAdapter: PICDetailAdapter
+    private lateinit var createActivityViewModel: CreateActivityViewModel
+    private lateinit var viewModelActivityList: ActivityLogViewModel
+    private lateinit var viewModelPICList: PICListViewModel
+    private lateinit var picDetailAdapter: PICDetailAdapter
+    lateinit var sharedPref: PreferencesHelper
 
-    var selectedPIC: String = ""
+    private var selectedPIC: String = ""
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        //Dropdown Subject
-        val subject = resources.getStringArray(R.array.subject)
-        val arraySubjectAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, subject)
-        autoCompleteTvActivitySubject.setAdapter(arraySubjectAdapter)
-
-        //Dropdown PIC CDSO
-        val piccdso = resources.getStringArray(R.array.piccdso)
-        val arrayPicCdsoAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, piccdso)
-        autoCompleteTvActivityReporter.setAdapter(arrayPicCdsoAdapter)
-
-        //Dropdown PIC CDSO
-        val category = resources.getStringArray(R.array.activityResource)
-        val arrayCategoryAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, category)
-        autoCompleteTvActivityCategory.setAdapter(arrayCategoryAdapter)
-
-
+        setupDropdown()
         initCreateActivityViewModel()
-        queryPICData()
+        handlePICDetail()
         initRadioListener()
         initDatePickerListener()
         submitListener()
 
     }
 
+    //Function for initializing the viewModel that is responsible for inserting the data
+    //the database
     private fun initCreateActivityViewModel() {
         createActivityViewModel = ViewModelProvider(this).get(CreateActivityViewModel::class.java)
         createActivityViewModel.getCreateActivityObservable().observe(viewLifecycleOwner, androidx.lifecycle.Observer {
@@ -74,6 +56,7 @@ class AddCRQFragment : Fragment(R.layout.fragment_activity_crq) {
         })
     }
 
+    //Function for handling submit button listener
     private fun submitListener() {
 
         //Get List of Activity to check for duplicates
@@ -86,40 +69,38 @@ class AddCRQFragment : Fragment(R.layout.fragment_activity_crq) {
         })
         viewModelActivityList.getActivityList()
 
-
+        //Submit button listener
         submit_add_activity.setOnClickListener {
-//            Log.e("LIST", selectedPIC)
+
+            //Get all input values
             val activityDate: String = btnActivityDatePicker.text.toString().trim()
             val activitySubject: String = spinnerActivitySubject.editText?.text.toString().trim()
-            val activityReporter: String = spinnerActivityReporter.editText?.text.toString().trim()
+            val activityReporter: String = spinnerActivityReporter.text.toString().trim()
             val activityCategory: String = spinnerActivityCategory.editText?.text.toString().trim()
             val activityNumber: String = "CRQ#" + inputActivityNumber.editText?.text.toString().trim()
+            val activityNumberString: String = inputActivityNumber.editText?.text.toString().trim()
             val activityName: String = inputActivityName.editText?.text.toString().trim()
             val activityDescription: String = inputActivityDescription.editText?.text.toString().trim()
 
-            if(activityDate.isNotEmpty() && activitySubject.isNotEmpty()
-                && activityReporter.isNotEmpty() && activityCategory.isNotEmpty()
-                && activityNumber.isNotEmpty() && activityName.isNotEmpty()){
+            //Check if input values are not empty
+            if(validateSubmitActivity(activityDate, activitySubject, activityReporter,
+                                      activityCategory, activityNumberString, activityName,
+                                      activityDescription)){
 
-                if(checkDuplicate(listActivity, activityNumber, activityDate)){
+                if(Utils.checkDuplicate(listActivity, activityNumber, activityDate)){
                     val activity = Activity(activityDate, activitySubject, activityReporter, activityCategory,
-                        activityNumber, activityName, activityDescription, selectedPIC)
+                                            activityNumber, activityName, activityDescription, selectedPIC)
                     createActivityViewModel.createActivity(activity)
-
-//                    val action = AddCRQFragmentDirections.actionAddCRQFragmentToActivityLogFragment()
-//                    findNavController().navigate(action)
                     Toast.makeText(requireContext(), "Activity berhasil untuk ditambahkan", Toast.LENGTH_SHORT).show()
 
-                    //Show toast if data exist on database
+                //Show toast if data exist on database
                 } else Toast.makeText(activity, "Data sudah ada, coba lagi", Toast.LENGTH_SHORT).show()
-
-            // Show toast if field is empty
-            } else Toast.makeText(activity, "Mohon isi semua field yang tersedia", Toast.LENGTH_SHORT).show()
-
+            }
         }
     }
 
-    private fun queryPICData() {
+    //Function for populating spinner and handle adding PIC Detail to RecyclerView
+    private fun handlePICDetail() {
 
         //Handle Dynamic Spinner Data
         var listPIC = mutableListOf<PIC>()
@@ -162,7 +143,7 @@ class AddCRQFragment : Fragment(R.layout.fragment_activity_crq) {
         viewModelPICList.getPICList()
 
 
-        //Handle Add PIC Detail
+        //Create and setup PIC Detail RecyclerView
         var picDetailList = mutableListOf<PIC>()
         val decoration = DividerItemDecoration(activity, DividerItemDecoration.VERTICAL)
         picDetailAdapter = PICDetailAdapter(requireContext(), picDetailList as ArrayList<PIC>)
@@ -183,72 +164,106 @@ class AddCRQFragment : Fragment(R.layout.fragment_activity_crq) {
             var flag = true
             if(picDetailList.isNotEmpty()){
                 for(i in picDetailList){
-                    if(i.phone_number == phoneNumber && i.full_name == fullName && i.company == company) flag = false
+                    if(i.phone_number == phoneNumber && i.full_name == fullName && i.company == company) {
+                        flag = false
+                    }
                 }
             }
-            if(flag) picDetailList.add(PIC(company, fullName, phoneNumber)) else Toast.makeText(activity, "PIC sudah terdaftar", Toast.LENGTH_SHORT).show()
+            if(flag) {
+                picDetailList.add(PIC(company, fullName, phoneNumber))
+            } else Toast.makeText(activity, "PIC sudah terdaftar", Toast.LENGTH_SHORT).show()
+
+            //Set string formatting for when inserting to database
             selectedPIC += "$company|$fullName|$phoneNumber,"
+
             picDetailAdapter.notifyDataSetChanged()
         }
-        //When I wrote this, only God and I understood what I was doing
-        //Now, only God knows.
     }
 
-    fun initDatePickerListener() {
-        val calendar = Calendar.getInstance()
-        val datePicker = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
-            calendar.set(Calendar.YEAR, year)
-            calendar.set(Calendar.MONTH, month)
-            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-            updateButtonLabelDate(calendar)
-        }
-
-        btnActivityDatePicker.setOnClickListener {
-            DatePickerDialog(requireContext(), datePicker, calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show()
-        }
+    //Function for handling the DatePicker listener and setting up the DatePicker
+    private fun initDatePickerListener() {
+        Utils.initDatePickerDialog(btnActivityDatePicker, requireContext())
     }
 
-    fun updateButtonLabelDate(calendar: Calendar) {
-        val txtFormat = "dd-MM-yyyy"
-        val sdf = SimpleDateFormat(txtFormat, Locale.UK)
-        btnActivityDatePicker.text = sdf.format(calendar.time)
+    //Function for populating the dropdown menu
+    private fun setupDropdown() {
+        //Dropdown Subject
+        val subject = resources.getStringArray(R.array.subject)
+        val arraySubjectAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, subject)
+        autoCompleteTvActivitySubject.setAdapter(arraySubjectAdapter)
+
+        //Dropdown PIC CDSO
+        sharedPref = PreferencesHelper(requireContext())
+        spinnerActivityReporter.text = sharedPref.getString( Constant.PREF_FULLNAME )
+
+        //Dropdown Category
+        val category = resources.getStringArray(R.array.activityResource)
+        val arrayCategoryAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, category)
+        autoCompleteTvActivityCategory.setAdapter(arrayCategoryAdapter)
     }
 
-    fun initRadioListener() {
+    private fun initRadioListener() {
         radioServiceImpactYes.setOnClickListener{
-            showHide(inputActivityDescription)
+            //Show service impact description
+            Utils.showHide(inputActivityDescription)
         }
         radioServiceImpactNo.setOnClickListener{
-            showHide(inputActivityDescription)
+            //Hide service impact description
+            Utils.showHide(inputActivityDescription)
         }
         radioPICDetailYes.setOnClickListener {
-            showHide(layoutPICDetail)
-            showHide(addPICDetail)
+            //Show PIC Detail RecyclerView and the add button
+            Utils.showHide(layoutPICDetail)
+            Utils.showHide(addPICDetail)
         }
         radioPICDetailNo.setOnClickListener {
-            showHide(layoutPICDetail)
-            showHide(addPICDetail)
+            //Hide PIC Detail RecyclerView and the add button
+            Utils.showHide(layoutPICDetail)
+            Utils.showHide(addPICDetail)
         }
     }
 
-    //Function to check if data input exist on the database
-    private fun checkDuplicate(listActivity: MutableList<Activity>, activityNumber: String, activityDate: String): Boolean {
-        var flag = true
-        for(i in listActivity){
-            if(i.crq_no == activityNumber && i.crq_date == activityDate){
-                flag = false
+    //Function for validating the user input
+    private fun validateSubmitActivity(
+        activityDate: String, activitySubject: String,
+        activityReporter: String, activityCategory: String,
+        activityNumber: String, activityName: String, activityDescription: String) : Boolean{
+         if(activityDate == "Date"){
+             btnActivityDatePicker.error = "Date is required"
+             return false
+         }
+        if(activitySubject.isEmpty()){
+            spinnerActivitySubject.error = "Subject is required"
+            return false
+        }
+        if(activityReporter.isEmpty()){
+            spinnerActivityReporter.error = "Reporter is required"
+            return false
+        }
+        if(activityCategory.isEmpty()){
+            spinnerActivityCategory.error = "Category is required"
+            return false
+        }
+        if(activityNumber.isEmpty()){
+            inputActivityNumber.error = "Activity number is required"
+            return false
+        }
+        if(activityNumber.length < 6){
+            inputActivityNumber.error = "CRQ Format (XXXXXX) - where X is Number in range 6-12 digits"
+            return false
+        }
+        if(activityName.isEmpty()){
+            inputActivityName.error = "Activity Name is required"
+            return false
+        }
+        if(radioServiceImpactYes.isChecked){
+            if(activityDescription.isEmpty()){
+                inputActivityDescription.error = "Service impact description is required"
+                return false
             }
         }
-        return flag
-    }
+        return true
 
-    fun showHide(view:View) {
-        view.visibility = if (view.visibility == View.VISIBLE){
-            View.GONE
-        } else{
-            View.VISIBLE
-        }
     }
 
 }

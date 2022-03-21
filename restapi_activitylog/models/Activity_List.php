@@ -25,7 +25,7 @@ class Activity_List
     //GET Activity List
     public function read()
     {
-        $query = 'SELECT * FROM ' . $this->table . ' ORDER BY crq_date DESC';
+        $query = 'SELECT * FROM ' . $this->table . ' ORDER BY crq_date ASC';
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
 
@@ -80,7 +80,7 @@ class Activity_List
         $stmt->bindParam(':category', $this->category);
         $stmt->bindParam(':crq_no', $this->crq_no);
         $stmt->bindParam(':crq_activity', $this->crq_activity);
-        $stmt->bindParam(':crq_serviceimp', $this->title);
+        $stmt->bindParam(':crq_serviceimp', $this->crq_serviceimp);
         $stmt->bindParam(':crq_pic', $this->crq_pic);
 
         if ($stmt->execute()) {
