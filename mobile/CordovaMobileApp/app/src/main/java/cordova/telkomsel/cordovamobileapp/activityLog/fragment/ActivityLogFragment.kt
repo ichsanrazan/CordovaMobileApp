@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import cordova.telkomsel.cordovamobileapp.R
 import cordova.telkomsel.cordovamobileapp.activityLog.viewModel.ActivityLogViewModel
 import cordova.telkomsel.cordovamobileapp.activityLog.adapter.ActivityAdapter
@@ -23,9 +24,29 @@ class ActivityLogFragment : Fragment(R.layout.fragment_activity_log) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         initViewModel()
         initRecyclerView()
         fabListener()
+        fabScrollTop()
+    }
+
+    //Function for auto scroll to top FAB
+    private fun fabScrollTop() {
+        fabBackTop.setOnClickListener {
+            recyclerViewActivityLog.smoothScrollToPosition(0)
+        }
+
+        recyclerViewActivityLog.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                if (dy > 0 && fabBackTop.getVisibility() == View.VISIBLE) {
+                    fabBackTop.hide();
+                } else if (dy < 0 && fabBackTop.getVisibility() != View.VISIBLE) {
+                    fabBackTop.show();
+                }
+            }
+        })
+
     }
 
     //Function for handling FAB click on the ActivityLog page

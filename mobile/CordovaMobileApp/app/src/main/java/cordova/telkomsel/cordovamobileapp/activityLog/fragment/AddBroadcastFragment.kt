@@ -29,10 +29,6 @@ class AddBroadcastFragment : Fragment(R.layout.fragment_activity_broadcast) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //Dropdown Subject
-        val selectSubject = resources.getStringArray(R.array.subject)
-        val arraySelectSubjectAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, selectSubject)
-        autoCompleteTvSelectSubject.setAdapter(arraySelectSubjectAdapter)
 
         initRadioListener()
         datePickerListener()
@@ -56,18 +52,18 @@ class AddBroadcastFragment : Fragment(R.layout.fragment_activity_broadcast) {
 
         start_broadcast.setOnClickListener {
             var selectedDate = btnActivityDatePicker.text.toString().trim()
-            var selectedSubject = inputActivitySelectSubject.editText?.text.toString().trim()
             var counter: Int
             previewString = ""
 
             //Check if selected date is not empty
             if(validateDate(selectedDate)){
 
-                //if subject is not empty then show activity on that certain subject
-                if(selectedSubject.isNotEmpty()){
+                //if checkbox Core CS is checked then show activity on that subject
+                if(checkBoxCoreCS.isChecked){
+                    var checkBoxCoreCS = checkBoxCoreCS.text.toString().trim()
                     counter = 1
                     for(i in listActivity){
-                        if(i.crq_date == selectedDate && i.crq_subject == selectedSubject){
+                        if(i.crq_date == selectedDate && i.crq_subject == checkBoxCoreCS){
                             previewString += "Info Activity CDSO Jabodetabek $selectedDate \n  " +
                                     "============================= \n $counter). " +
                                     "Activity Name: ${i.crq_activity} (${i.crq_no})\n " +
@@ -77,7 +73,51 @@ class AddBroadcastFragment : Fragment(R.layout.fragment_activity_broadcast) {
                             counter++
                         }
                     }
-
+                //if checkbox Core PS is checked then show activity on that subject
+                } else if(checkBoxCorePS.isChecked){
+                    val checkBoxCorePS = checkBoxCorePS.text.toString().trim()
+                    counter = 1
+                    for(i in listActivity){
+                        if(i.crq_date == selectedDate && i.crq_subject == checkBoxCorePS){
+                            previewString += "Info Activity CDSO Jabodetabek $selectedDate \n  " +
+                                    "============================= \n $counter). " +
+                                    "Activity Name: ${i.crq_activity} (${i.crq_no})\n " +
+                                    "Impact Service: ${i.crq_serviceimp}\n " +
+                                    "PIC: ${i.pic_reporter}\n" +
+                                    "-----------------------------\n"
+                            counter++
+                        }
+                    }
+                //if checkbox Datacomm is checked then show activity on that subject
+                } else if(checkBoxDatacomm.isChecked){
+                    val checkBoxDatacomm = checkBoxDatacomm.text.toString().trim()
+                    counter = 1
+                    for(i in listActivity){
+                        if(i.crq_date == selectedDate && i.crq_subject == checkBoxDatacomm){
+                            previewString += "Info Activity CDSO Jabodetabek $selectedDate \n  " +
+                                    "============================= \n $counter). " +
+                                    "Activity Name: ${i.crq_activity} (${i.crq_no})\n " +
+                                    "Impact Service: ${i.crq_serviceimp}\n " +
+                                    "PIC: ${i.pic_reporter}\n" +
+                                    "-----------------------------\n"
+                            counter++
+                        }
+                    }
+                //if checkbox Security is checked then show activity on that subject
+                } else if(checkBoxSecurity.isChecked){
+                    val checkBoxSecurity = checkBoxSecurity.text.toString().trim()
+                    counter = 1
+                    for(i in listActivity){
+                        if(i.crq_date == selectedDate && i.crq_subject == checkBoxSecurity){
+                            previewString += "Info Activity CDSO Jabodetabek $selectedDate \n  " +
+                                    "============================= \n $counter). " +
+                                    "Activity Name: ${i.crq_activity} (${i.crq_no})\n " +
+                                    "Impact Service: ${i.crq_serviceimp}\n " +
+                                    "PIC: ${i.pic_reporter}\n" +
+                                    "-----------------------------\n"
+                            counter++
+                        }
+                    }
                 //if subject is empty then show all activity
                 } else {
                     counter = 1
@@ -101,7 +141,7 @@ class AddBroadcastFragment : Fragment(R.layout.fragment_activity_broadcast) {
 
             //Show toast when the activity is not found
             if(previewString.isEmpty() && selectedDate != "Date"){
-                Toast.makeText(activity, "Tidak ada activity pada tanggal $selectedDate (subject: $selectedSubject) ", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Tidak ada activity pada tanggal $selectedDate dan subject yang dipilih", Toast.LENGTH_SHORT).show()
             }
             broadcastPreview.setText(previewString)
         }
@@ -125,10 +165,18 @@ class AddBroadcastFragment : Fragment(R.layout.fragment_activity_broadcast) {
     //Function for handling the radio button listener and the visibility of dropdown
     private fun initRadioListener() {
         radioAllSubjectYes.setOnClickListener{
-            Utils.showHide(inputActivitySelectSubject)
+            Utils.showHide(tvSelectSubject)
+            Utils.showHide(checkBoxCoreCS)
+            Utils.showHide(checkBoxCorePS)
+            Utils.showHide(checkBoxDatacomm)
+            Utils.showHide(checkBoxSecurity)
         }
         radioAllSubjectNo.setOnClickListener{
-            Utils.showHide(inputActivitySelectSubject)
+            Utils.showHide(tvSelectSubject)
+            Utils.showHide(checkBoxCoreCS)
+            Utils.showHide(checkBoxCorePS)
+            Utils.showHide(checkBoxDatacomm)
+            Utils.showHide(checkBoxSecurity)
         }
     }
 

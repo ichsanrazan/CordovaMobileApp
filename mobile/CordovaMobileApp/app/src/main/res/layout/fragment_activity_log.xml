@@ -65,4 +65,18 @@
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabBackTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="#6D353232"
+        android:backgroundTint="#6D353232"
+        app:borderWidth="0dp"
+        android:visibility="gone"
+        android:src="@drawable/arrow_upward"
+        app:rippleColor="#6D353232"/>
+
 </RelativeLayout>
