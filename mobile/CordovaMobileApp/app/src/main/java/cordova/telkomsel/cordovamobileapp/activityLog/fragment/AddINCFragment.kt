@@ -77,8 +77,8 @@ class AddINCFragment : Fragment(R.layout.fragment_activity_inc) {
                                           activityCategory, activityNumberString, activityName)) {
 
                 if(Utils.checkDuplicate(listActivity, activityNumber, activityDate)) {
-                    val activityInput = Activity(activityDate, activitySubject, activityReporter, activityCategory,
-                        activityNumber, activityName, "", "")
+                    val activityInput = Activity(null, activityDate, activitySubject, activityReporter, activityCategory,
+                        activityNumber, activityName, "", "",  activityReporter)
                     createActivityViewModel.createActivity(activityInput)
                     Toast.makeText(requireContext(), "Activity berhasil untuk ditambahkan", Toast.LENGTH_SHORT).show()
 
@@ -104,7 +104,7 @@ class AddINCFragment : Fragment(R.layout.fragment_activity_inc) {
         sharedPref = PreferencesHelper(requireContext())
         incPicCdso.text = sharedPref.getString( Constant.PREF_FULLNAME )
 
-        //Dropdown PIC CDSO
+        //Dropdown Category
         val category = resources.getStringArray(R.array.category)
         val arrayCategoryAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, category)
         autoCompleteTvCategory.setAdapter(arrayCategoryAdapter)

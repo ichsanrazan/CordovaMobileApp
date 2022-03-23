@@ -26,6 +26,7 @@ if ($num > 0) {
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         extract($row);
         $activityList_item = array(
+            'activity_id' => $activity_id,
             'crq_date' => $crq_date,
             'crq_subject' => $crq_subject,
             'pic_reporter' => $pic_reporter,
@@ -33,7 +34,8 @@ if ($num > 0) {
             'crq_no' => $crq_no,
             'crq_activity' => $crq_activity,
             'crq_serviceimp' => $crq_serviceimp,
-            'crq_pic' => $crq_pic
+            'crq_pic' => $crq_pic,
+            'owner' => $owner
         );
         array_push($activityList_arr['data'], $activityList_item);
     }

@@ -10,8 +10,16 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.CordovaMobileApp">
+        android:theme="@style/Theme.CordovaMobileApp"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".activityLog.EditTroubleshootLog"
+            android:exported="false"
+            android:parentActivityName=".activityLog.MainLog" />
+        <activity
+            android:name=".activityLog.EditActivityLog"
+            android:exported="false"
+            android:parentActivityName=".activityLog.MainLog" />
         <activity
             android:name=".activityLog.MainLog"
             android:exported="false" />

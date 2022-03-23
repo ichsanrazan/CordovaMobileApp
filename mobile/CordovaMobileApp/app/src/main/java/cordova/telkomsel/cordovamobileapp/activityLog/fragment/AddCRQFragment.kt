@@ -28,7 +28,7 @@ class AddCRQFragment : Fragment(R.layout.fragment_activity_crq) {
     private lateinit var viewModelActivityList: ActivityLogViewModel
     private lateinit var viewModelPICList: PICListViewModel
     private lateinit var picDetailAdapter: PICDetailAdapter
-    lateinit var sharedPref: PreferencesHelper
+    private lateinit var sharedPref: PreferencesHelper
 
     private var selectedPIC: String = ""
 
@@ -49,7 +49,9 @@ class AddCRQFragment : Fragment(R.layout.fragment_activity_crq) {
     private fun initCreateActivityViewModel() {
         createActivityViewModel = ViewModelProvider(this).get(CreateActivityViewModel::class.java)
         createActivityViewModel.getCreateActivityObservable().observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-            if(it == null) { Toast.makeText(activity, "Activity gagal untuk ditambahkan", Toast.LENGTH_SHORT).show() }
+            if(it == null) {
+                Toast.makeText(activity, "Activity gagal untuk ditambahkan", Toast.LENGTH_SHORT).show()
+            }
             else{
                 Toast.makeText(activity, "Activity berhasil untuk ditambahkan", Toast.LENGTH_SHORT).show()
             }
@@ -88,8 +90,8 @@ class AddCRQFragment : Fragment(R.layout.fragment_activity_crq) {
                                       activityDescription)){
 
                 if(Utils.checkDuplicate(listActivity, activityNumber, activityDate)){
-                    val activity = Activity(activityDate, activitySubject, activityReporter, activityCategory,
-                                            activityNumber, activityName, activityDescription, selectedPIC)
+                    val activity = Activity(null, activityDate, activitySubject, activityReporter, activityCategory,
+                                            activityNumber, activityName, activityDescription, selectedPIC, activityReporter)
                     createActivityViewModel.createActivity(activity)
                     Toast.makeText(requireContext(), "Activity berhasil untuk ditambahkan", Toast.LENGTH_SHORT).show()
 

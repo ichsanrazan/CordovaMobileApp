@@ -1,8 +1,11 @@
 package cordova.telkomsel.cordovamobileapp.activityLog.fragment
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -11,19 +14,22 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cordova.telkomsel.cordovamobileapp.R
+import cordova.telkomsel.cordovamobileapp.activityLog.EditActivityLog
+import cordova.telkomsel.cordovamobileapp.activityLog.EditTroubleshootLog
 import cordova.telkomsel.cordovamobileapp.activityLog.viewModel.ActivityLogViewModel
 import cordova.telkomsel.cordovamobileapp.activityLog.adapter.ActivityAdapter
+import cordova.telkomsel.cordovamobileapp.activityLog.model.Activity
 import cordova.telkomsel.cordovamobileapp.activityLog.model.ActivityList
 import kotlinx.android.synthetic.main.fragment_activity_log.*
 
-class ActivityLogFragment : Fragment(R.layout.fragment_activity_log) {
+class ActivityLogFragment : Fragment(R.layout.fragment_activity_log),
+    ActivityAdapter.OnItemClickListener {
 
     private lateinit var activityAdapter: ActivityAdapter
     lateinit var viewModel: ActivityLogViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         initViewModel()
         initRecyclerView()
@@ -39,9 +45,9 @@ class ActivityLogFragment : Fragment(R.layout.fragment_activity_log) {
 
         recyclerViewActivityLog.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                if (dy > 0 && fabBackTop.getVisibility() == View.VISIBLE) {
+                if (dy > 0 && fabBackTop.visibility == View.VISIBLE) {
                     fabBackTop.hide();
-                } else if (dy < 0 && fabBackTop.getVisibility() != View.VISIBLE) {
+                } else if (dy < 0 && fabBackTop.visibility != View.VISIBLE) {
                     fabBackTop.show();
                 }
             }
@@ -76,7 +82,7 @@ class ActivityLogFragment : Fragment(R.layout.fragment_activity_log) {
             layoutManager = LinearLayoutManager(activity)
             val decoration = DividerItemDecoration(activity, DividerItemDecoration.VERTICAL)
             addItemDecoration(decoration)
-            activityAdapter = ActivityAdapter()
+            activityAdapter = ActivityAdapter(this@ActivityLogFragment)
             adapter = activityAdapter
 
         }
@@ -92,6 +98,26 @@ class ActivityLogFragment : Fragment(R.layout.fragment_activity_log) {
                 activityAdapter.notifyDataSetChanged()
             }
         })
+    }
+
+    override fun onItemEditClick(activity: Activity) {
+        if(activity.category == "INC/IM Troubleshoot"){
+            val intent = Intent(requireContext(), EditTroubleshootLog::class.java)
+            intent.putExtra("activity_id", activity.activity_id)
+            startActivityForResult(intent, 1000)
+        } else {
+            val intent = Intent(requireContext(), EditActivityLog::class.java)
+            intent.putExtra("activity_id", activity.activity_id)
+            startActivityForResult(intent, 1000)
+        }
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if(requestCode == 1000){
+            viewModel.getActivityList()
+        }
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
 }

@@ -6,9 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import cordova.telkomsel.cordovamobileapp.R
 import cordova.telkomsel.cordovamobileapp.activityLog.model.Activity
+import cordova.telkomsel.cordovamobileapp.authentication.helper.PreferencesHelper
 import kotlinx.android.synthetic.main.recycler_row_activity.view.*
 
-class ActivityAdapter: RecyclerView.Adapter<ActivityAdapter.ActivityViewHolder>() {
+class ActivityAdapter(val clickListener: OnItemClickListener): RecyclerView.Adapter<ActivityAdapter.ActivityViewHolder>() {
 
     var activityList = mutableListOf<Activity>()
 
@@ -25,6 +26,9 @@ class ActivityAdapter: RecyclerView.Adapter<ActivityAdapter.ActivityViewHolder>(
 
     override fun onBindViewHolder(holder: ActivityAdapter.ActivityViewHolder, position: Int) {
         holder.bind(activityList[position])
+        holder.itemView.setOnClickListener {
+            clickListener.onItemEditClick(activityList[position])
+        }
     }
 
     class ActivityViewHolder(view: View): RecyclerView.ViewHolder(view){
@@ -44,5 +48,8 @@ class ActivityAdapter: RecyclerView.Adapter<ActivityAdapter.ActivityViewHolder>(
             tvRecyclerCategory.text = data.category
             tvRecyclerDescription.text = data.crq_activity
         }
+    }
+    interface OnItemClickListener{
+        fun onItemEditClick(activity: Activity)
     }
 }

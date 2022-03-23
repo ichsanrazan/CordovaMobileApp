@@ -8,10 +8,7 @@ import cordova.telkomsel.cordovamobileapp.authentication.model.UserRequest
 import cordova.telkomsel.cordovamobileapp.authentication.model.UserResponse
 import cordova.telkomsel.cordovamobileapp.activityLog.model.*
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface RetrofitService {
 
@@ -21,6 +18,14 @@ interface RetrofitService {
     @POST("activity/create.php")
     @Headers("Content-Type: application/json")
     fun createActivity(@Body params: Activity): Call<ActivityResponse>
+
+    @PATCH("activity/update.php")
+    @Headers("Content-Type: application/json")
+    fun updateActivity(@Body params: Activity): Call<ActivityResponse>
+
+    @HTTP(method = "DELETE", path = "activity/delete.php", hasBody = true)
+    @Headers("Content-Type: application/json")
+    fun deleteActivity(@Body params: ActivityDelete): Call<ActivityResponse>
 
     @GET("pic/read.php")
     fun getPICList(): Call<PICList>
