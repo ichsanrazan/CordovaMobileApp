@@ -54,13 +54,15 @@ class AddBroadcastFragment : Fragment(R.layout.fragment_activity_broadcast) {
             var selectedDate = btnActivityDatePicker.text.toString().trim()
             var counter: Int
             previewString = ""
+            var atLeastOneCheked = false
 
             //Check if selected date is not empty
             if(validateDate(selectedDate)){
 
                 //if checkbox Core CS is checked then show activity on that subject
-                if(checkBoxCoreCS.isChecked){
-                    var checkBoxCoreCS = checkBoxCoreCS.text.toString().trim()
+                if(checkBoxCoreCS.isChecked()==true){
+                    atLeastOneCheked = true
+                    val checkBoxCoreCS = checkBoxCoreCS.text.toString().trim()
                     counter = 1
                     for(i in listActivity){
                         if(i.crq_date == selectedDate && i.crq_subject == checkBoxCoreCS){
@@ -74,7 +76,9 @@ class AddBroadcastFragment : Fragment(R.layout.fragment_activity_broadcast) {
                         }
                     }
                 //if checkbox Core PS is checked then show activity on that subject
-                } else if(checkBoxCorePS.isChecked){
+                }
+                if(checkBoxCorePS.isChecked()==true){
+                    atLeastOneCheked = true
                     val checkBoxCorePS = checkBoxCorePS.text.toString().trim()
                     counter = 1
                     for(i in listActivity){
@@ -89,7 +93,9 @@ class AddBroadcastFragment : Fragment(R.layout.fragment_activity_broadcast) {
                         }
                     }
                 //if checkbox Datacomm is checked then show activity on that subject
-                } else if(checkBoxDatacomm.isChecked){
+                }
+                if(checkBoxDatacomm.isChecked()==true){
+                    atLeastOneCheked = true
                     val checkBoxDatacomm = checkBoxDatacomm.text.toString().trim()
                     counter = 1
                     for(i in listActivity){
@@ -104,7 +110,9 @@ class AddBroadcastFragment : Fragment(R.layout.fragment_activity_broadcast) {
                         }
                     }
                 //if checkbox Security is checked then show activity on that subject
-                } else if(checkBoxSecurity.isChecked){
+                }
+                if(checkBoxSecurity.isChecked){
+                    atLeastOneCheked = true
                     val checkBoxSecurity = checkBoxSecurity.text.toString().trim()
                     counter = 1
                     for(i in listActivity){
@@ -119,7 +127,8 @@ class AddBroadcastFragment : Fragment(R.layout.fragment_activity_broadcast) {
                         }
                     }
                 //if subject is empty then show all activity
-                } else {
+                }
+                if (!atLeastOneCheked) {
                     counter = 1
                     for(i in listActivity){
                         if(i.crq_date == selectedDate){
