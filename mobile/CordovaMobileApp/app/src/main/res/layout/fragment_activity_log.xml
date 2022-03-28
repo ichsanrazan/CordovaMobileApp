@@ -6,11 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".activityLog.fragment.ActivityLogFragment">
 
+    <LinearLayout
+        android:id="@+id/layoutSearch"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="16dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/etSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusedByDefault="false"
+            android:hint="Search activity..." />
+
+    </LinearLayout>
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewActivityLog"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/layoutSearch"
         android:padding="8dp" />
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu
@@ -65,18 +86,32 @@
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:id="@+id/fabBackTop"-->
+<!--        android:layout_below="@id/layoutSearch"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:background="#6D353232"-->
+<!--        android:backgroundTint="#6D353232"-->
+<!--        app:borderWidth="0dp"-->
+<!--        android:src="@drawable/arrow_upward"-->
+<!--        app:rippleColor="#6D353232"/>-->
+
+    <Button
         android:id="@+id/fabBackTop"
+        android:minHeight="10dp"
+        android:layout_below="@id/layoutSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
-        android:background="#6D353232"
-        android:backgroundTint="#6D353232"
-        app:borderWidth="0dp"
-        android:visibility="gone"
-        android:src="@drawable/arrow_upward"
-        app:rippleColor="#6D353232"/>
+        android:background="@drawable/btn_to_top"
+        android:textSize="10sp"
+        android:drawableLeft="@drawable/ic_baseline_keyboard_arrow_up_12"
+        android:text="Back to top"/>
+
+
 
 </RelativeLayout>

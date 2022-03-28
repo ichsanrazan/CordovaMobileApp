@@ -176,4 +176,16 @@ class Activity_List
 
         return false;
     }
+
+    public function search($name)
+    {
+        $query = 'SELECT * FROM `activity_list` WHERE pic_reporter LIKE :name OR crq_activity LIKE :name OR crq_subject LIKE :name OR category LIKE :name OR crq_no LIKE :name';
+
+        //Prepare statement
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->execute(["name" => "%" . $name . "%"]);
+
+        return $stmt;
+    }
 }
