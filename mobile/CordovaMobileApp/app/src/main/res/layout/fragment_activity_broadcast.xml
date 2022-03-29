@@ -78,7 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:visibility="gone"
             android:text="Core CS"
             app:layout_constraintStart_toStartOf="parent"
@@ -88,34 +88,34 @@
             android:id="@+id/checkBoxCorePS"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="4dp"
             android:visibility="gone"
             android:text="Core PS"
-            app:layout_constraintStart_toEndOf="@+id/checkBoxCoreCS"
-            app:layout_constraintTop_toBottomOf="@+id/tvSelectSubject" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkBoxCoreCS" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/checkBoxDatacomm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="4dp"
             android:visibility="gone"
             android:text="Datacomm"
-            app:layout_constraintStart_toEndOf="@+id/checkBoxCorePS"
-            app:layout_constraintTop_toBottomOf="@+id/tvSelectSubject" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/checkBoxCorePS" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/checkBoxSecurity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="4dp"
             android:visibility="gone"
             android:text="Security"
-            app:layout_constraintStart_toEndOf="@+id/checkBoxDatacomm"
-            app:layout_constraintTop_toBottomOf="@+id/tvSelectSubject" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkBoxDatacomm" />
 
         <Button
             android:id="@+id/start_broadcast"
@@ -125,7 +125,7 @@
             android:layout_marginStart="25dp"
             android:text="START"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBoxCoreCS" />
+            app:layout_constraintTop_toBottomOf="@+id/checkBoxSecurity" />
 
 
         <EditText

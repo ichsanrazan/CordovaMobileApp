@@ -37,4 +37,22 @@ class ActivityLogViewModel: ViewModel() {
             }
         })
     }
+
+    fun searchActivity(searchText: String){
+        val retroInstance = RetrofitInstance.getRetroInstance().create(RetrofitService::class.java)
+        val call = retroInstance.searchActivity(searchText)
+        call.enqueue(object: Callback<ActivityList>{
+            override fun onFailure(call: Call<ActivityList>, t: Throwable) {
+                recyclerListData.postValue(null)
+            }
+
+            override fun onResponse(call: Call<ActivityList>, response: Response<ActivityList>) {
+                if(response.isSuccessful){
+                    recyclerListData.postValue(response.body())
+                } else {
+
+                }
+            }
+        })
+    }
 }

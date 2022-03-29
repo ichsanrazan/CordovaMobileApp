@@ -2,10 +2,17 @@ package cordova.telkomsel.cordovamobileapp.activityLog.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextUtils
+import android.text.TextWatcher
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
+import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -21,6 +28,7 @@ import cordova.telkomsel.cordovamobileapp.activityLog.adapter.ActivityAdapter
 import cordova.telkomsel.cordovamobileapp.activityLog.model.Activity
 import cordova.telkomsel.cordovamobileapp.activityLog.model.ActivityList
 import kotlinx.android.synthetic.main.fragment_activity_log.*
+import org.w3c.dom.Text
 
 class ActivityLogFragment : Fragment(R.layout.fragment_activity_log),
     ActivityAdapter.OnItemClickListener {
@@ -34,11 +42,15 @@ class ActivityLogFragment : Fragment(R.layout.fragment_activity_log),
         initViewModel()
         initRecyclerView()
         fabListener()
+        searchListener()
         fabScrollTop()
+
     }
 
     //Function for auto scroll to top FAB
     private fun fabScrollTop() {
+        fabBackTop.alpha = 0f
+
         fabBackTop.setOnClickListener {
             recyclerViewActivityLog.smoothScrollToPosition(0)
         }
@@ -46,12 +58,47 @@ class ActivityLogFragment : Fragment(R.layout.fragment_activity_log),
         recyclerViewActivityLog.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 if (dy > 0 && fabBackTop.visibility == View.VISIBLE) {
-                    fabBackTop.hide();
+                    fabBackTop.animate().alpha(0f).setDuration(150).withEndAction {
+                        fabBackTop.visibility = View.GONE;
+                    }
+
                 } else if (dy < 0 && fabBackTop.visibility != View.VISIBLE) {
-                    fabBackTop.show();
+                    fabBackTop.visibility = View.VISIBLE;
+                    fabBackTop.animate().alpha(1f).duration = 150
+                }
+            }
+
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                if(!recyclerViewActivityLog.canScrollVertically(-1)){
+                    fabBackTop.animate().alpha(0f).duration = 150
+                }
+
+                super.onScrollStateChanged(recyclerView, newState)
+            }
+        })
+
+
+    }
+
+    private fun searchListener(){
+        etSearch.addTextChangedListener(object : TextWatcher {
+
+            override fun afterTextChanged(s: Editable) {}
+
+            override fun beforeTextChanged(s: CharSequence, start: Int,
+                                           count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence, start: Int,
+                                       before: Int, count: Int) {
+                if(!TextUtils.isEmpty(etSearch.text.toString())){
+                    viewModel.searchActivity(etSearch.text.toString())
+                }else{
+                    viewModel.getActivityList()
                 }
             }
         })
+
 
     }
 
@@ -98,6 +145,7 @@ class ActivityLogFragment : Fragment(R.layout.fragment_activity_log),
                 activityAdapter.notifyDataSetChanged()
             }
         })
+        viewModel.getActivityList()
     }
 
     override fun onItemEditClick(activity: Activity) {
