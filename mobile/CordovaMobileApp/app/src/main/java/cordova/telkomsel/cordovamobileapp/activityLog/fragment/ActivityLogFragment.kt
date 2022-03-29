@@ -5,14 +5,8 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
-import android.util.Log
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
-import androidx.core.widget.addTextChangedListener
-import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -23,12 +17,11 @@ import androidx.recyclerview.widget.RecyclerView
 import cordova.telkomsel.cordovamobileapp.R
 import cordova.telkomsel.cordovamobileapp.activityLog.EditActivityLog
 import cordova.telkomsel.cordovamobileapp.activityLog.EditTroubleshootLog
-import cordova.telkomsel.cordovamobileapp.activityLog.viewModel.ActivityLogViewModel
 import cordova.telkomsel.cordovamobileapp.activityLog.adapter.ActivityAdapter
 import cordova.telkomsel.cordovamobileapp.activityLog.model.Activity
 import cordova.telkomsel.cordovamobileapp.activityLog.model.ActivityList
+import cordova.telkomsel.cordovamobileapp.activityLog.viewModel.ActivityLogViewModel
 import kotlinx.android.synthetic.main.fragment_activity_log.*
-import org.w3c.dom.Text
 
 class ActivityLogFragment : Fragment(R.layout.fragment_activity_log),
     ActivityAdapter.OnItemClickListener {
@@ -127,8 +120,6 @@ class ActivityLogFragment : Fragment(R.layout.fragment_activity_log),
         viewModel.getActivityList()
         recyclerViewActivityLog.apply{
             layoutManager = LinearLayoutManager(activity)
-            val decoration = DividerItemDecoration(activity, DividerItemDecoration.VERTICAL)
-            addItemDecoration(decoration)
             activityAdapter = ActivityAdapter(this@ActivityLogFragment)
             adapter = activityAdapter
 
@@ -167,5 +158,7 @@ class ActivityLogFragment : Fragment(R.layout.fragment_activity_log),
         }
         super.onActivityResult(requestCode, resultCode, data)
     }
+
+
 
 }
