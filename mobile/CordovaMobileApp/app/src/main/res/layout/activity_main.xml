@@ -67,6 +67,8 @@
         app:layout_constraintTop_toTopOf="@id/top_dashboard">
 
         <androidx.cardview.widget.CardView
+            android:foreground="?attr/selectableItemBackground"
+            android:clickable="true"
             android:id="@+id/card_activityLog"
             android:layout_width="140dp"
             android:layout_height="140dp"

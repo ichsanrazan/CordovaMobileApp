@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardItem"
+    android:foreground="?attr/selectableItemBackground"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="18dp"
@@ -10,7 +11,7 @@
     android:layout_marginTop="5dp"
     android:paddingTop="16dp"
     app:cardBackgroundColor="#FD8B8B"
-    app:cardCornerRadius="20dp"
+    app:cardCornerRadius="10dp"
     app:cardElevation="3dp"
     app:contentPadding="4dp">
 
