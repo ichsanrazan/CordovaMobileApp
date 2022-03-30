@@ -18,11 +18,11 @@ import androidx.recyclerview.widget.RecyclerView
 import cordova.telkomsel.cordovamobileapp.R
 import cordova.telkomsel.cordovamobileapp.activityLog.EditActivityLog
 import cordova.telkomsel.cordovamobileapp.activityLog.EditTroubleshootLog
-import cordova.telkomsel.cordovamobileapp.activityLog.viewModel.ActivityLogViewModel
 import cordova.telkomsel.cordovamobileapp.activityLog.adapter.ActivityAdapter
 import cordova.telkomsel.cordovamobileapp.activityLog.model.Activity
 import cordova.telkomsel.cordovamobileapp.activityLog.model.ActivityList
 import cordova.telkomsel.cordovamobileapp.activityLog.utils.Utils
+import cordova.telkomsel.cordovamobileapp.activityLog.viewModel.ActivityLogViewModel
 import kotlinx.android.synthetic.main.fragment_activity_log.*
 
 class ActivityLogFragment : Fragment(R.layout.fragment_activity_log),
@@ -194,8 +194,6 @@ class ActivityLogFragment : Fragment(R.layout.fragment_activity_log),
         viewModel.getActivityList()
         recyclerViewActivityLog.apply{
             layoutManager = LinearLayoutManager(activity)
-            val decoration = DividerItemDecoration(activity, DividerItemDecoration.VERTICAL)
-            addItemDecoration(decoration)
             activityAdapter = ActivityAdapter(this@ActivityLogFragment)
             adapter = activityAdapter
 
@@ -234,5 +232,7 @@ class ActivityLogFragment : Fragment(R.layout.fragment_activity_log),
         }
         super.onActivityResult(requestCode, resultCode, data)
     }
+
+
 
 }
