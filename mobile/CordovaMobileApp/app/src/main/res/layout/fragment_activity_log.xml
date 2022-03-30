@@ -52,7 +52,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layoutFilter"
-                android:visibility="visible"
+                android:visibility="gone"
                 android:paddingTop="8dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
