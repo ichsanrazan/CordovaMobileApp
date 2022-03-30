@@ -6,18 +6,23 @@
         <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/drawable/btn_bg.xml" value="0.3153846153846154" />
         <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/drawable/btn_to_top.xml" value="0.23541666666666666" />
         <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/drawable/custom_floating_button.xml" value="0.19444444444444445" />
+        <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/drawable/ic_baseline_reset_24.xml" value="0.42552083333333335" />
+        <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.42552083333333335" />
         <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/activity_edit_log.xml" value="0.4" />
         <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/activity_edit_troubleshoot_log.xml" value="0.33589743589743587" />
+        <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/activity_filter_log.xml" value="0.21927083333333333" />
         <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/activity_login.xml" value="0.4" />
         <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/activity_main.xml" value="0.4" />
         <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/activity_main_log.xml" value="0.264" />
         <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/activity_splashscreen.xml" value="0.19316239316239317" />
+        <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/custom_dialog_filter.xml" value="0.4" />
+        <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/custom_filter_dialog.xml" value="0.409375" />
         <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/dropdown_item.xml" value="0.33589743589743587" />
         <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/fragment_activity_add_pic.xml" value="0.264" />
         <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/fragment_activity_broadcast.xml" value="0.3021367521367521" />
         <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/fragment_activity_crq.xml" value="0.4" />
         <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/fragment_activity_inc.xml" value="0.4" />
-        <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/fragment_activity_log.xml" value="0.264" />
+        <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/fragment_activity_log.xml" value="0.4" />
         <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/recycler_row_activity.xml" value="0.536" />
         <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/recycler_row_pic_detail.xml" value="0.33589743589743587" />
         <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/menu/drawer_nav_menu.xml" value="0.19316239316239317" />

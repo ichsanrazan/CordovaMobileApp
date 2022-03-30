@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import cordova.telkomsel.cordovamobileapp.activityLog.model.Activity
 import cordova.telkomsel.cordovamobileapp.activityLog.model.PIC
 import kotlinx.android.synthetic.main.fragment_activity_broadcast.*
@@ -38,7 +39,7 @@ object Utils {
     }
 
     private fun updateButtonLabelDate(calendar: Calendar, btnActivityDatePicker: Button) {
-        val txtFormat = "dd-MM-yyyy"
+        val txtFormat = "yyyy-MM-dd"
         val sdf = SimpleDateFormat(txtFormat, Locale.UK)
         btnActivityDatePicker.text = sdf.format(calendar.time)
     }

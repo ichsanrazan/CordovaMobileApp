@@ -188,4 +188,70 @@ class Activity_List
 
         return $stmt;
     }
+
+    public function filter($start_date, $end_date, $subject, $category)
+    {
+        $query = 'SELECT * FROM `activity_list` WHERE ';
+        $and_flag = false;
+
+        if (isset($start_date) && isset($end_date)) {
+
+            if ($start_date !== "" && $end_date !== "") {
+                $query .= 'crq_date BETWEEN ' . '"' . $start_date . '"' . ' AND ' . '"' . $end_date . '"';
+                $and_flag = true;
+            } else if ($start_date !== "" && $end_date == "") {
+                $query .= 'crq_date BETWEEN ' . '"' . $start_date . '"' . ' AND ' . '"' . $start_date . '"';
+                $and_flag = true;
+            } else  if ($end_date !== "" && $start_date == "") {
+                $query .= 'crq_date BETWEEN ' . '"' . $end_date . '"' . ' AND ' . '"' . $end_date . '"';
+                $and_flag = true;
+            }
+        }
+
+        if (isset($subject)) {
+            if ($subject !== "") {
+                $subject_array = explode(",", $subject);
+                $subject_condition = "";
+
+                foreach ($subject_array as $subject) {
+                    $subject_condition .= 'crq_subject = ' . '"' . $subject . '"' . ' OR ';
+                }
+                $subject_condition = substr($subject_condition, 0, -4);
+
+                if ($and_flag) {
+                    $subject_condition = ' AND (' . $subject_condition . ')';
+                } else {
+                    $subject_condition = ' (' . $subject_condition . ')';
+                }
+                $and_flag = true;
+
+                $query .= $subject_condition;
+            }
+        }
+
+        if (isset($category)) {
+            if ($category !== "") {
+                $category_array = explode(",", $category);
+                $category_condition = "";
+
+                foreach ($category_array as $category) {
+                    $category_condition .= 'category = ' . '"' . $category . '"' . ' OR ';
+                }
+                $category_condition = substr($category_condition, 0, -4);
+
+                if ($and_flag) {
+                    $category_condition = ' AND (' . $category_condition . ')';
+                } else {
+                    $category_condition = ' (' . $category_condition . ')';
+                }
+
+                $query .= $category_condition;
+            }
+        }
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+
+        return $stmt;
+    }
 }

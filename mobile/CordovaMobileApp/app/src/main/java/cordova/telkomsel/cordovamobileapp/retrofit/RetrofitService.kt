@@ -18,6 +18,12 @@ interface RetrofitService {
     @GET("activity/search.php")
     fun searchActivity(@Query("name") searchText: String): Call<ActivityList>
 
+    @GET("activity/filter.php")
+    fun filterActivity(@Query("start_date") start_date: String,
+                       @Query("end_date") end_date: String,
+                       @Query("subject") subject: String,
+                       @Query("category") category: String) : Call<ActivityList>
+
     @POST("activity/create.php")
     @Headers("Content-Type: application/json")
     fun createActivity(@Body params: Activity): Call<ActivityResponse>

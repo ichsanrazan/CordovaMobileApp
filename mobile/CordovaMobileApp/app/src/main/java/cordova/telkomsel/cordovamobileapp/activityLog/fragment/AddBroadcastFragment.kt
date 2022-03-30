@@ -60,7 +60,7 @@ class AddBroadcastFragment : Fragment(R.layout.fragment_activity_broadcast) {
             if(validateDate(selectedDate)){
 
                 //if checkbox Core CS is checked then show activity on that subject
-                if(checkBoxCoreCS.isChecked()==true){
+                if(checkBoxCoreCS.isChecked){
                     atLeastOneCheked = true
                     val checkBoxCoreCS = checkBoxCoreCS.text.toString().trim()
                     counter = 1
@@ -77,7 +77,7 @@ class AddBroadcastFragment : Fragment(R.layout.fragment_activity_broadcast) {
                     }
                 //if checkbox Core PS is checked then show activity on that subject
                 }
-                if(checkBoxCorePS.isChecked()==true){
+                if(checkBoxCorePS.isChecked){
                     atLeastOneCheked = true
                     val checkBoxCorePS = checkBoxCorePS.text.toString().trim()
                     counter = 1
@@ -94,7 +94,7 @@ class AddBroadcastFragment : Fragment(R.layout.fragment_activity_broadcast) {
                     }
                 //if checkbox Datacomm is checked then show activity on that subject
                 }
-                if(checkBoxDatacomm.isChecked()==true){
+                if(checkBoxDatacomm.isChecked){
                     atLeastOneCheked = true
                     val checkBoxDatacomm = checkBoxDatacomm.text.toString().trim()
                     counter = 1

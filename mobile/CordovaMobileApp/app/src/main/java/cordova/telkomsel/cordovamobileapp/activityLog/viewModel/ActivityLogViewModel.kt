@@ -55,4 +55,22 @@ class ActivityLogViewModel: ViewModel() {
             }
         })
     }
+
+    fun filterActivity(start_date: String, end_date: String, subject: String, category: String){
+        val retroInstance = RetrofitInstance.getRetroInstance().create(RetrofitService::class.java)
+        val call = retroInstance.filterActivity(start_date, end_date, subject, category)
+        call.enqueue(object: Callback<ActivityList>{
+            override fun onFailure(call: Call<ActivityList>, t: Throwable) {
+                recyclerListData.postValue(null)
+            }
+
+            override fun onResponse(call: Call<ActivityList>, response: Response<ActivityList>) {
+                if(response.isSuccessful){
+                    recyclerListData.postValue(response.body())
+                } else {
+
+                }
+            }
+        })
+    }
 }

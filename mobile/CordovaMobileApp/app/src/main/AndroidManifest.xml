@@ -13,6 +13,9 @@
         android:theme="@style/Theme.CordovaMobileApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activityLog.FilterActivityLog"
+            android:exported="false" />
+        <activity
             android:name=".activityLog.EditTroubleshootLog"
             android:exported="false"
             android:parentActivityName=".activityLog.MainLog" />

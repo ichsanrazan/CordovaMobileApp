@@ -6,13 +6,8 @@ import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
 import android.util.Log
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
-import androidx.core.widget.addTextChangedListener
-import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -27,8 +22,8 @@ import cordova.telkomsel.cordovamobileapp.activityLog.viewModel.ActivityLogViewM
 import cordova.telkomsel.cordovamobileapp.activityLog.adapter.ActivityAdapter
 import cordova.telkomsel.cordovamobileapp.activityLog.model.Activity
 import cordova.telkomsel.cordovamobileapp.activityLog.model.ActivityList
+import cordova.telkomsel.cordovamobileapp.activityLog.utils.Utils
 import kotlinx.android.synthetic.main.fragment_activity_log.*
-import org.w3c.dom.Text
 
 class ActivityLogFragment : Fragment(R.layout.fragment_activity_log),
     ActivityAdapter.OnItemClickListener {
@@ -43,8 +38,8 @@ class ActivityLogFragment : Fragment(R.layout.fragment_activity_log),
         initRecyclerView()
         fabListener()
         searchListener()
+        filterListener()
         fabScrollTop()
-
     }
 
     //Function for auto scroll to top FAB
@@ -78,6 +73,78 @@ class ActivityLogFragment : Fragment(R.layout.fragment_activity_log),
         })
 
 
+    }
+
+    private fun filterListener(){
+
+        Utils.initDatePickerDialog(filterStartDatePicker, requireContext())
+        Utils.initDatePickerDialog(filterEndDatePicker, requireContext())
+
+        button_filter.setOnClickListener {
+            Utils.showHide(layoutFilter)
+        }
+
+
+        button_submitFilter.setOnClickListener {
+            var tempStartDate = ""
+            var tempEndDate = ""
+            var tempSubject = ""
+            var tempCategory = ""
+
+            if(checkBoxCoreCS.isChecked) tempSubject += "Core CS,"
+            if(checkBoxCorePS.isChecked) tempSubject += "Core PS,"
+            if(checkBoxDatacomm.isChecked) tempSubject += "Datacomm,"
+            if(checkBoxSecurity.isChecked) tempSubject += "Security,"
+
+            if(checkBoxAdd.isChecked) tempCategory += "Add/Upgrade Resource,"
+            if(checkBoxAudit.isChecked) tempCategory += "Audit/Rehearsal,"
+            if(checkBoxHQ.isChecked) tempCategory += "HQ Project,"
+            if(checkBoxReconfig.isChecked) tempCategory += "Reconfiguration,"
+            if(checkBoxCorrective.isChecked) tempCategory += "Corrective/Preventiv,"
+            if(checkBoxOther.isChecked) tempCategory += "Other,"
+
+            tempStartDate = filterStartDatePicker.text.toString().trim()
+            tempEndDate = filterEndDatePicker.text.toString().trim()
+
+            tempCategory = tempCategory.dropLast(1)
+            tempSubject = tempSubject.dropLast(1)
+
+            if(tempStartDate == "" && tempEndDate == "" &&
+                !checkBoxCoreCS.isChecked && !checkBoxCorePS.isChecked &&
+                !checkBoxDatacomm.isChecked && !checkBoxSecurity.isChecked &&
+                !checkBoxAdd.isChecked && !checkBoxAudit.isChecked &&
+                !checkBoxHQ.isChecked && !checkBoxReconfig.isChecked &&
+                !checkBoxCorrective.isChecked && !checkBoxOther.isChecked){
+
+                Utils.showHide(layoutFilter)
+                viewModel.getActivityList()
+            } else {
+                Utils.showHide(layoutFilter)
+                viewModel.filterActivity(tempStartDate, tempEndDate, tempSubject, tempCategory)
+            }
+
+            Log.e("BOX", tempSubject + tempCategory + tempStartDate + tempEndDate)
+        }
+
+        button_cancelFilter.setOnClickListener {
+            Utils.showHide(layoutFilter)
+
+            filterStartDatePicker.text = ""
+            filterEndDatePicker.text = ""
+            checkBoxCoreCS.isChecked = false
+            checkBoxCorePS.isChecked = false
+            checkBoxDatacomm.isChecked = false
+            checkBoxSecurity.isChecked = false
+
+            checkBoxAdd.isChecked = false
+            checkBoxAudit.isChecked = false
+            checkBoxHQ.isChecked = false
+            checkBoxReconfig.isChecked = false
+            checkBoxCorrective.isChecked = false
+            checkBoxOther.isChecked = false
+
+            viewModel.getActivityList()
+        }
     }
 
     private fun searchListener(){
