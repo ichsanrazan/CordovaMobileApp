@@ -1,8 +1,11 @@
 package cordova.telkomsel.cordovamobileapp.activityLog
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -46,5 +49,22 @@ class MainLog : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_activity_log)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.activity_log_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        setMode(item.itemId)
+        return super.onOptionsItemSelected(item)
+    }
+    private fun setMode(selectedMode: Int) {
+        when (selectedMode) {
+            R.id.action_help -> {
+                val checkLinkIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://kampusmerdeka.kemdikbud.go.id/"))
+                startActivity(checkLinkIntent)
+            }
+        }
     }
 }

@@ -8,11 +8,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitInstance {
     companion object{
-        val baseUrl = "http://192.168.1.5/mobileapp/mobile-app/restapi_activitylog/api/"
+        val baseUrl = "http://192.168.1.18/mobileapp/mobile-app/restapi_activitylog/api/"
         //val baseUrl = "http://192.168.18.179:8080/restapi_activitylog/api/"
 
         //Login
-        val baseUrl2 = "http://192.168.1.5/mobileapp/mobile-app/restapi_authentication/"
+        val baseUrl2 = "http://192.168.1.18/mobileapp/mobile-app/restapi_authentication/"
         //val baseUrl2 = "http://192.168.18.179:8080/restapi_authentication/"
 
         fun getRetroInstance(): Retrofit {
