@@ -252,13 +252,21 @@
     </LinearLayout>
 
 
-
+    <TextView
+        android:id="@+id/tvActivityCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layoutSearch"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="8dp"
+        android:text="Activity Found: 0"
+        android:textSize="12sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewActivityLog"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/layoutSearch"
+        android:layout_below="@id/tvActivityCounter"
         android:padding="6dp" />
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu
@@ -325,6 +333,9 @@
     <!--        app:borderWidth="0dp"-->
     <!--        android:src="@drawable/arrow_upward"-->
     <!--        app:rippleColor="#6D353232"/>-->
+
+
+
 
     <Button
         android:id="@+id/fabBackTop"
