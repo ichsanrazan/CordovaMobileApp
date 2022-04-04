@@ -160,6 +160,7 @@ class ActivityLogFragment : Fragment(R.layout.fragment_activity_log),
                                        before: Int, count: Int) {
                 if(!TextUtils.isEmpty(etSearch.text.toString())){
                     viewModel.searchActivity(etSearch.text.toString())
+
                 }else{
                     viewModel.getActivityList()
                 }
@@ -207,6 +208,7 @@ class ActivityLogFragment : Fragment(R.layout.fragment_activity_log),
             if(it == null) { Toast.makeText(activity, "No Result Found", Toast.LENGTH_SHORT).show() }
             else{
                 activityAdapter.activityList = it.data.toMutableList()
+                tvActivityCounter.text = "Activity Found: " + it.data.toMutableList().count().toString()
                 activityAdapter.notifyDataSetChanged()
             }
         })
