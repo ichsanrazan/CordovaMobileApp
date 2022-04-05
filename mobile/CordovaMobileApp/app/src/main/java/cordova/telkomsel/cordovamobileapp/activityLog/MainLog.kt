@@ -62,8 +62,8 @@ class MainLog : AppCompatActivity() {
     private fun setMode(selectedMode: Int) {
         when (selectedMode) {
             R.id.action_help -> {
-                val checkLinkIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://kampusmerdeka.kemdikbud.go.id/"))
-                startActivity(checkLinkIntent)
+                val uGuide = Intent(this, PdfViewer::class.java)
+                startActivity(uGuide)
             }
         }
     }

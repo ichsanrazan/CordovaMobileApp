@@ -21,6 +21,10 @@
             android:exported="false"
             android:parentActivityName=".activityLog.MainLog" />
         <activity
+            android:name=".activityLog.PdfViewer"
+            android:exported="false"
+            android:parentActivityName=".activityLog.PdfViewer" />
+        <activity
             android:name=".activityLog.MainLog"
             android:exported="false" />
         <activity
