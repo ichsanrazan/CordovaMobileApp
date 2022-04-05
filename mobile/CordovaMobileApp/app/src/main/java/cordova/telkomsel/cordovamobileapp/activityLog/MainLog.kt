@@ -62,7 +62,7 @@ class MainLog : AppCompatActivity() {
     private fun setMode(selectedMode: Int) {
         when (selectedMode) {
             R.id.action_help -> {
-                val uGuide = Intent(this, PdfViewer::class.java)
+                val uGuide = Intent(Intent.ACTION_VIEW, Uri.parse("https://drive.google.com/file/d/1SUqE3rpuw2M2Oastxbbzr6M5TA37Ek2g/view?usp=sharing"))
                 startActivity(uGuide)
             }
         }
