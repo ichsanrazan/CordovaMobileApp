@@ -44,6 +44,7 @@
         android:layout_marginTop="36dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/btn_bg"
+        android:foreground="?attr/selectableItemBackground"
         android:text="Logout"
         android:textAllCaps="false"
         android:textColor="@color/white"

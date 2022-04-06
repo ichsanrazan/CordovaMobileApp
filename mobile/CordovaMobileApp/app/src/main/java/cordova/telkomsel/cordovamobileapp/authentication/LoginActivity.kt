@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import cordova.telkomsel.cordovamobileapp.MainActivity
 import cordova.telkomsel.cordovamobileapp.R
@@ -17,7 +18,6 @@ import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.create
 
 class LoginActivity : AppCompatActivity() {
 
@@ -43,6 +43,7 @@ class LoginActivity : AppCompatActivity() {
 
     fun initAction() {
         button_login.setOnClickListener {
+            loginActivity_loading.visibility = View.VISIBLE
             login()
         }
     }
@@ -64,6 +65,7 @@ class LoginActivity : AppCompatActivity() {
                         Toast.makeText(this@LoginActivity, "Login Berhasil", Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                     }else{
+                        loginActivity_loading.visibility = View.GONE
                         Toast.makeText(this@LoginActivity, "Login gagal", Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -86,11 +88,13 @@ class LoginActivity : AppCompatActivity() {
 
     fun validateLogin(username: String, password: String) : Boolean{
         if (username.isEmpty()){
-            inputUser.error = "Email is required!"
+                loginActivity_loading.visibility = View.GONE
+            inputUser.error = "Username is required!"
             return false
         }
 
         if(password.isEmpty()){
+            loginActivity_loading.visibility = View.GONE
             inputPassword.error = "Password is required!"
             return false
         }
