@@ -99,6 +99,7 @@ class EditActivityLog : AppCompatActivity() {
                         selectedPIC = i.crq_pic.toString()
                         setupDropdown(i.crq_subject, i.pic_reporter, i.category)
                         checkCredentials(i.pic_reporter)
+                        editActivity_loading.visibility = View.GONE
                         handlePICDetail()
                     }
                 }
@@ -129,6 +130,7 @@ class EditActivityLog : AppCompatActivity() {
                     activityNumber, activityName, activityDescription, selectedPIC, activityReporter)
                 createActivityViewModel.updateActivity(activity)
                 Toast.makeText(this, "Activity berhasil untuk diperbaharui", Toast.LENGTH_SHORT).show()
+                finish()
             }
         }
 
@@ -157,6 +159,7 @@ class EditActivityLog : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
+        finish()
         return true
     }
 

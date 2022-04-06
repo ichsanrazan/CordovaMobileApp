@@ -8,7 +8,12 @@
     tools:context=".activityLog.fragment.ActivityLogFragment">
 
 
-
+    <ProgressBar
+        android:id="@+id/activityLog_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"/>
 
     <LinearLayout
         android:id="@+id/layoutSearch"

@@ -28,7 +28,7 @@ import kotlinx.android.synthetic.main.fragment_activity_log.*
 class ActivityLogFragment : Fragment(R.layout.fragment_activity_log),
     ActivityAdapter.OnItemClickListener {
 
-    private lateinit var activityAdapter: ActivityAdapter
+    private var activityAdapter: ActivityAdapter? = null
     lateinit var viewModel: ActivityLogViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -207,9 +207,10 @@ class ActivityLogFragment : Fragment(R.layout.fragment_activity_log),
         viewModel.getActivityListObservableData().observe(viewLifecycleOwner, Observer<ActivityList>{
             if(it == null) { Toast.makeText(activity, "No Result Found", Toast.LENGTH_SHORT).show() }
             else{
-                activityAdapter.activityList = it.data.toMutableList()
+                activityAdapter?.activityList = it.data.toMutableList()
                 tvActivityCounter.text = "Activity Found: " + it.data.toMutableList().count().toString()
-                activityAdapter.notifyDataSetChanged()
+                activityAdapter?.notifyDataSetChanged()
+                activityLog_loading.visibility = View.GONE
             }
         })
         viewModel.getActivityList()
@@ -233,6 +234,11 @@ class ActivityLogFragment : Fragment(R.layout.fragment_activity_log),
             viewModel.getActivityList()
         }
         super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    override fun onDestroyView() {
+        activityAdapter = null
+        super.onDestroyView()
     }
 
 

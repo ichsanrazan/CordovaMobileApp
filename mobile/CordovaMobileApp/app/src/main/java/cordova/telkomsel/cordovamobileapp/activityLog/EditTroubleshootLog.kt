@@ -97,6 +97,7 @@ class EditTroubleshootLog : AppCompatActivity() {
                         incTitle.editText?.setText(i.crq_activity)
                         setupDropdown(i.crq_subject, i.pic_reporter, i.category)
                         checkCredentials(i.pic_reporter)
+                        editTroubleshoot_loading.visibility = View.GONE
                     }
                 }
             }

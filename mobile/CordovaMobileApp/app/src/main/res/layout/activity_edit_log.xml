@@ -16,6 +16,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
+    <ProgressBar
+        android:id="@+id/editActivity_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -26,24 +36,25 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
             <Button
                 android:id="@+id/btnActivityDatePicker"
+                style="?android:spinnerStyle"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:paddingStart="16dp"
                 android:outlineProvider="bounds"
-                style="?android:spinnerStyle"
+                android:paddingStart="16dp"
                 android:text="@string/incdate"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/spinnerActivitySubject"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
-                android:layout_marginTop="8dp"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
 
                 <AutoCompleteTextView
                     android:id="@+id/autoCompleteTvActivitySubject"
@@ -57,22 +68,22 @@
 
             <Button
                 android:id="@+id/spinnerActivityReporter"
+                style="?android:spinnerStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="16dp"
                 android:layout_marginTop="8dp"
-                android:outlineProvider="bounds"
-                style="?android:spinnerStyle"
-                android:text=""
                 android:clickable="false"
-                android:textColor="@color/black"/>
+                android:outlineProvider="bounds"
+                android:paddingStart="16dp"
+                android:text=""
+                android:textColor="@color/black" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/spinnerActivityCategory"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
-                android:layout_marginTop="8dp"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
 
                 <AutoCompleteTextView
                     android:id="@+id/autoCompleteTvActivityCategory"
@@ -90,17 +101,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                app:helperTextTextColor="@color/primaryColor"
-                app:helperTextEnabled="true"
+                android:hint="CRQ Number"
                 app:counterEnabled="true"
                 app:counterMaxLength="12"
-                android:hint="CRQ Number">
+                app:helperTextEnabled="true"
+                app:helperTextTextColor="@color/primaryColor">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:maxLength="12"
+                    android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:layout_height="wrap_content" />
+                    android:maxLength="12" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -120,18 +131,21 @@
                 android:id="@+id/linearLayoutServiceImpact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginTop="12dp"
+                android:orientation="vertical"
                 android:padding="8dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Service Impact ?"/>
+                    android:text="Service Impact ?" />
+
                 <RadioGroup
                     android:id="@+id/radioGroupServiceImpact"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
                     <RadioButton
                         android:id="@+id/radioServiceImpactYes"
                         android:layout_width="wrap_content"
@@ -153,8 +167,8 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:hint="Description">
+                android:hint="Description"
+                android:visibility="gone">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -165,18 +179,21 @@
                 android:id="@+id/linearLayoutPICDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginTop="12dp"
+                android:orientation="vertical"
                 android:padding="8dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Add PIC Detail?"/>
+                    android:text="Add PIC Detail?" />
+
                 <RadioGroup
                     android:id="@+id/radioGroupPICDetail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
                     <RadioButton
                         android:id="@+id/radioPICDetailYes"
                         android:layout_width="wrap_content"
@@ -197,65 +214,75 @@
                 android:id="@+id/layoutPICDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:padding="8dp"
-                android:visibility="gone"
-                android:orientation="horizontal">
+                android:visibility="gone">
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="4dp"
-                        android:text="PIC Company"/>
+                        android:text="PIC Company" />
+
                     <Spinner
                         android:id="@+id/spinnerPICDetailCompany"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:entries="@array/subject"/>
+                        android:entries="@array/subject" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="4dp"
-                        android:text="Name"/>
+                        android:text="Name" />
+
                     <Spinner
                         android:id="@+id/spinnerPICDetailName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:entries="@array/piccdso"/>
+                        android:entries="@array/piccdso" />
                 </LinearLayout>
             </LinearLayout>
+
             <Button
-                android:visibility="gone"
                 android:id="@+id/addPICDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ADD"/>
+                android:text="ADD"
+                android:visibility="gone" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewPICDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:paddingBottom="8dp"
                 tools:itemCount="2"
-                tools:listitem="@layout/recycler_row_pic_detail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                tools:listitem="@layout/recycler_row_pic_detail" />
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:orientation="horizontal">
+
                 <Button
                     android:id="@+id/submit_add_activity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="UPDATE"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:text="UPDATE"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
                     android:id="@+id/delete_activity"
@@ -267,9 +294,6 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
-
-
-
 
 
     </ScrollView>
