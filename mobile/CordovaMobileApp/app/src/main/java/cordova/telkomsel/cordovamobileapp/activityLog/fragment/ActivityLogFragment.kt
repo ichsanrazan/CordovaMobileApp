@@ -101,7 +101,7 @@ class ActivityLogFragment : Fragment(R.layout.fragment_activity_log),
             if(checkBoxHQ.isChecked) tempCategory += "HQ Project,"
             if(checkBoxReconfig.isChecked) tempCategory += "Reconfiguration,"
             if(checkBoxCorrective.isChecked) tempCategory += "Corrective/Preventiv,"
-            if(checkBoxOther.isChecked) tempCategory += "Other,"
+            if(checkBoxOther.isChecked) tempCategory += "INC/IM Troubleshoot,"
 
             tempStartDate = filterStartDatePicker.text.toString().trim()
             tempEndDate = filterEndDatePicker.text.toString().trim()
