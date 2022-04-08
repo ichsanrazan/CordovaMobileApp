@@ -1,8 +1,8 @@
 # Activity Log and PIC - REST API
 
 ## API Documentation
-Base URL for endpoints (Localhost) `https://localhost/restapi_activitylog/api`
-Base URL for endpoints (Live) `https://restapi-activitylog.000webhostapp.com/restapi_activitylog/api`
+- Base URL for endpoints (Localhost) `https://localhost/restapi_activitylog/api`
+- Base URL for endpoints (Live) `https://restapi-activitylog.000webhostapp.com/restapi_activitylog/api`
 
 ## Endpoints
 - `GET /activity/read.php` Retrieve all activity list

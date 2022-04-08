@@ -1,8 +1,8 @@
 # Authentication - REST API
 
 ## API Documentation
-Base URL for endpoints (Localhost) `https://localhost/restapi_authentication`
-Base URL for endpoints (Live) `https://restapi-activitylog.000webhostapp.com/restapi_authentication`
+- Base URL for endpoints (Localhost) `https://localhost/restapi_authentication`
+- Base URL for endpoints (Live) `https://restapi-activitylog.000webhostapp.com/restapi_authentication`
 
 ## Endpoints
 - `POST /login.php` Login
