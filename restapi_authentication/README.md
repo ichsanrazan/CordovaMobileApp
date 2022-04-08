@@ -8,7 +8,9 @@
 - `POST /login.php` Login
 - `POST /register.php` Create new user
 
-For sending POST request on Postman use raw JSON on the body
+## Notes
+- For sending POST request on Postman use raw JSON on the body
+- Use username:admin and password:admin for log in
 
 ## Response
 - For successful POST login request the response will be `Login successful`
