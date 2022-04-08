@@ -10,7 +10,7 @@
 - `GET /pic/read.php` Retrieve all activity PIC list
 - `POST /pic/create.php` Create new activity PIC
 - `GET /activity/search.php?name={keyword}` Search activity
-- `GET /activity/filter.php?start_date={keyword}&end_date={keyword}&subject={keyword}&category={keyword}`
+- `GET /activity/filter.php?start_date={keyword}&end_date={keyword}&subject={keyword}&category={keyword}` Filter activity
 
 ## Notes
 - For sending POST request on Postman use raw JSON on the body and set Content-Type to application/json.
