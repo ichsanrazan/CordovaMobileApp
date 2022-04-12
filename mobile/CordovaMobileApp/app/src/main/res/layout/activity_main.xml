@@ -93,16 +93,19 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Activity Log"
+                    android:text="Activity\nLog"
                     android:textAlignment="center"
                     android:textStyle="bold" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/card_standbySchedule"
             android:layout_width="140dp"
             android:layout_height="140dp"
             android:layout_margin="8dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:clickable="true"
             app:cardBackgroundColor="@color/cardBg"
             app:cardCornerRadius="12dp"
             app:cardElevation="8dp">
@@ -117,12 +120,12 @@
                 <ImageView
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:src="@drawable/ic_baseline_widgets_24" />
+                    android:src="@drawable/ic_baseline_calendar_month_24" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Menu B"
+                    android:text="Standby\nSchedule"
                     android:textAlignment="center"
                     android:textStyle="bold" />
             </LinearLayout>

@@ -8,6 +8,7 @@ import cordova.telkomsel.cordovamobileapp.activityLog.MainLog
 import cordova.telkomsel.cordovamobileapp.authentication.LoginActivity
 import cordova.telkomsel.cordovamobileapp.authentication.helper.Constant
 import cordova.telkomsel.cordovamobileapp.authentication.helper.PreferencesHelper
+import cordova.telkomsel.cordovamobileapp.standbySchedule.MainSchedule
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -19,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         sharedpref = PreferencesHelper(this)
-        textUsername.text = sharedpref.getString( Constant.PREF_FULLNAME )
+        textUsername.text = sharedpref.getString(Constant.PREF_FULLNAME)?.substringBefore(" ")
 
         button_logout.setOnClickListener {
             sharedpref.clear()
@@ -30,6 +31,10 @@ class MainActivity : AppCompatActivity() {
 
         card_activityLog.setOnClickListener {
             val intent = Intent(this, MainLog::class.java)
+            startActivity(intent)
+        }
+        card_standbySchedule.setOnClickListener {
+            val intent = Intent(this, MainSchedule::class.java)
             startActivity(intent)
         }
     }
