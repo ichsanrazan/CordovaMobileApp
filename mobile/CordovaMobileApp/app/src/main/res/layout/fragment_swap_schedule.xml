@@ -1,122 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tvFrom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="58dp"
-        android:text="From"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/fromPIC"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="45dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvFrom">
+        android:layout_height="wrap_content">
 
-        <AutoCompleteTextView
-            android:id="@+id/autoCompleteTvFrom"
+        <TextView
+            android:id="@+id/tvFrom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="20dp"
+            android:text="From"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/fromPIC"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:hint="PIC"
-            android:inputType="none"
-            android:textColor="@color/black" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="45dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvFrom">
 
-    <Button
-        android:id="@+id/btnFromDatePicker"
-        style="?android:spinnerStyle"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="45dp"
-        android:outlineProvider="bounds"
-        android:text="@string/incdate"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fromPIC" />
+            <AutoCompleteTextView
+                android:id="@+id/autoCompleteTvFrom"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="PIC"
+                android:inputType="none"
+                android:textColor="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="29dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnFromDatePicker"
-        app:srcCompat="@drawable/ic_baseline_swap_vertical_circle" />
-
-    <TextView
-        android:id="@+id/tvTo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="20dp"
-        android:text="To"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/toPIC"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="45dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTo">
-
-        <AutoCompleteTextView
-            android:id="@+id/autoCompleteTvTo"
+        <Button
+            android:id="@+id/btnFromDatePicker"
+            style="?android:spinnerStyle"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:hint="PIC"
-            android:inputType="none"
-            android:textColor="@color/black" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="48dp"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="45dp"
+            android:outlineProvider="bounds"
+            android:text="@string/incdate"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fromPIC" />
 
-    <Button
-        android:id="@+id/btnToDatePicker"
-        style="?android:spinnerStyle"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="45dp"
-        android:outlineProvider="bounds"
-        android:text="@string/incdate"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toPIC" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnFromDatePicker"
+            app:srcCompat="@drawable/ic_baseline_swap_vertical_circle" />
 
-    <Button
-        android:id="@+id/button_swap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="33dp"
-        android:text="SWAP"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnToDatePicker" />
+        <TextView
+            android:id="@+id/tvTo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="10dp"
+            android:text="To"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/toPIC"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="45dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTo">
+
+            <AutoCompleteTextView
+                android:id="@+id/autoCompleteTvTo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="PIC"
+                android:inputType="none"
+                android:textColor="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnToDatePicker"
+            style="?android:spinnerStyle"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="45dp"
+            android:outlineProvider="bounds"
+            android:text="@string/incdate"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toPIC" />
+
+        <Button
+            android:id="@+id/button_swap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="20dp"
+            android:text="SWAP"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnToDatePicker" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</ScrollView>
