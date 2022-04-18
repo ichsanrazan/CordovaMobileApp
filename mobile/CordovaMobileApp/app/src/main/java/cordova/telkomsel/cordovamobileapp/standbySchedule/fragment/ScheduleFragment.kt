@@ -11,9 +11,9 @@ class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        btnSwapSchedule.setOnClickListener {
-            val action = ScheduleFragmentDirections.actionScheduleFragmentToSwapScheduleFragment()
-            findNavController().navigate(action)
-        }
+//        btnSwapSchedule.setOnClickListener {
+//            val action = ScheduleFragmentDirections.actionScheduleFragmentToSwapScheduleFragment()
+//            findNavController().navigate(action)
+//        }
     }
 }

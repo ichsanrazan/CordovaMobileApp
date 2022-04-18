@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -15,6 +16,10 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import cordova.telkomsel.cordovamobileapp.MainActivity
 import cordova.telkomsel.cordovamobileapp.R
 import cordova.telkomsel.cordovamobileapp.activityLog.MainLog
+import cordova.telkomsel.cordovamobileapp.standbySchedule.fragment.CalendarScheduleFragment
+import cordova.telkomsel.cordovamobileapp.standbySchedule.fragment.MessageScheduleFragment
+import cordova.telkomsel.cordovamobileapp.standbySchedule.fragment.ScheduleFragment
+import cordova.telkomsel.cordovamobileapp.standbySchedule.fragment.SwapScheduleFragment
 import kotlinx.android.synthetic.main.activity_main_schedule.*
 
 class MainSchedule : AppCompatActivity() {
@@ -22,6 +27,11 @@ class MainSchedule : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var draweLayout: DrawerLayout
     private lateinit var listener: NavController.OnDestinationChangedListener
+
+    private val dashboardFragment = ScheduleFragment()
+    private val swapFragment = SwapScheduleFragment()
+    private val messageFragment = MessageScheduleFragment()
+    private val calendarFragment = CalendarScheduleFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,11 +54,29 @@ class MainSchedule : AppCompatActivity() {
             true
         }
 
+        schedule_bottom_navigation.setOnItemSelectedListener {
+            when(it.itemId){
+                R.id.ic_dashboard -> replaceFragment(dashboardFragment)
+                R.id.ic_calendar -> replaceFragment(calendarFragment)
+                R.id.ic_message -> replaceFragment(messageFragment)
+                R.id.ic_swap -> replaceFragment(swapFragment)
+            }
+            true
+        }
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_activity_schedule)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    private fun replaceFragment(fragment: Fragment){
+        if(fragment != null){
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.nav_host_fragment_activity_schedule, fragment)
+            transaction.commit()
+        }
     }
 
 
