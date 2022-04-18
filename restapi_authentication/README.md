@@ -2,15 +2,15 @@
 
 ## API Documentation
 - Base URL for endpoints (Localhost) `https://localhost/restapi_authentication`
-- Base URL for endpoints (Live) `https://restapi-activitylog.000webhostapp.com/restapi_authentication`
+- Base URL for endpoints (Live) `https://restapi-activitylog.000webhostapp.com/restapi_authentication/`
 
 ## Endpoints
 - `POST /login.php` Login
 - `POST /register.php` Create new user
 
 ## Notes
-- For sending POST request on Postman use raw JSON on the body
-- Use username:admin and password:admin for log in
+- For sending POST request on Postman use raw JSON on the body and set Content-Type to application/json.
+- for login use username : admin, password : admin.
 
 ## Response
 - For successful POST login request the response will be `Login successful`
