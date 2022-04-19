@@ -3,11 +3,81 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tvSchedule"
+    <LinearLayout
+        android:id="@+id/top_dashboard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Standby Schedule"/>
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome,"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/dm_sans"
+            android:textColor="@color/primaryColor"/>
+
+        <TextView
+            android:id="@+id/tvUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chandra Eka K"
+            android:layout_marginTop="4dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/dm_sans"
+            android:textColor="@color/black"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvNextStandby"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="X - H"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="49dp"
+        android:fontFamily="@font/dm_sans"
+        android:textColor="@color/secondaryColor"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"
+        android:layout_below="@id/top_dashboard"
+        android:layout_marginTop="10dp"
+        android:background="@color/dividerColor" />
+
+    <TextView
+        android:id="@+id/textStandby"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Standby"
+        android:layout_marginStart="18dp"
+        android:layout_below="@id/top_dashboard"
+        android:layout_marginTop="41dp"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/dm_sans"
+        android:textColor="@color/black"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewSchedule"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/textStandby"
+        android:layout_marginTop="21dp"
+        android:padding="6dp" />
+
+
+
 
 <!--    <Button-->
 <!--        android:id="@+id/btnSwapSchedule"-->

@@ -15,12 +15,20 @@
     app:cardElevation="5dp"
     app:contentPadding="4dp">
 
+    <TextView
+        android:layout_width="5dp"
+        android:layout_height="match_parent"
+        android:background="@color/primaryColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/tvRecyclerDate"
+            android:id="@+id/tvScheduleMonth"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -35,7 +43,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvNoColumn"
+            android:id="@+id/tvDateNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -45,33 +53,33 @@
             android:textStyle="bold"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvRecyclerDate" />
+            app:layout_constraintTop_toBottomOf="@+id/tvScheduleMonth" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tvPicPosition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="46dp"
             android:layout_marginTop="25dp"
-            android:fontFamily="dm"
+            android:fontFamily="@font/dm_sans"
             android:text="C O R E"
             android:textSize="10sp"
             android:textColor="#ED1C24"
-            app:layout_constraintStart_toEndOf="@+id/tvRecyclerDate"
+            app:layout_constraintStart_toEndOf="@+id/tvScheduleMonth"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/tvPicName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="46dp"
             android:text="Chandra Eka K"
             android:textStyle="bold"
             android:textSize="16sp"
-            android:fontFamily="dm"
+            android:fontFamily="@font/dm_sans"
             android:textColor="@color/black"
-            app:layout_constraintStart_toEndOf="@+id/tvRecyclerDate"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintStart_toEndOf="@+id/tvScheduleMonth"
+            app:layout_constraintTop_toBottomOf="@+id/tvPicPosition" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
