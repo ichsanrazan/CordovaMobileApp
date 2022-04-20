@@ -1,5 +1,6 @@
 package cordova.telkomsel.cordovamobileapp.standbySchedule.fragment
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -33,6 +34,7 @@ import kotlinx.android.synthetic.main.calendar_day_legend.legendLayout
 import kotlinx.android.synthetic.main.calendar_header.*
 import kotlinx.android.synthetic.main.event_item_view.view.*
 import kotlinx.android.synthetic.main.fragment_calendar_schedule.*
+import kotlinx.android.synthetic.main.recycler_row_schedule.view.*
 import org.w3c.dom.Text
 import java.time.DayOfWeek
 import java.time.YearMonth
@@ -49,7 +51,7 @@ class CalendarEventsAdapter() : RecyclerView.Adapter<CalendarEventsAdapter.Calen
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CalendarEventsViewHolder {
 
         val inflater = LayoutInflater.from(parent.context).inflate(
-            R.layout.event_item_view, parent, false
+            R.layout.recycler_row_schedule, parent, false
         )
         return CalendarEventsAdapter.CalendarEventsViewHolder(inflater)
     }
@@ -61,9 +63,14 @@ class CalendarEventsAdapter() : RecyclerView.Adapter<CalendarEventsAdapter.Calen
     override fun getItemCount(): Int = events.size
 
     class CalendarEventsViewHolder(view: View): RecyclerView.ViewHolder(view){
-        private val tvEvent: TextView = view.itemEventText
+        private val tvEvent: TextView = view.tvPicName
+        private val tvMonth: TextView = view.tvScheduleMonth
+        private val tvDate: TextView = view.tvDateNumber
+
         fun bind(data: Event){
             tvEvent.text = data.text
+            tvMonth.text = data.date.month.toString()
+            tvDate.text = data.date.dayOfMonth.toString()
         }
     }
 
@@ -107,17 +114,14 @@ class CalendarScheduleFragment: Fragment(R.layout.fragment_calendar_schedule) {
         super.onViewCreated(view, savedInstanceState)
 
         var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-        var date = LocalDate.parse("2022-04-21", formatter)
+        var date = LocalDate.parse("2022-04-18", formatter)
         events[date] = events[date].orEmpty().plus(Event(UUID.randomUUID().toString(), "text", date))
         events[date] = events[date].orEmpty().plus(Event(UUID.randomUUID().toString(), "text2", date))
-        events[date] = events[date].orEmpty().plus(Event(UUID.randomUUID().toString(), "text3", date))
-        events[date] = events[date].orEmpty().plus(Event(UUID.randomUUID().toString(), "text4", date))
 
         calendarRv.apply {
             layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
             eventsAdapter = CalendarEventsAdapter()
             adapter = eventsAdapter
-            addItemDecoration(DividerItemDecoration(requireContext(), RecyclerView.VERTICAL))
         }
 
         val daysOfWeek = daysOfWeekFromLocale()
@@ -159,12 +163,18 @@ class CalendarScheduleFragment: Fragment(R.layout.fragment_calendar_schedule) {
                     container.bindingDateText.visibility  = View.VISIBLE
                     when (day.date) {
                         today -> {
+                            container.bindingDateText.setTextColor(Color.parseColor("#FFFFFF"))
+                            container.bindingDateText.setBackgroundResource(R.drawable.calendar_today_bg)
                             container.bindingDateDot.visibility = View.INVISIBLE
                         }
                         selectedDate -> {
+                            container.bindingDateText.setTextColor(Color.parseColor("#1973E8"))
+                            container.bindingDateText.setBackgroundResource(R.drawable.calendar_selected_bg)
                             container.bindingDateDot.visibility = View.INVISIBLE
                         }
                         else -> {
+                            container.bindingDateText.setTextColor(Color.parseColor("#000000"))
+                            container.bindingDateText.background = null
                             container.bindingDateDot.isVisible = events[day.date].orEmpty().isNotEmpty()
                         }
                     }

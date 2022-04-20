@@ -22,7 +22,23 @@
                 android:id="@+id/calendarMonthTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingStart="20dp"
+                android:paddingTop="13dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="2dp"
+                android:textStyle="bold"
+                android:textColor="@color/primaryColor"
                 android:text="MONTH"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_below="@id/top_dashboard"
+                android:layout_marginTop="10dp"
+                android:background="@color/dividerColor" />
+
 
             <com.kizitonwose.calendarview.CalendarView
                 android:id="@+id/fragmentCalendar"
@@ -39,11 +55,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:background="#EEEEEE"
-                android:fontFamily="sans-serif-medium"
                 android:paddingStart="20dp"
-                android:paddingTop="12dp"
+                android:paddingTop="2dp"
                 android:paddingEnd="20dp"
-                android:paddingBottom="12dp"
+                android:paddingBottom="8dp"
                 android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="14sp"
@@ -53,6 +68,8 @@
                 android:id="@+id/calendarRv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:paddingBottom="70dp"
                 />
 
         </LinearLayout>
