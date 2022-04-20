@@ -8,7 +8,6 @@
         <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/drawable/custom_floating_button.xml" value="0.19444444444444445" />
         <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/drawable/help_outline_24.xml" value="0.24791666666666667" />
         <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/drawable/ic_baseline_android_24.xml" value="0.23541666666666666" />
-        <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/drawable/ic_baseline_calendar_month_24.xml" value="0.2453125" />
         <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/drawable/ic_baseline_crisis_alert_24.xml" value="0.42552083333333335" />
         <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.23541666666666666" />
         <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/drawable/ic_baseline_person_add_24.xml" value="0.24791666666666667" />
@@ -37,14 +36,11 @@
         <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/fragment_activity_crq.xml" value="0.4" />
         <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/fragment_activity_inc.xml" value="0.4" />
         <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/fragment_activity_log.xml" value="0.46887966804979253" />
-        <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/fragment_calendar_schedule.xml" value="0.22916666666666666" />
-        <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/fragment_message_schedule.xml" value="0.22916666666666666" />
         <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/fragment_schedule.xml" value="0.6" />
-        <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/fragment_swap_schedule.xml" value="0.2" />
+        <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/fragment_swap_schedule.xml" value="0.6" />
         <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/recycler_row_activity.xml" value="0.4573643410852713" />
         <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/recycler_row_pic_detail.xml" value="0.33589743589743587" />
         <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/menu/activity_log_menu.xml" value="0.22923076923076924" />
-        <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.22916666666666666" />
         <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/menu/drawer_nav_menu.xml" value="0.19316239316239317" />
         <entry key="..\:/Internship Projects/mobile-app/mobile/CordovaMobileApp/app/src/main/res/menu/search_menu.xml" value="0.33589743589743587" />
         <entry key="..\:/Users/Archangel/AndroidStudioProjects/CordovaMobileApp/app/src/main/res/font/productsans.xml" value="0.3606837606837607" />
@@ -64,6 +60,7 @@
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/drawable/help_outline_24.xml" value="0.196" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.229" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.229" />
+        <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/drawable/ic_baseline_swap_vertical_circle.xml" value="0.2155" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/drawable/input_bg.xml" value="0.229" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/drawable/white_circle.xml" value="0.2275" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/activity_edit_log.xml" value="0.18802083333333333" />
@@ -71,6 +68,7 @@
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/activity_login.xml" value="0.2072072072072072" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/activity_main_log.xml" value="0.36666666666666664" />
+        <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/activity_main_schedule.xml" value="0.36666666666666664" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/activity_pdf_viewer.xml" value="0.18802083333333333" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/activity_splashscreen.xml" value="0.1" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/dropdown_item.xml" value="0.17831813576494426" />
@@ -79,9 +77,15 @@
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/fragment_activity_crq.xml" value="0.36666666666666664" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/fragment_activity_inc.xml" value="0.36666666666666664" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/fragment_activity_log.xml" value="0.36666666666666664" />
+        <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/fragment_calendar_schedule.xml" value="0.36666666666666664" />
+        <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/fragment_message_schedule.xml" value="0.36666666666666664" />
+        <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/fragment_schedule.xml" value="0.36666666666666664" />
+        <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/fragment_swap_schedule.xml" value="0.36666666666666664" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/recycler_row_activity.xml" value="0.36666666666666664" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/recycler_row_pic_detail.xml" value="0.36666666666666664" />
+        <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/recycler_row_schedule.xml" value="0.36666666666666664" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/menu/activity_log_menu.xml" value="0.18802083333333333" />
+        <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/menu/drawer_nav_menu.xml" value="0.36666666666666664" />
       </map>
     </option>
