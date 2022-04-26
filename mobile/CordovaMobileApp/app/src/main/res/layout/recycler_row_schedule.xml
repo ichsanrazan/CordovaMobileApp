@@ -20,58 +20,37 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tvScheduleMonth"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:text="April"
-            android:textAlignment="textStart"
-            android:textColor="#464646"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tvDateNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="0dp"
-            android:text="11"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvScheduleMonth" />
+        <View
+            android:layout_width="6dp"
+            android:layout_height="70dp"
+            android:background="@color/primaryColor"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
             android:id="@+id/tvPicPosition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="23dp"
             android:fontFamily="@font/dm_sans"
             android:text="C O R E"
-            android:textSize="10sp"
             android:textColor="#ED1C24"
-            app:layout_constraintStart_toEndOf="@+id/tvScheduleMonth"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvPicName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:text="Chandra Eka K"
-            android:textStyle="bold"
-            android:textSize="16sp"
+            android:layout_marginStart="23dp"
             android:fontFamily="@font/dm_sans"
+            android:text="Chandra Eka K"
             android:textColor="@color/black"
-            app:layout_constraintStart_toEndOf="@+id/tvScheduleMonth"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvPicPosition" />
 
 

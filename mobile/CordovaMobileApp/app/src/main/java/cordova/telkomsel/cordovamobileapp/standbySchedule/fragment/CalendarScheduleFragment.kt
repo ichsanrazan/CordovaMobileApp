@@ -64,13 +64,13 @@ class CalendarEventsAdapter() : RecyclerView.Adapter<CalendarEventsAdapter.Calen
 
     class CalendarEventsViewHolder(view: View): RecyclerView.ViewHolder(view){
         private val tvEvent: TextView = view.tvPicName
-        private val tvMonth: TextView = view.tvScheduleMonth
-        private val tvDate: TextView = view.tvDateNumber
+        //private val tvMonth: TextView = view.tvScheduleMonth
+        //private val tvDate: TextView = view.tvDateNumber
 
         fun bind(data: Event){
             tvEvent.text = data.text
-            tvMonth.text = data.date.month.toString()
-            tvDate.text = data.date.dayOfMonth.toString()
+            //tvMonth.text = data.date.month.toString()
+            //tvDate.text = data.date.dayOfMonth.toString()
         }
     }
 

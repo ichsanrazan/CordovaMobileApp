@@ -14,37 +14,60 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Welcome,"
-            android:textSize="16sp"
-            android:textStyle="bold"
             android:fontFamily="@font/dm_sans"
-            android:textColor="@color/primaryColor"/>
+            android:text="Welcome,"
+            android:textColor="@color/primaryColor"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Chandra Eka K"
             android:layout_marginTop="4dp"
-            android:textSize="16sp"
-            android:textStyle="bold"
             android:fontFamily="@font/dm_sans"
-            android:textColor="@color/black"/>
+            android:text="Chandra Eka K"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tvNextStandby"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="X - H"
-        android:textSize="16sp"
-        android:textStyle="bold"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="49dp"
-        android:fontFamily="@font/dm_sans"
-        android:textColor="@color/secondaryColor"/>
+        android:layout_marginEnd="18dp"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvNextStandbyTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dm_sans"
+            android:text="Next Standby Time"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvNextStandby"
+            android:layout_width="70dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="4dp"
+            android:text="X - H"
+            android:background="@drawable/standby_time_bg"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_below="@id/tvNextStandbyTime"
+            android:layout_gravity="center"
+            android:fontFamily="@font/dm_sans"
+            android:textColor="@color/white"/>
+
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
@@ -59,14 +82,14 @@
         android:id="@+id/textStandby"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Standby"
-        android:layout_marginStart="18dp"
         android:layout_below="@id/top_dashboard"
+        android:layout_marginStart="18dp"
         android:layout_marginTop="41dp"
-        android:textSize="14sp"
-        android:textStyle="bold"
         android:fontFamily="@font/dm_sans"
-        android:textColor="@color/black"/>
+        android:text="Standby"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewSchedule"
