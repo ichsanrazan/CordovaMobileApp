@@ -113,8 +113,11 @@ class CalendarScheduleFragment: Fragment(R.layout.fragment_calendar_schedule) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
         var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
         var date = LocalDate.parse("2022-04-18", formatter)
+        events.clear()
         events[date] = events[date].orEmpty().plus(Event(UUID.randomUUID().toString(), "text", date))
         events[date] = events[date].orEmpty().plus(Event(UUID.randomUUID().toString(), "text2", date))
 
@@ -123,6 +126,7 @@ class CalendarScheduleFragment: Fragment(R.layout.fragment_calendar_schedule) {
             eventsAdapter = CalendarEventsAdapter()
             adapter = eventsAdapter
         }
+
 
         val daysOfWeek = daysOfWeekFromLocale()
         val currentMonth = YearMonth.now()
