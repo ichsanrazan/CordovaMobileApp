@@ -7,7 +7,10 @@ import cordova.telkomsel.cordovamobileapp.activityLog.model.PICList
 import cordova.telkomsel.cordovamobileapp.authentication.model.UserRequest
 import cordova.telkomsel.cordovamobileapp.authentication.model.UserResponse
 import cordova.telkomsel.cordovamobileapp.activityLog.model.*
+import cordova.telkomsel.cordovamobileapp.standbySchedule.model.RequestResponse
 import cordova.telkomsel.cordovamobileapp.standbySchedule.model.ScheduleList
+import cordova.telkomsel.cordovamobileapp.standbySchedule.model.SwapRequest
+import cordova.telkomsel.cordovamobileapp.standbySchedule.model.SwapRequestList
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -49,4 +52,15 @@ interface RetrofitService {
 
     @POST("login.php")
     fun login(@Body userRequest: UserRequest): Call<UserResponse>
+
+    @POST("request/create.php")
+    @Headers("Content-Type: application/json")
+    fun createRequest(@Body params: SwapRequest): Call<RequestResponse>
+
+    @GET("request/data.php")
+    fun getSwapRequestList(): Call<SwapRequestList>
+
+    @HTTP(method = "DELETE", path = "request/delete.php", hasBody = true)
+    @Headers("Content-Type: application/json")
+    fun deleteRequest(@Body params: ActivityDelete): Call<RequestResponse>
 }
