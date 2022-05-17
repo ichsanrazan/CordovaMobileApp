@@ -16,6 +16,7 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.view.children
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -28,6 +29,8 @@ import com.kizitonwose.calendarview.model.DayOwner
 import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
 import com.kizitonwose.calendarview.ui.ViewContainer
+import cordova.telkomsel.cordovamobileapp.standbySchedule.model.Schedule
+import cordova.telkomsel.cordovamobileapp.standbySchedule.viewModel.ScheduleListViewModel
 import kotlinx.android.synthetic.main.calendar_day.*
 import kotlinx.android.synthetic.main.calendar_day_legend.*
 import kotlinx.android.synthetic.main.calendar_day_legend.legendLayout
@@ -42,11 +45,11 @@ import java.time.format.DateTimeFormatter
 import java.time.temporal.WeekFields
 import java.util.*
 
-data class Event(val id: String, val text: String, val date: LocalDate)
+data class Event(val id: String, val text: String, val date: LocalDate, val division: String)
 
 class CalendarEventsAdapter() : RecyclerView.Adapter<CalendarEventsAdapter.CalendarEventsViewHolder>() {
 
-    val events = mutableListOf<Event>()
+    var events = mutableListOf<Event>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CalendarEventsViewHolder {
 
@@ -64,11 +67,13 @@ class CalendarEventsAdapter() : RecyclerView.Adapter<CalendarEventsAdapter.Calen
 
     class CalendarEventsViewHolder(view: View): RecyclerView.ViewHolder(view){
         private val tvEvent: TextView = view.tvPicName
+        private val tvDivision: TextView = view.tvPicPosition
         //private val tvMonth: TextView = view.tvScheduleMonth
         //private val tvDate: TextView = view.tvDateNumber
 
         fun bind(data: Event){
             tvEvent.text = data.text
+            tvDivision.text = data.division.uppercase()
             //tvMonth.text = data.date.month.toString()
             //tvDate.text = data.date.dayOfMonth.toString()
         }
@@ -81,6 +86,7 @@ class CalendarScheduleFragment: Fragment(R.layout.fragment_calendar_schedule) {
     private var selectedDate: LocalDate? = null
     private val today = LocalDate.now()
     private lateinit var eventsAdapter: CalendarEventsAdapter
+    lateinit var viewModelScheduleList: ScheduleListViewModel
 
     private val titleSameYearFormatter = DateTimeFormatter.ofPattern("MMMM")
     private val titleFormatter = DateTimeFormatter.ofPattern("MMM yyyy")
@@ -113,13 +119,30 @@ class CalendarScheduleFragment: Fragment(R.layout.fragment_calendar_schedule) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
-        var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-        var date = LocalDate.parse("2022-04-18", formatter)
         events.clear()
-        events[date] = events[date].orEmpty().plus(Event(UUID.randomUUID().toString(), "text", date))
-        events[date] = events[date].orEmpty().plus(Event(UUID.randomUUID().toString(), "text2", date))
+        var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+
+        viewModelScheduleList = ViewModelProvider(this).get(ScheduleListViewModel::class.java)
+        viewModelScheduleList.getScheduleListObservableData().observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            if(it == null) { Toast.makeText(activity, "No Result Found", Toast.LENGTH_SHORT).show() }
+            else {
+                for(i in it.data.toMutableList()){
+                    var date = LocalDate.parse(i.date!!, formatter)
+                    events[date] = events[date].orEmpty().plus(
+                        Event(UUID.randomUUID().toString(), i.pic!!, date, i.division!!))
+                }
+            }
+        })
+        viewModelScheduleList.getScheduleList()
+
+
+
+
+
+//        var date = LocalDate.parse("2022-05-18", formatter)
+//        events.clear()
+//        events[date] = events[date].orEmpty().plus(Event(UUID.randomUUID().toString(), "text", date))
+//        events[date] = events[date].orEmpty().plus(Event(UUID.randomUUID().toString(), "text2", date))
 
         calendarRv.apply {
             layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
@@ -179,7 +202,7 @@ class CalendarScheduleFragment: Fragment(R.layout.fragment_calendar_schedule) {
                         else -> {
                             container.bindingDateText.setTextColor(Color.parseColor("#000000"))
                             container.bindingDateText.background = null
-                            container.bindingDateDot.isVisible = events[day.date].orEmpty().isNotEmpty()
+                            container.bindingDateDot.visibility = View.INVISIBLE
                         }
                     }
                 } else {
@@ -246,7 +269,7 @@ class CalendarScheduleFragment: Fragment(R.layout.fragment_calendar_schedule) {
 
             selectedDate?.let {
                 Log.e("DATE", it.toString())
-                events[it] = events[it].orEmpty().plus(Event(UUID.randomUUID().toString(), text, it))
+                events[it] = events[it].orEmpty().plus(Event(UUID.randomUUID().toString(), text, it, "TEMP"))
                 updateAdapterForDate(it)
             }
         }
