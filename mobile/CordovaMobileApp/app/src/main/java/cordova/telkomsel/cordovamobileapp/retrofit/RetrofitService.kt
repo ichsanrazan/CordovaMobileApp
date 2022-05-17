@@ -48,7 +48,5 @@ interface RetrofitService {
     fun getScheduleList(): Call<ScheduleList>
 
     @POST("login.php")
-    fun login(
-        @Body userRequest: UserRequest
-    ): Call<UserResponse>
+    fun login(@Body userRequest: UserRequest): Call<UserResponse>
 }
