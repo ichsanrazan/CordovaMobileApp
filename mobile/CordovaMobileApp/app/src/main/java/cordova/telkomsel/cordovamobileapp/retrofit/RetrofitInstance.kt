@@ -18,6 +18,9 @@ class RetrofitInstance {
         //val baseUrl2 = "http://192.168.18.179:8080/restapi_authentication/"
         val baseUrl2 = "https://restapi-activitylog.000webhostapp.com/restapi_authentication/"
 
+
+        val baseUrl3 = "http://192.168.18.179:8080/api_standby/"
+
         fun getRetroInstance(): Retrofit {
             val logging = HttpLoggingInterceptor()
             logging.level = (HttpLoggingInterceptor.Level.BODY)
@@ -27,6 +30,20 @@ class RetrofitInstance {
 
             return Retrofit.Builder()
                 .baseUrl(baseUrl)
+                .client(client.build())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+        }
+
+        fun getRetroInstanceSchedule(): Retrofit {
+            val logging = HttpLoggingInterceptor()
+            logging.level = (HttpLoggingInterceptor.Level.BODY)
+            val client = OkHttpClient.Builder()
+            client.addInterceptor(logging)
+            //client.callTimeout(5, TimeUnit.SECONDS)
+
+            return Retrofit.Builder()
+                .baseUrl(baseUrl3)
                 .client(client.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()

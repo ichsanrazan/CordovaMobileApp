@@ -1,6 +1,7 @@
 package cordova.telkomsel.cordovamobileapp.activityLog.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.fragment.app.Fragment
