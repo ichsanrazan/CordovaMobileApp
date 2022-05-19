@@ -1,5 +1,6 @@
 package cordova.telkomsel.cordovamobileapp.standbySchedule.fragment
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -16,6 +17,7 @@ import cordova.telkomsel.cordovamobileapp.standbySchedule.viewModel.ScheduleList
 import kotlinx.android.synthetic.main.fragment_schedule.*
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
 import java.util.*
 
 
@@ -26,7 +28,11 @@ class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
     lateinit var viewModelScheduleList: ScheduleListViewModel
     private val events = mutableMapOf<LocalDate, List<Event>>()
     var listOfEvents = mutableListOf<Event>()
-    private val today = LocalDate.now()
+    var tempEventList = mutableListOf<Event>()
+
+    val today = LocalDate.now()
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -34,7 +40,8 @@ class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
         Log.e("date", today.toString())
 
         sharedpref = PreferencesHelper(requireContext())
-        tvUsername.text = sharedpref.getString(Constant.PREF_FULLNAME)?.substringBefore(" ")
+        var username = sharedpref.getString(Constant.PREF_FULLNAME)
+        tvUsername.text = username?.substringBefore(" ")
 
 
         var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
@@ -45,18 +52,34 @@ class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
             else {
                 eventsAdapter.events.clear()
                 listOfEvents.clear()
+                tempEventList.clear()
 
                 for(i in it.data.toMutableList()){
                     var date = LocalDate.parse(i.date!!, formatter)
                     listOfEvents.add(Event(UUID.randomUUID().toString(), i.pic!!, date, i.division!!))
+
+                    if(date.isAfter(LocalDate.parse(today.toString(), formatter)) && i.pic!! == username){
+                        tempEventList.add(Event(UUID.randomUUID().toString(), i.pic!!, date, i.division!!))
+                    }
+
                 }
 
                 listOfEvents = listOfEvents.filter { it -> it.date.toString() == today.toString()} as MutableList<Event>
                 eventsAdapter.events = listOfEvents
                 eventsAdapter.notifyDataSetChanged()
+
+                val days = ChronoUnit.DAYS.between(today, tempEventList[0].date)
+                when (days) {
+                    in 1..2 -> tvNextStandby.setBackgroundColor(Color.parseColor("#d50000"))
+                    in 3..5 -> tvNextStandby.setBackgroundColor(Color.parseColor("#d56600"))
+                    in 6..7 -> tvNextStandby.setBackgroundColor(Color.parseColor("#43E129"))
+                }
+                tvNextStandby.text =  "H - " + days.toString()
             }
         })
         viewModelScheduleList.getScheduleList()
+
+
 
         recyclerViewSchedule.apply {
             layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)

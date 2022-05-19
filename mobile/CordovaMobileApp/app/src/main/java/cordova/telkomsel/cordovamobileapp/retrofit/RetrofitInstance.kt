@@ -15,8 +15,8 @@ class RetrofitInstance {
 
         //Login
         //val baseUrl2 = "http://192.168.1.18/mobileapp/mobile-app/restapi_authentication/"
-        //val baseUrl2 = "http://192.168.18.179:8080/restapi_authentication/"
-        val baseUrl2 = "https://restapi-activitylog.000webhostapp.com/restapi_authentication/"
+        val baseUrl2 = "http://192.168.18.179:8080/restapi_authentication/"
+        //val baseUrl2 = "https://restapi-activitylog.000webhostapp.com/restapi_authentication/"
 
 
         val baseUrl3 = "http://192.168.18.179:8080/api_standby/"
