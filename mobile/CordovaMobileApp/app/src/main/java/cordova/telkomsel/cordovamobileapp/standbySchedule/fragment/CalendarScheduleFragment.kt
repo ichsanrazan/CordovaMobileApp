@@ -29,6 +29,8 @@ import com.kizitonwose.calendarview.model.DayOwner
 import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
 import com.kizitonwose.calendarview.ui.ViewContainer
+import cordova.telkomsel.cordovamobileapp.authentication.helper.Constant
+import cordova.telkomsel.cordovamobileapp.authentication.helper.PreferencesHelper
 import cordova.telkomsel.cordovamobileapp.standbySchedule.model.Schedule
 import cordova.telkomsel.cordovamobileapp.standbySchedule.viewModel.ScheduleListViewModel
 import kotlinx.android.synthetic.main.calendar_day.*
@@ -87,6 +89,7 @@ class CalendarScheduleFragment: Fragment(R.layout.fragment_calendar_schedule) {
     private val today = LocalDate.now()
     private lateinit var eventsAdapter: CalendarEventsAdapter
     lateinit var viewModelScheduleList: ScheduleListViewModel
+    lateinit var sharedpref: PreferencesHelper
 
     private val titleSameYearFormatter = DateTimeFormatter.ofPattern("MMMM")
     private val titleFormatter = DateTimeFormatter.ofPattern("MMM yyyy")
@@ -119,6 +122,9 @@ class CalendarScheduleFragment: Fragment(R.layout.fragment_calendar_schedule) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        sharedpref = PreferencesHelper(requireContext())
+        var username = sharedpref.getString(Constant.PREF_FULLNAME)
+
         events.clear()
         var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
 
@@ -128,21 +134,16 @@ class CalendarScheduleFragment: Fragment(R.layout.fragment_calendar_schedule) {
             else {
                 for(i in it.data.toMutableList()){
                     var date = LocalDate.parse(i.date!!, formatter)
+
                     events[date] = events[date].orEmpty().plus(
                         Event(UUID.randomUUID().toString(), i.pic!!, date, i.division!!))
+                    updateAdapterForDate(date)
+                    fragmentCalendar.notifyDateChanged(date)
                 }
             }
         })
         viewModelScheduleList.getScheduleList()
 
-
-
-
-
-//        var date = LocalDate.parse("2022-05-18", formatter)
-//        events.clear()
-//        events[date] = events[date].orEmpty().plus(Event(UUID.randomUUID().toString(), "text", date))
-//        events[date] = events[date].orEmpty().plus(Event(UUID.randomUUID().toString(), "text2", date))
 
         calendarRv.apply {
             layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
@@ -158,12 +159,7 @@ class CalendarScheduleFragment: Fragment(R.layout.fragment_calendar_schedule) {
             scrollToMonth(currentMonth)
         }
 
-        if (savedInstanceState == null) {
-            fragmentCalendar.post {
-                // Show today's events initially.
-                selectDate(today)
-            }
-        }
+
 
         class DayViewContainer(view: View) : ViewContainer(view) {
             lateinit var day: CalendarDay // Will be set when this container is bound.
@@ -192,17 +188,20 @@ class CalendarScheduleFragment: Fragment(R.layout.fragment_calendar_schedule) {
                         today -> {
                             container.bindingDateText.setTextColor(Color.parseColor("#FFFFFF"))
                             container.bindingDateText.setBackgroundResource(R.drawable.calendar_today_bg)
-                            container.bindingDateDot.visibility = View.INVISIBLE
                         }
                         selectedDate -> {
                             container.bindingDateText.setTextColor(Color.parseColor("#1973E8"))
                             container.bindingDateText.setBackgroundResource(R.drawable.calendar_selected_bg)
-                            container.bindingDateDot.visibility = View.INVISIBLE
                         }
                         else -> {
                             container.bindingDateText.setTextColor(Color.parseColor("#000000"))
                             container.bindingDateText.background = null
-                            container.bindingDateDot.visibility = View.INVISIBLE
+
+
+                            if( events[day.date]?.get(0)?.text == username ||
+                                events[day.date]?.get(1)?.text == username){
+                                container.bindingDateDot.visibility = View.VISIBLE
+                            }
                         }
                     }
                 } else {
@@ -216,7 +215,7 @@ class CalendarScheduleFragment: Fragment(R.layout.fragment_calendar_schedule) {
            calendarMonthTv.text = titleFormatter.format(it.yearMonth)
             // Select the first day of the month when
             // we scroll to a new month.
-            selectDate(it.yearMonth.atDay(1))
+            //selectDate(it.yearMonth.atDay(1))
         }
 
         class MonthViewContainer(view: View) : ViewContainer(view) {
