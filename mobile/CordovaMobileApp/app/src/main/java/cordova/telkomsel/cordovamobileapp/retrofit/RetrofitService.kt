@@ -60,6 +60,9 @@ interface RetrofitService {
     @GET("request/data.php")
     fun getSwapRequestList(): Call<SwapRequestList>
 
+    @GET("request/read.php")
+    fun readRequest(@Query("name") searchText: String): Call<SwapRequestList>
+
     @HTTP(method = "DELETE", path = "request/delete.php", hasBody = true)
     @Headers("Content-Type: application/json")
     fun deleteRequest(@Body params: ActivityDelete): Call<RequestResponse>

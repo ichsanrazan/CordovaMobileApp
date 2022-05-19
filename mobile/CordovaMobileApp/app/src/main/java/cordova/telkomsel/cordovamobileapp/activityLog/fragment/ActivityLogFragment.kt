@@ -192,7 +192,7 @@ class ActivityLogFragment : Fragment(R.layout.fragment_activity_log),
 
     // Function for initializing the recyclerView and setting the adapter
     private fun initRecyclerView(){
-        viewModel.getActivityList()
+        //viewModel.getActivityList()
         recyclerViewActivityLog.apply{
             layoutManager = LinearLayoutManager(activity)
             activityAdapter = ActivityAdapter(this@ActivityLogFragment)
