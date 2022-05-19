@@ -19,7 +19,7 @@
             ) );
         }
 
-        echo json_encode( array('request' => $result) );
+        echo json_encode( array('data' => $result) );
     }
 
 ?>
