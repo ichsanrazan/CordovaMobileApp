@@ -19,7 +19,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.textfield.TextInputLayout
+        <Button
+            android:id="@+id/fromPIC"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="45dp"
+            android:outlineProvider="bounds"
+            style="?android:spinnerStyle"
+            android:text=""
+            android:clickable="false"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvFrom"/>
+
+        <!--<com.google.android.material.textfield.TextInputLayout
             android:id="@+id/fromPIC"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
@@ -39,7 +55,7 @@
                 android:hint="PIC"
                 android:inputType="none"
                 android:textColor="@color/black" />
-        </com.google.android.material.textfield.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>-->
 
         <Button
             android:id="@+id/btnFromDatePicker"

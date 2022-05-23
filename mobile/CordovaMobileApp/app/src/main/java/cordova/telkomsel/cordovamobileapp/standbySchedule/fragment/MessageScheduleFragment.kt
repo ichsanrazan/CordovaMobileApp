@@ -14,6 +14,8 @@ import cordova.telkomsel.cordovamobileapp.R
 import cordova.telkomsel.cordovamobileapp.activityLog.adapter.ActivityAdapter
 import cordova.telkomsel.cordovamobileapp.activityLog.model.PICResponse
 import cordova.telkomsel.cordovamobileapp.activityLog.viewModel.CreatePICViewModel
+import cordova.telkomsel.cordovamobileapp.authentication.helper.Constant
+import cordova.telkomsel.cordovamobileapp.authentication.helper.PreferencesHelper
 import cordova.telkomsel.cordovamobileapp.standbySchedule.adapter.MessageAdapter
 import cordova.telkomsel.cordovamobileapp.standbySchedule.model.SwapRequestList
 import cordova.telkomsel.cordovamobileapp.standbySchedule.viewModel.SwapRequestLogViewModel
@@ -24,37 +26,15 @@ class MessageScheduleFragment: Fragment(R.layout.fragment_message_schedule) {
 
     private var messageAdapter: MessageAdapter? = null
     lateinit var viewModel: SwapRequestLogViewModel
+    private lateinit var sharedPref: PreferencesHelper
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         initViewModel()
         initRecyclerView()
-        //searchListener()
     }
-
-    /*private fun searchListener(){
-        etSearch.addTextChangedListener(object : TextWatcher {
-
-            override fun afterTextChanged(s: Editable) {}
-
-            override fun beforeTextChanged(s: CharSequence, start: Int,
-                                           count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence, start: Int,
-                                       before: Int, count: Int) {
-                if(!TextUtils.isEmpty(etSearch.text.toString())){
-                    viewModel.searchActivity(etSearch.text.toString())
-
-                }else{
-                    viewModel.getActivityList()
-                }
-            }
-        })
-
-
-    }*/
 
     // Function for initializing the recyclerView and setting the adapter
     private fun initRecyclerView(){
@@ -69,6 +49,8 @@ class MessageScheduleFragment: Fragment(R.layout.fragment_message_schedule) {
 
     //Function for initializing the ViewModel
     private fun initViewModel() {
+        sharedPref = PreferencesHelper(requireContext())
+        var selectedFromPic = sharedPref.getString(Constant.PREF_FULLNAME)
         viewModel = ViewModelProvider(this).get(SwapRequestLogViewModel::class.java)
         viewModel.getSwapRequestListObservableData().observe(viewLifecycleOwner, Observer<SwapRequestList> {
             if(it == null) { Toast.makeText(activity, "No Result Found", Toast.LENGTH_SHORT).show() }
@@ -77,7 +59,7 @@ class MessageScheduleFragment: Fragment(R.layout.fragment_message_schedule) {
                 messageAdapter?.notifyDataSetChanged()
             }
         })
-        viewModel.getReadRequest("Gunawan")
+        viewModel.getReadRequest(selectedFromPic.toString())
     }
 
 }

@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import cordova.telkomsel.cordovamobileapp.R
 import cordova.telkomsel.cordovamobileapp.activityLog.utils.Utils
+import cordova.telkomsel.cordovamobileapp.authentication.helper.Constant
+import cordova.telkomsel.cordovamobileapp.authentication.helper.PreferencesHelper
 import cordova.telkomsel.cordovamobileapp.standbySchedule.model.SwapRequest
 import cordova.telkomsel.cordovamobileapp.standbySchedule.viewModel.CreateSwapRequestViewModel
 import cordova.telkomsel.cordovamobileapp.standbySchedule.viewModel.SwapRequestLogViewModel
@@ -17,6 +19,7 @@ class SwapScheduleFragment : Fragment(R.layout.fragment_swap_schedule) {
 
     private lateinit var createSwapRequestViewModel: CreateSwapRequestViewModel
     private lateinit var viewModelSwapRequestList: SwapRequestLogViewModel
+    private lateinit var sharedPref: PreferencesHelper
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -29,9 +32,8 @@ class SwapScheduleFragment : Fragment(R.layout.fragment_swap_schedule) {
 
     private fun setupDropdown() {
         //Dropdown PIC From
-        val picfrom = resources.getStringArray(R.array.piccdso)
-        val arrayPicFromAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, picfrom)
-        autoCompleteTvFrom.setAdapter(arrayPicFromAdapter)
+        sharedPref = PreferencesHelper(requireContext())
+        fromPIC.text = sharedPref.getString( Constant.PREF_FULLNAME )
 
         //Dropdown PIC To
         val picto = resources.getStringArray(R.array.piccdso)
@@ -78,7 +80,7 @@ class SwapScheduleFragment : Fragment(R.layout.fragment_swap_schedule) {
         button_swap.setOnClickListener {
             //Get all input values
             val requestDateFrom: String = btnFromDatePicker.text.toString().trim()
-            val requestPicFrom: String = fromPIC.editText?.text.toString().trim()
+            val requestPicFrom: String = fromPIC.text.toString().trim()
             val requestDateTo: String = btnToDatePicker.text.toString().trim()
             val requestPicTo: String = toPIC.editText?.text.toString().trim()
 
