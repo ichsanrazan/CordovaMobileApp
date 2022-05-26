@@ -1,5 +1,6 @@
 package cordova.telkomsel.cordovamobileapp.standbySchedule.fragment
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
@@ -13,7 +14,10 @@ import cordova.telkomsel.cordovamobileapp.authentication.helper.PreferencesHelpe
 import cordova.telkomsel.cordovamobileapp.standbySchedule.model.SwapRequest
 import cordova.telkomsel.cordovamobileapp.standbySchedule.viewModel.CreateSwapRequestViewModel
 import cordova.telkomsel.cordovamobileapp.standbySchedule.viewModel.SwapRequestLogViewModel
+import kotlinx.android.synthetic.main.fragment_activity_crq.*
 import kotlinx.android.synthetic.main.fragment_swap_schedule.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class SwapScheduleFragment : Fragment(R.layout.fragment_swap_schedule) {
 
@@ -43,8 +47,8 @@ class SwapScheduleFragment : Fragment(R.layout.fragment_swap_schedule) {
     }
 
     private fun initDatePickerListener() {
-        Utils.initDatePickerDialog(btnFromDatePicker, requireContext())
-        Utils.initDatePickerDialog(btnToDatePicker, requireContext())
+        Utils.initSwapDatePickerDialog(btnFromDatePicker, requireContext())
+        Utils.initSwapDatePickerDialog(btnToDatePicker, requireContext())
     }
 
     //Function for initializing the viewModel that is responsible for inserting the data

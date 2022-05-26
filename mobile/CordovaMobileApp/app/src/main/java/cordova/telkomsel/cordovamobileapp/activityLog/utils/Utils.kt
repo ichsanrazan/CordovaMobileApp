@@ -38,6 +38,25 @@ object Utils {
         }
     }
 
+    fun initSwapDatePickerDialog(
+        btnActivityDatePicker: Button,
+        requireContext: Context
+    ) {
+        val calendar = Calendar.getInstance()
+        val dateSetListener =  DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+            calendar.set(Calendar.YEAR, year)
+            calendar.set(Calendar.MONTH, month)
+            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+            updateButtonLabelDate(calendar, btnActivityDatePicker)
+        }
+        btnActivityDatePicker.setOnClickListener {
+            val datePicker = DatePickerDialog(requireContext, dateSetListener, calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH))
+            datePicker.datePicker.minDate = System.currentTimeMillis()-1000
+            datePicker.show()
+        }
+    }
+
     private fun updateButtonLabelDate(calendar: Calendar, btnActivityDatePicker: Button) {
         val txtFormat = "yyyy-MM-dd"
         val sdf = SimpleDateFormat(txtFormat, Locale.UK)
