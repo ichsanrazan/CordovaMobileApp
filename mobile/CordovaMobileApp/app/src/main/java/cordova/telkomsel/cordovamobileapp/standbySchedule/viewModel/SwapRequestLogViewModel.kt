@@ -57,4 +57,22 @@ class SwapRequestLogViewModel: ViewModel() {
             }
         })
     }
+
+    fun getNotificationRequest(searchText: String){
+        val retroInstance = RetrofitInstance.getRetroInstanceSchedule().create(RetrofitService::class.java)
+        val call = retroInstance.notificationRequest(searchText)
+        call.enqueue(object: Callback<SwapRequestList>{
+            override fun onFailure(call: Call<SwapRequestList>, t: Throwable) {
+                recyclerListData.postValue(null)
+            }
+
+            override fun onResponse(call: Call<SwapRequestList>, response: Response<SwapRequestList>) {
+                if(response.isSuccessful){
+                    recyclerListData.postValue(response.body())
+                } else {
+
+                }
+            }
+        })
+    }
 }

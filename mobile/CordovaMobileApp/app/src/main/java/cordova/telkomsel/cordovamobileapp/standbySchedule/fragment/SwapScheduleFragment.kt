@@ -1,12 +1,14 @@
 package cordova.telkomsel.cordovamobileapp.standbySchedule.fragment
 
 import android.app.DatePickerDialog
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.tapadoo.alerter.Alerter
 import cordova.telkomsel.cordovamobileapp.R
 import cordova.telkomsel.cordovamobileapp.activityLog.utils.Utils
 import cordova.telkomsel.cordovamobileapp.authentication.helper.Constant
@@ -57,10 +59,16 @@ class SwapScheduleFragment : Fragment(R.layout.fragment_swap_schedule) {
         createSwapRequestViewModel = ViewModelProvider(this).get(CreateSwapRequestViewModel::class.java)
         createSwapRequestViewModel.getCreateRequestObservable().observe(viewLifecycleOwner, androidx.lifecycle.Observer {
             if(it == null) {
-                Toast.makeText(activity, "Request gagal", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Request Failed", Toast.LENGTH_SHORT).show()
             }
             else{
-                Toast.makeText(activity, "Request berhasil", Toast.LENGTH_SHORT).show()
+                Alerter.Companion.create(requireActivity())
+                    .setTitle("Swap Schedule")
+                    .setText("Request Sent")
+                    .setIcon(R.drawable.ic_baseline_send_24)
+                    .setBackgroundColorRes(R.color.primaryColor)
+                    .setDuration(4000)
+                    .show()
             }
         })
     }
