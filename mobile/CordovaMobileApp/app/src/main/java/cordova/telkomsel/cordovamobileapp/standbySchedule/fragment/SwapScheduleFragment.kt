@@ -1,22 +1,31 @@
 package cordova.telkomsel.cordovamobileapp.standbySchedule.fragment
 
+import android.app.DatePickerDialog
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.tapadoo.alerter.Alerter
 import cordova.telkomsel.cordovamobileapp.R
 import cordova.telkomsel.cordovamobileapp.activityLog.utils.Utils
+import cordova.telkomsel.cordovamobileapp.authentication.helper.Constant
+import cordova.telkomsel.cordovamobileapp.authentication.helper.PreferencesHelper
 import cordova.telkomsel.cordovamobileapp.standbySchedule.model.SwapRequest
 import cordova.telkomsel.cordovamobileapp.standbySchedule.viewModel.CreateSwapRequestViewModel
 import cordova.telkomsel.cordovamobileapp.standbySchedule.viewModel.SwapRequestLogViewModel
+import kotlinx.android.synthetic.main.fragment_activity_crq.*
 import kotlinx.android.synthetic.main.fragment_swap_schedule.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class SwapScheduleFragment : Fragment(R.layout.fragment_swap_schedule) {
 
     private lateinit var createSwapRequestViewModel: CreateSwapRequestViewModel
     private lateinit var viewModelSwapRequestList: SwapRequestLogViewModel
+    private lateinit var sharedPref: PreferencesHelper
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -29,9 +38,8 @@ class SwapScheduleFragment : Fragment(R.layout.fragment_swap_schedule) {
 
     private fun setupDropdown() {
         //Dropdown PIC From
-        val picfrom = resources.getStringArray(R.array.piccdso)
-        val arrayPicFromAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, picfrom)
-        autoCompleteTvFrom.setAdapter(arrayPicFromAdapter)
+        sharedPref = PreferencesHelper(requireContext())
+        fromPIC.text = sharedPref.getString( Constant.PREF_FULLNAME )
 
         //Dropdown PIC To
         val picto = resources.getStringArray(R.array.piccdso)
@@ -41,8 +49,8 @@ class SwapScheduleFragment : Fragment(R.layout.fragment_swap_schedule) {
     }
 
     private fun initDatePickerListener() {
-        Utils.initDatePickerDialog(btnFromDatePicker, requireContext())
-        Utils.initDatePickerDialog(btnToDatePicker, requireContext())
+        Utils.initSwapDatePickerDialog(btnFromDatePicker, requireContext())
+        Utils.initSwapDatePickerDialog(btnToDatePicker, requireContext())
     }
 
     //Function for initializing the viewModel that is responsible for inserting the data
@@ -51,10 +59,16 @@ class SwapScheduleFragment : Fragment(R.layout.fragment_swap_schedule) {
         createSwapRequestViewModel = ViewModelProvider(this).get(CreateSwapRequestViewModel::class.java)
         createSwapRequestViewModel.getCreateRequestObservable().observe(viewLifecycleOwner, androidx.lifecycle.Observer {
             if(it == null) {
-                Toast.makeText(activity, "Request gagal", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Request Failed", Toast.LENGTH_SHORT).show()
             }
             else{
-                Toast.makeText(activity, "Request berhasil", Toast.LENGTH_SHORT).show()
+                Alerter.Companion.create(requireActivity())
+                    .setTitle("Swap Schedule")
+                    .setText("Request Sent")
+                    .setIcon(R.drawable.ic_baseline_send_24)
+                    .setBackgroundColorRes(R.color.primaryColor)
+                    .setDuration(4000)
+                    .show()
             }
         })
     }
@@ -78,7 +92,7 @@ class SwapScheduleFragment : Fragment(R.layout.fragment_swap_schedule) {
         button_swap.setOnClickListener {
             //Get all input values
             val requestDateFrom: String = btnFromDatePicker.text.toString().trim()
-            val requestPicFrom: String = fromPIC.editText?.text.toString().trim()
+            val requestPicFrom: String = fromPIC.text.toString().trim()
             val requestDateTo: String = btnToDatePicker.text.toString().trim()
             val requestPicTo: String = toPIC.editText?.text.toString().trim()
 

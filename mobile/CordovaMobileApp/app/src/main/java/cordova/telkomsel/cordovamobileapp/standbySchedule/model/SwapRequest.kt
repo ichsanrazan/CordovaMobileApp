@@ -7,3 +7,4 @@ data class SwapRequest(val id: Int?,
                        val date_to: String?,
                        val pic_to: String?,)
 data class RequestResponse(val message: String?)
+data class RequestDelete(val id:Int?)

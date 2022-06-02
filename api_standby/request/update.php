@@ -6,17 +6,16 @@
 $inputJSON = file_get_contents('php://input');
 $input = json_decode($inputJSON, TRUE); //convert JSON into array
 
-    $id = $input['id'];
-    $date_from = $input['date_from'];
-    $pic_from = $input['pic_from'];
-    $date_to = $input['date_to'];
+    $date = $input['date'];
+    $pic = $input['pic'];
     $pic_to = $input['pic_to'];
+    $division = $input['division'];
 
-    $query  = "UPDATE request SET date_from='$date_from',pic_from='$pic_from',date_to='$date_to',pic_to='$pic_to' WHERE id='$id' ";
+    $query  = "UPDATE schedule SET date='$date',pic='$pic_to',division='$division' WHERE date='$date' AND pic='$pic' ";
     $sql    = mysqli_query($db_connect, $query);
 
     if ($sql) {
-        echo json_encode( array('message' => 'updated'));
+        echo json_encode( array('message' => 'schedule updated'));
     } else {
         echo json_encode( array('message' => 'error!'));
     }

@@ -9,12 +9,13 @@ import java.util.concurrent.TimeUnit
 
 class RetrofitInstance {
     companion object{
-        //val baseUrl = "http://192.168.1.13/mobileapp/mobile-app/restapi_activitylog/api/"
+        //val baseUrl = "http://192.168.1.11/mobileapp/mobile-app/restapi_activitylog/api/"
         //val baseUrl = "http://192.168.18.179:8080/restapi_activitylog/api/"
         val baseUrl = "https://restapi-activitylog.000webhostapp.com/restapi_activitylog/api/"
 
         //Login
-        val baseUrl2 = "http://192.168.1.13/mobileapp/mobile-app/restapi_authentication/"
+
+        val baseUrl2 = "http://192.168.1.11/mobileapp/mobile-app/restapi_authentication/"
         //val baseUrl2 = "http://192.168.18.179:8080/restapi_authentication/"
         //val baseUrl2 = "https://restapi-activitylog.000webhostapp.com/restapi_authentication/"
 
