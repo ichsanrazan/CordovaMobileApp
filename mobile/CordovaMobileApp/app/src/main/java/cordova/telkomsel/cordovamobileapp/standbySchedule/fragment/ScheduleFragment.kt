@@ -54,6 +54,7 @@ class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
                 listOfEvents.clear()
                 tempEventList.clear()
 
+
                 for(i in it.data.toMutableList()){
                     var date = LocalDate.parse(i.date!!, formatter)
                     listOfEvents.add(Event(UUID.randomUUID().toString(), i.pic!!, date, i.division!!))
@@ -68,13 +69,15 @@ class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
                 eventsAdapter.events = listOfEvents
                 eventsAdapter.notifyDataSetChanged()
 
-                /*val days = ChronoUnit.DAYS.between(today, tempEventList[0].date)
-                when (days) {
-                    in 1..2 -> tvNextStandby.setBackgroundColor(Color.parseColor("#d50000"))
-                    in 3..5 -> tvNextStandby.setBackgroundColor(Color.parseColor("#d56600"))
-                    in 6..7 -> tvNextStandby.setBackgroundColor(Color.parseColor("#43E129"))
+                if(tempEventList.isNotEmpty()){
+                    val days = ChronoUnit.DAYS.between(today, tempEventList[0].date)
+                    when (days) {
+                        in 1..2 -> tvNextStandby.setBackgroundColor(Color.parseColor("#d50000"))
+                        in 3..5 -> tvNextStandby.setBackgroundColor(Color.parseColor("#d56600"))
+                        in 6..7 -> tvNextStandby.setBackgroundColor(Color.parseColor("#43E129"))
+                    }
+                    tvNextStandby.text =  "H - " + days.toString()
                 }
-                tvNextStandby.text =  "H - " + days.toString()*/
             }
         })
         viewModelScheduleList.getScheduleList()
