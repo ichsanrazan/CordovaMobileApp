@@ -8,7 +8,7 @@ import cordova.telkomsel.cordovamobileapp.R
 import cordova.telkomsel.cordovamobileapp.standbySchedule.model.SwapRequest
 import kotlinx.android.synthetic.main.recycler_row_message.view.*
 
-class MessageAdapter(): RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() {
+class MessageAdapter(val clickListener: OnItemClickListener): RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() {
 
     var swapRequestList = mutableListOf<SwapRequest>()
 
@@ -25,6 +25,12 @@ class MessageAdapter(): RecyclerView.Adapter<MessageAdapter.MessageViewHolder>()
 
     override fun onBindViewHolder(holder: MessageAdapter.MessageViewHolder, position: Int) {
         holder.bind(swapRequestList[position])
+        holder.btnAccept.setOnClickListener {
+            clickListener.onItemUpdateClick(swapRequestList[position])
+        }
+        holder.btnDecline.setOnClickListener {
+            clickListener.onItemDeleteClick(swapRequestList[position])
+        }
     }
 
     class MessageViewHolder(view: View): RecyclerView.ViewHolder(view){
@@ -32,6 +38,8 @@ class MessageAdapter(): RecyclerView.Adapter<MessageAdapter.MessageViewHolder>()
         val tvRecyclerDateFrom = view.tvRecyclerDateFrom
         val tvRecyclerDateTo = view.tvRecyclerDateTo
         val tvRecyclerPICTo = view.tvRecyclerPICTo
+        val btnAccept = view.btnAccept
+        val btnDecline = view.btnDecline
 
 
         fun bind(data: SwapRequest){
@@ -40,5 +48,10 @@ class MessageAdapter(): RecyclerView.Adapter<MessageAdapter.MessageViewHolder>()
             tvRecyclerDateTo.text = data.date_to
             tvRecyclerPICTo.text = data.pic_to
         }
+    }
+
+    interface OnItemClickListener{
+        fun onItemUpdateClick(request: SwapRequest)
+        fun onItemDeleteClick(request: SwapRequest)
     }
 }

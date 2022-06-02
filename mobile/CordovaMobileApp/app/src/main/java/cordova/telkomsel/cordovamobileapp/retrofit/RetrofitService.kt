@@ -66,4 +66,8 @@ interface RetrofitService {
     @HTTP(method = "DELETE", path = "request/delete.php", hasBody = true)
     @Headers("Content-Type: application/json")
     fun deleteRequest(@Body params: RequestDelete): Call<RequestResponse>
+
+    @PATCH("request/update.php")
+    @Headers("Content-Type: application/json")
+    fun updateRequest(@Body params: SwapRequest): Call<RequestResponse>
 }

@@ -20,8 +20,8 @@ class RetrofitInstance {
         //val baseUrl2 = "https://restapi-activitylog.000webhostapp.com/restapi_authentication/"
 
 
-        val baseUrl3 = "http://192.168.18.179:8080/api_standby/"
-        //val baseUrl3 = "http://192.168.1.13/mobileapp/mobile-app/api_standby/"
+        //val baseUrl3 = "http://192.168.18.179:8080/api_standby/"
+        val baseUrl3 = "http://192.168.1.11/mobileapp/mobile-app/api_standby/"
 
         fun getRetroInstance(): Retrofit {
             val logging = HttpLoggingInterceptor()

@@ -2,6 +2,8 @@ package cordova.telkomsel.cordovamobileapp.standbySchedule.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import cordova.telkomsel.cordovamobileapp.activityLog.model.Activity
+import cordova.telkomsel.cordovamobileapp.activityLog.model.ActivityResponse
 import cordova.telkomsel.cordovamobileapp.retrofit.RetrofitInstance
 import cordova.telkomsel.cordovamobileapp.retrofit.RetrofitService
 import cordova.telkomsel.cordovamobileapp.standbySchedule.model.RequestDelete
@@ -60,6 +62,24 @@ class CreateSwapRequestViewModel : ViewModel() {
                     deleteSwapRequestLiveData.postValue(response.body())
                 } else {
                     deleteSwapRequestLiveData.postValue(null)
+                }
+            }
+        })
+    }
+
+    fun updateRequest(request: SwapRequest){
+        val retroInstance = RetrofitInstance.getRetroInstanceSchedule().create(RetrofitService::class.java)
+        val call = retroInstance.updateRequest(request)
+        call.enqueue(object: Callback<RequestResponse?> {
+            override fun onFailure(call: Call<RequestResponse?>, t: Throwable) {
+                createSwapRequestLiveData.postValue(null)
+            }
+
+            override fun onResponse(call: Call<RequestResponse?>, response: Response<RequestResponse?>) {
+                if(response.isSuccessful){
+                    createSwapRequestLiveData.postValue(response.body())
+                } else {
+                    createSwapRequestLiveData.postValue(null)
                 }
             }
         })
