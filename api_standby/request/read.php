@@ -5,7 +5,7 @@
 
     $name = isset($_GET['name']) ? $_GET['name'] : die();
 
-    $query  = "SELECT * FROM request WHERE pic_to LIKE '$name'";
+    $query  = "SELECT * FROM request WHERE pic_to LIKE '$name' and status='0'";
     $sql    = mysqli_query($db_connect, $query);
 
     if($sql) {

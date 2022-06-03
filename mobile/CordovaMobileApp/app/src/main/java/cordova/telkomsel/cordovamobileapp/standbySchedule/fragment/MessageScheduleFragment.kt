@@ -95,7 +95,7 @@ class MessageScheduleFragment: Fragment(R.layout.fragment_message_schedule), Mes
 
         //Check if values are not empty
         val request = SwapRequest(updateID, updateDateFrom, updatePicFrom,
-            updateDateTo, updatePicTo)
+            updateDateTo, updatePicTo, null)
         createSwapRequestViewModel.updateRequest(request)
         Alerter.Companion.create(requireActivity())
             .setTitle("Swap Schedule")

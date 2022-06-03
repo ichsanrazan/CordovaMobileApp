@@ -100,7 +100,7 @@ class SwapScheduleFragment : Fragment(R.layout.fragment_swap_schedule) {
             if(validateSubmitRequest(
                     requestDateFrom, requestPicFrom, requestDateTo,
                     requestPicTo)){
-                        val request = SwapRequest(null, requestDateFrom, requestPicFrom, requestDateTo, requestPicTo)
+                        val request = SwapRequest(null, requestDateFrom, requestPicFrom, requestDateTo, requestPicTo, null)
                         createSwapRequestViewModel.createRequest(request)
 
 
