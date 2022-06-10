@@ -146,6 +146,10 @@ class Standby_Schedule
 
     public function generate_schedule()
     {
+		$query = 'DELETE * FROM ' . $this->schedule_table;
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+		
         $this->generate_schedule_core();
         $this->generate_schedule_datacomm();
     }
