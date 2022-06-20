@@ -37,6 +37,7 @@ class MainKPI : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
 
 
+
         nav_view_kpi_network.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.mainActivity -> startActivity(Intent(this, MainActivity::class.java))

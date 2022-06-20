@@ -8,6 +8,6 @@
     <fragment
         android:id="@+id/kpiFragment"
         android:name="cordova.telkomsel.cordovamobileapp.kpiNetwork.fragment.KpiFragment"
-        android:label="fragment_kpi"
+        android:label="KPI Network"
         tools:layout="@layout/fragment_kpi" />
 </navigation>
