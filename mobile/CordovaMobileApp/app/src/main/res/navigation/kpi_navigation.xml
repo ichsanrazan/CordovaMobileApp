@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/kpi_navigation"
+    app:startDestination="@id/kpiFragment">
+
+    <fragment
+        android:id="@+id/kpiFragment"
+        android:name="cordova.telkomsel.cordovamobileapp.kpiNetwork.fragment.KpiFragment"
+        android:label="KPI Network"
+        tools:layout="@layout/fragment_kpi" >
+        <action
+            android:id="@+id/action_kpiFragment_to_qualityKpiMonitoringFragment"
+            app:destination="@id/qualityKpiMonitoringFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/qualityKpiMonitoringFragment"
+        android:name="cordova.telkomsel.cordovamobileapp.kpiNetwork.fragment.QualityKpiFragment"
+        android:label="KPI Quality"
+        tools:layout="@layout/fragment_kpi_quality_monitoring"/>
+</navigation>

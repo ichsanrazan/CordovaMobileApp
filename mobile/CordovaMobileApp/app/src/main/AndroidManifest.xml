@@ -13,6 +13,9 @@
         android:theme="@style/Theme.CordovaMobileApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".kpiNetwork.MainKPI"
+            android:exported="false" />
+        <activity
             android:name=".standbySchedule.MainSchedule"
             android:exported="false" />
         <activity

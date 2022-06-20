@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/scheduleFragment"
         android:name="cordova.telkomsel.cordovamobileapp.standbySchedule.fragment.ScheduleFragment"
-        android:label="ScheduleFragment" >
+        android:label="Standby Schedule">
         <action
             android:id="@+id/action_scheduleFragment_to_swapScheduleFragment"
             app:destination="@id/swapScheduleFragment"

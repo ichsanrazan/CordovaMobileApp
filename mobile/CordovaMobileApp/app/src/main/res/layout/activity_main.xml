@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Welcome, "
-            android:textColor="@color/white"
+            android:textColor="@color/primaryDarkColor"
             android:textSize="18sp" />
 
         <TextView
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Kaleb Juliu"
-            android:textColor="@color/white"
+            android:textColor="@color/primaryColor"
             android:textSize="28sp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -132,6 +132,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/card_kpiNetwork"
             android:layout_width="140dp"
             android:layout_height="140dp"
             android:layout_margin="8dp"
@@ -149,12 +150,12 @@
                 <ImageView
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:src="@drawable/ic_baseline_home_24" />
+                    android:src="@drawable/ic_baseline_storage_24" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Menu C"
+                    android:text="KPI Network"
                     android:textAlignment="center"
                     android:textStyle="bold" />
             </LinearLayout>
