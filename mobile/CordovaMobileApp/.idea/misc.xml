@@ -66,6 +66,8 @@
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.229" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/drawable/arrow_upward.xml" value="0.2385" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/drawable/btn_bg.xml" value="0.1" />
+        <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/drawable/btn_to_top.xml" value="0.2155" />
+        <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/drawable/custom_floating_button.xml" value="0.2155" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/drawable/help_outline_24.xml" value="0.196" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/drawable/ic_baseline_calendar_today_24.xml" value="0.1905" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.229" />
@@ -73,6 +75,7 @@
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/drawable/ic_baseline_send_24.xml" value="0.1905" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/drawable/ic_launcher_foreground2.xml" value="0.2155" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/drawable/input_bg.xml" value="0.229" />
+        <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/drawable/kpi_card_bg.xml" value="0.2155" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/drawable/standby_time_bg.xml" value="0.2155" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/drawable/white_circle.xml" value="0.2275" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/activity_edit_log.xml" value="0.18802083333333333" />
@@ -95,13 +98,17 @@
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/fragment_message_schedule.xml" value="0.33" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/fragment_message_schedule_home.xml" value="0.36666666666666664" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/fragment_notification_schedule.xml" value="0.36666666666666664" />
+        <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/fragment_quality_kpi.xml" value="0.36666666666666664" />
+        <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/fragment_request_schedule.xml" value="0.36666666666666664" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/fragment_schedule.xml" value="0.33" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/fragment_swap_schedule.xml" value="0.33" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/recycler_row_activity.xml" value="0.34277620396600567" />
+        <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/recycler_row_kpi.xml" value="0.36666666666666664" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/recycler_row_message.xml" value="0.34293948126801155" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/recycler_row_notification.xml" value="0.36666666666666664" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/recycler_row_pic_detail.xml" value="0.36666666666666664" />
-        <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/recycler_row_schedule.xml" value="0.5" />
+        <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/recycler_row_request.xml" value="0.36666666666666664" />
+        <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/layout/recycler_row_schedule.xml" value="0.33" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/menu/activity_log_menu.xml" value="0.18802083333333333" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.18229166666666666" />
         <entry key="..\:/xampp/htdocs/mobileapp/mobile-app/mobile/CordovaMobileApp/app/src/main/res/menu/drawer_nav_menu.xml" value="0.36666666666666664" />
