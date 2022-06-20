@@ -12,10 +12,10 @@ class QualityKpiFragment : Fragment(R.layout.fragment_kpi_quality){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        card_kpi_mss.setOnClickListener {
+        /*card_kpi_mss.setOnClickListener {
             val action = KpiFragmentDirections.actionKpiFragmentToQualityKpiMonitoringFragment()
             findNavController().navigate(action)
-        }
+        }*/
     }
 
 }
