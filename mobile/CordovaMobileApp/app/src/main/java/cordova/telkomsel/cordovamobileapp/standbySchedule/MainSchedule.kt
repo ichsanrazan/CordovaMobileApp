@@ -17,6 +17,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import cordova.telkomsel.cordovamobileapp.MainActivity
 import cordova.telkomsel.cordovamobileapp.R
 import cordova.telkomsel.cordovamobileapp.activityLog.MainLog
+import cordova.telkomsel.cordovamobileapp.kpiNetwork.MainKPI
 import cordova.telkomsel.cordovamobileapp.standbySchedule.fragment.*
 import cordova.telkomsel.cordovamobileapp.standbySchedule.model.RequestDelete
 import cordova.telkomsel.cordovamobileapp.standbySchedule.viewModel.CreateSwapRequestViewModel
@@ -52,6 +53,7 @@ class MainSchedule : AppCompatActivity() {
                 R.id.mainActivity -> startActivity(Intent(this, MainActivity::class.java))
                 R.id.activityLog -> startActivity(Intent(this, MainLog::class.java))
                 R.id.standbySchedule -> startActivity(Intent(this, MainSchedule::class.java))
+                R.id.kpiNetwork -> startActivity(Intent(this, MainKPI::class.java))
             }
             true
         }

@@ -8,6 +8,7 @@ import cordova.telkomsel.cordovamobileapp.activityLog.MainLog
 import cordova.telkomsel.cordovamobileapp.authentication.LoginActivity
 import cordova.telkomsel.cordovamobileapp.authentication.helper.Constant
 import cordova.telkomsel.cordovamobileapp.authentication.helper.PreferencesHelper
+import cordova.telkomsel.cordovamobileapp.kpiNetwork.MainKPI
 import cordova.telkomsel.cordovamobileapp.standbySchedule.MainSchedule
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -35,6 +36,10 @@ class MainActivity : AppCompatActivity() {
         }
         card_standbySchedule.setOnClickListener {
             val intent = Intent(this, MainSchedule::class.java)
+            startActivity(intent)
+        }
+        card_kpiNetwork.setOnClickListener {
+            val intent = Intent(this, MainKPI::class.java)
             startActivity(intent)
         }
     }

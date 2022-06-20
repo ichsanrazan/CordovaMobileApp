@@ -14,9 +14,9 @@
         android:icon="@drawable/ic_baseline_calendar_month_24"
         android:title="Standby Schedule"/>
     <item
-        android:id="@+id/menuD"
-        android:icon="@drawable/ic_baseline_android_24"
-        android:title="Menu D"/>
+        android:id="@+id/kpiNetwork"
+        android:icon="@drawable/ic_baseline_storage_24"
+        android:title="KPI Network"/>
 
 
 </menu>
