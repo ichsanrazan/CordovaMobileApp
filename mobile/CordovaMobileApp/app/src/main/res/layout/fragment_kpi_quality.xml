@@ -37,13 +37,12 @@
                 <ImageView
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:src="@drawable/icon_server" />
+                    android:src="@drawable/ic_baseline_storage_24" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:textColor="#06F63B"
                     android:text="MSS"
                     android:textSize="16sp"
                     android:textAlignment="center"
@@ -72,13 +71,12 @@
                 <ImageView
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:src="@drawable/icon_server" />
+                    android:src="@drawable/ic_baseline_storage_24" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:textColor="#06F63B"
                     android:text="MGW"
                     android:textSize="16sp"
                     android:textAlignment="center"
@@ -107,13 +105,12 @@
                 <ImageView
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:src="@drawable/icon_server" />
+                    android:src="@drawable/ic_baseline_storage_24" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:textColor="#06F63B"
                     android:text="HLR"
                     android:textSize="16sp"
                     android:textAlignment="center"
@@ -142,13 +139,12 @@
                 <ImageView
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:src="@drawable/icon_server" />
+                    android:src="@drawable/ic_baseline_storage_24" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:textColor="#06F63B"
                     android:text="SPS"
                     android:textSize="16sp"
                     android:textAlignment="center"
@@ -177,13 +173,12 @@
                 <ImageView
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:src="@drawable/icon_server" />
+                    android:src="@drawable/ic_baseline_storage_24" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:textColor="#06F63B"
                     android:text="SGSN"
                     android:textSize="16sp"
                     android:textAlignment="center"
@@ -212,13 +207,12 @@
                 <ImageView
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:src="@drawable/icon_server" />
+                    android:src="@drawable/ic_baseline_storage_24" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:textColor="#06F63B"
                     android:text="GGSN"
                     android:textSize="16sp"
                     android:textAlignment="center"
