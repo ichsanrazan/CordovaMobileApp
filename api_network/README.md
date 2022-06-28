@@ -1,7 +1,7 @@
 # Activity Log and PIC - REST API
 
 ## API Documentation
-- Base URL for endpoints (Localhost) `https://localhost/api_activitylog`
+- Base URL for endpoints (Localhost) `https://localhost/api_activitylog/api`
 
 ## Endpoints
 - `GET /mss.php` Retrieve all MSS data
@@ -11,4 +11,4 @@
 - For GET request the response will be an array enclosed within the `data` key.
 
 ## Database Config
-To configure database host, name, username or password settings go to `/Db.php`
+To configure database host, name, username or password settings go to `/config/db.php`

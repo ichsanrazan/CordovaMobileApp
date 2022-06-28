@@ -7,6 +7,7 @@ import cordova.telkomsel.cordovamobileapp.activityLog.model.PICList
 import cordova.telkomsel.cordovamobileapp.authentication.model.UserRequest
 import cordova.telkomsel.cordovamobileapp.authentication.model.UserResponse
 import cordova.telkomsel.cordovamobileapp.activityLog.model.*
+import cordova.telkomsel.cordovamobileapp.kpiNetwork.model.*
 import cordova.telkomsel.cordovamobileapp.standbySchedule.model.*
 import retrofit2.Call
 import retrofit2.http.*
@@ -70,4 +71,11 @@ interface RetrofitService {
     @PATCH("request/update.php")
     @Headers("Content-Type: application/json")
     fun updateRequest(@Body params: SwapRequest): Call<RequestResponse>
+
+    @GET("api/mss.php")
+    fun getMssList(): Call<MssList>
+
+    @GET("api/ggsn.php")
+    fun getGgsnList(): Call<GgsnList>
+
 }

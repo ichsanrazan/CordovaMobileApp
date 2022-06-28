@@ -1,6 +1,6 @@
 <?php 
 
-    require_once('db.php');
+    require_once('../config/db.php');
 
     $query  = "SELECT * FROM kpi_core_test ORDER BY id DESC";
     $sql    = mysqli_query($db_connect, $query);
