@@ -2,7 +2,7 @@
 
     require_once('../config/db.php');
 
-    $query  = "SELECT * FROM kpi_core_test ORDER BY id DESC";
+    $query  = "SELECT * FROM kpi_core_test ORDER BY id";
     $sql    = mysqli_query($db_connect, $query);
 
     if($sql) {

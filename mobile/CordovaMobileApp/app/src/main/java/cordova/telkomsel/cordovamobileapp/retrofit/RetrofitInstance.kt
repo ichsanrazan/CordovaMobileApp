@@ -24,7 +24,8 @@ class RetrofitInstance {
         //val baseUrl3 = "http://192.168.1.8/mobileapp/mobile-app/api_standby/"
         val baseUrl3 = "https://api-standby.000webhostapp.com/api_standby/"
 
-        val baseUrl4 = "http://192.168.1.8/mobileapp/mobile-app/api_network/"
+        //val baseUrl4 = "http://192.168.1.8/mobileapp/mobile-app/api_network/"
+        val baseUrl4 = "http://192.168.18.179:8080/api_network/"
 
         fun getRetroInstance(): Retrofit {
             val logging = HttpLoggingInterceptor()

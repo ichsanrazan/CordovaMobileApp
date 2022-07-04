@@ -1,6 +1,7 @@
 package cordova.telkomsel.cordovamobileapp.kpiNetwork.viewModel
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import cordova.telkomsel.cordovamobileapp.kpiNetwork.model.MssList
 import cordova.telkomsel.cordovamobileapp.retrofit.RetrofitInstance
 import cordova.telkomsel.cordovamobileapp.retrofit.RetrofitService
@@ -8,7 +9,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MssListViewModel {
+class MssListViewModel: ViewModel() {
 
     lateinit var recyclerListData: MutableLiveData<MssList>
 
