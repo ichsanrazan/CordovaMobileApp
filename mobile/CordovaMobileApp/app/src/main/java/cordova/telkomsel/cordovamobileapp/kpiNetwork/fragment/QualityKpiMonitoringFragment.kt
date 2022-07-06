@@ -76,11 +76,36 @@ class QualityKpiMonitoringFragment: Fragment(R.layout.fragment_kpi_quality_monit
                 val lineDataSetCCR_2 = LineDataSet(chartDataCCR_2, "XBRN2")
                 val lineDataSetCCR_3 = LineDataSet(chartDataCCR_3, "XBRN2")
 
+                lineDataSetSCR_1.setCircleRadius(4f)
+                lineDataSetSCR_1.setCircleColor(Color.CYAN)
+
                 lineDataSetSCR_2.color = Color.GREEN
+                lineDataSetSCR_2.setCircleRadius(4f)
+                lineDataSetSCR_2.setCircleColor(Color.GREEN)
+
                 lineDataSetSCR_3.color = Color.MAGENTA
+                lineDataSetSCR_3.setCircleRadius(4f)
+                lineDataSetSCR_3.setCircleColor(Color.MAGENTA)
+
+                lineDataSetCCR_1.setCircleRadius(4f)
+                lineDataSetCCR_1.setCircleColor(Color.CYAN)
 
                 lineDataSetCCR_2.color = Color.GREEN
+                lineDataSetCCR_2.setCircleRadius(4f)
+                lineDataSetCCR_2.setCircleColor(Color.GREEN)
+
                 lineDataSetCCR_3.color = Color.MAGENTA
+                lineDataSetCCR_3.setCircleRadius(4f)
+                lineDataSetCCR_3.setCircleColor(Color.MAGENTA)
+
+
+                lineDataSetSCR_1.setValueTextSize(10f)
+                lineDataSetSCR_2.setValueTextSize(10f)
+                lineDataSetSCR_3.setValueTextSize(10f)
+
+                lineDataSetCCR_1.setValueTextSize(10f)
+                lineDataSetCCR_2.setValueTextSize(10f)
+                lineDataSetCCR_3.setValueTextSize(10f)
 
                 dataSets.add(lineDataSetSCR_1)
                 dataSets.add(lineDataSetSCR_2)
@@ -103,16 +128,18 @@ class QualityKpiMonitoringFragment: Fragment(R.layout.fragment_kpi_quality_monit
                 test_chart.setTouchEnabled(true)
                 test_chart.isDragEnabled
                 test_chart.setDrawGridBackground(false)
+                test_chart.animateY(2000)
 
                 test_chart2.description = desription2
                 test_chart2.setTouchEnabled(true)
                 test_chart2.isDragEnabled
                 test_chart2.setDrawGridBackground(false)
+                test_chart2.animateY(2000)
 
                 val ll1 = LimitLine(80f, "Threshold")
                 ll1.lineWidth = 1f
                 ll1.labelPosition = LimitLabelPosition.RIGHT_TOP
-                ll1.textSize = 10f
+                ll1.textSize = 8f
 
                 val xAxis: XAxis = test_chart.xAxis
                 val yAxis: YAxis = test_chart.axisLeft
@@ -121,6 +148,13 @@ class QualityKpiMonitoringFragment: Fragment(R.layout.fragment_kpi_quality_monit
                 val xAxis_2: XAxis = test_chart2.xAxis
                 val yAxis_2: YAxis = test_chart2.axisLeft
                 val yAxis2_2: YAxis = test_chart2.axisRight
+
+                /*val xvalues = ArrayList<String>()
+                xvalues.add("10:00")
+                xvalues.add("10:15")
+                xvalues.add("10:30")
+                xvalues.add("10:45")
+                xvalues.add("11:00")*/
 
                 xAxis.valueFormatter = HourFormatter()
                 xAxis.position = XAxis.XAxisPosition.BOTTOM

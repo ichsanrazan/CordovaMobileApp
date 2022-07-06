@@ -9,23 +9,23 @@ import java.util.concurrent.TimeUnit
 
 class RetrofitInstance {
     companion object{
-        //val baseUrl = "http://192.168.1.8/mobileapp/mobile-app/restapi_activitylog/api/"
+        val baseUrl = "http://192.168.1.12/mobileapp/mobile-app/restapi_activitylog/api/"
         //val baseUrl = "http://192.168.18.179:8080/restapi_activitylog/api/"
-        val baseUrl = "https://restapi-activitylog.000webhostapp.com/restapi_activitylog/api/"
+        //val baseUrl = "https://restapi-activitylog.000webhostapp.com/restapi_activitylog/api/"
 
         //Login
 
-        //val baseUrl2 = "http://192.168.1.8/mobileapp/mobile-app/restapi_authentication/"
+        val baseUrl2 = "http://192.168.1.12/mobileapp/mobile-app/restapi_authentication/"
         //val baseUrl2 = "http://192.168.18.179:8080/restapi_authentication/"
-        val baseUrl2 = "https://restapi-activitylog.000webhostapp.com/restapi_authentication/"
+        //val baseUrl2 = "https://restapi-activitylog.000webhostapp.com/restapi_authentication/"
 
 
         //val baseUrl3 = "http://192.168.18.179:8080/api_standby/"
-        //val baseUrl3 = "http://192.168.1.8/mobileapp/mobile-app/api_standby/"
-        val baseUrl3 = "https://api-standby.000webhostapp.com/api_standby/"
+        val baseUrl3 = "http://192.168.1.12/mobileapp/mobile-app/api_standby/"
+        //val baseUrl3 = "https://api-standby.000webhostapp.com/api_standby/"
 
-        //val baseUrl4 = "http://192.168.1.8/mobileapp/mobile-app/api_network/"
-        val baseUrl4 = "http://192.168.18.179:8080/api_network/"
+        val baseUrl4 = "http://192.168.1.12/mobileapp/mobile-app/api_network/"
+        //val baseUrl4 = "http://192.168.18.179:8080/api_network/"
 
         fun getRetroInstance(): Retrofit {
             val logging = HttpLoggingInterceptor()
