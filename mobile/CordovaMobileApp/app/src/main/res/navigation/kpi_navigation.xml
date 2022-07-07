@@ -17,9 +17,20 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_kpiFragment_to_qualityKpiMgwFragment"
+            app:destination="@id/qualityKpiMgwFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/qualityKpiMonitoringFragment"
         android:name="cordova.telkomsel.cordovamobileapp.kpiNetwork.fragment.QualityKpiMonitoringFragment"
         android:label="QualityKpiMonitoringFragment" />
+    <fragment
+        android:id="@+id/qualityKpiMgwFragment"
+        android:name="cordova.telkomsel.cordovamobileapp.kpiNetwork.fragment.QualityKpiMgwFragment"
+        android:label="QualityKpiMgwFragment" />
 </navigation>

@@ -16,6 +16,10 @@ class QualityKpiFragment : Fragment(R.layout.fragment_kpi_quality){
             val action = KpiFragmentDirections.actionKpiFragmentToQualityKpiMonitoringFragment()
             findNavController().navigate(action)
         }
+        card_kpi_mgw.setOnClickListener {
+            val action = KpiFragmentDirections.actionKpiFragmentToQualityKpiMgwFragment()
+            findNavController().navigate(action)
+        }
     }
 
 }
