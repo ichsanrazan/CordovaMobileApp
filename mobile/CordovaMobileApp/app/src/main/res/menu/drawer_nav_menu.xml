@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/mainActivity"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="Home"/>
+    <item
+        android:id="@+id/activityLog"
+        android:icon="@drawable/ic_baseline_view_list_24"
+        android:title="Activity Log"/>
+    <item
+        android:id="@+id/standbySchedule"
+        android:icon="@drawable/ic_baseline_calendar_month_24"
+        android:title="Standby Schedule"/>
+    <item
+        android:id="@+id/kpiNetwork"
+        android:icon="@drawable/ic_baseline_storage_24"
+        android:title="KPI Network"/>
+
+
+</menu>

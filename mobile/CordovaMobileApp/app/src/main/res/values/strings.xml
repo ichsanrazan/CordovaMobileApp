@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">CordovaMobileApp</string>
+    <string name="incdate">Date</string>
+
+    <string-array name="subject">
+        <item>Core CS</item>
+        <item>Core PS</item>
+        <item>Datacomm</item>
+        <item>Security</item>
+    </string-array>
+
+    <string-array name="piccdso">
+        <item>Bruury SR Efendy</item>
+        <item>Mohamad Habibi</item>
+        <item>Rahmat Jaelani</item>
+        <item>Wahyu Sulaksono</item>
+        <item>Chandra Eka Kurniawan</item>
+        <item>Erlangga Ervansyah</item>
+        <item>Gunawan</item>
+        <item>Hasian SM Hutagalung</item>
+        <item>Wildan Khalidy</item>
+    </string-array>
+
+    <string-array name="category">
+        <item>INC/IM Troubleshoot</item>
+    </string-array>
+
+    <string-array name="activityResource">
+        <item>Add/Upgrade Resource</item>
+        <item>Audit/Rehearsal</item>
+        <item>HQ Project</item>
+        <item>Reconfiguration</item>
+        <item>Corrective/Preventive</item>
+        <item>Other</item>
+    </string-array>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

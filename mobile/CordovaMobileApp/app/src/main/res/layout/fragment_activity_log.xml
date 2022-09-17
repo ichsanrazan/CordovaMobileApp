@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FAFAFA"
+    tools:context=".activityLog.fragment.ActivityLogFragment">
+
+
+    <ProgressBar
+        android:id="@+id/activityLog_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"/>
+
+    <LinearLayout
+        android:id="@+id/layoutSearch"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="16dp"
+            android:weightSum="20">
+
+            <EditText
+                android:id="@+id/etSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="19"
+                android:drawableLeft="@drawable/ic_baseline_search_24"
+                android:focusedByDefault="false"
+                android:hint="Search activity..."
+                android:padding="16dp" />
+
+            <ImageButton
+                android:id="@+id/button_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackground"
+                android:src="@drawable/ic_baseline_filter_alt_24" />
+        </LinearLayout>
+
+        <ScrollView
+            android:paddingBottom="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutFilter"
+                android:visibility="gone"
+                android:paddingTop="8dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/dateTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Start Date"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/dateEndTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="End Date"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@id/filterEndDatePicker"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <Button
+                    android:id="@+id/filterStartDatePicker"
+                    style="?android:spinnerStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:outlineProvider="bounds"
+
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@+id/filterEndDatePicker"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/dateTitle" />
+
+                <Button
+                    android:id="@+id/filterEndDatePicker"
+                    style="?android:spinnerStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:focusable="false"
+                    android:outlineProvider="bounds"
+
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/filterStartDatePicker"
+                    app:layout_constraintTop_toBottomOf="@id/dateTitle" />
+
+                <TextView
+                    android:id="@+id/subjectTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Subject"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/filterEndDatePicker" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/checkBoxCoreCS"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Core CS"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/subjectTitle" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/checkBoxCorePS"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Core PS"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkBoxCoreCS" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/checkBoxDatacomm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Datacomm"
+                    app:layout_constraintStart_toEndOf="@id/checkBoxCoreCS"
+                    app:layout_constraintTop_toBottomOf="@id/subjectTitle" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/checkBoxSecurity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="26dp"
+                    android:layout_marginTop="4dp"
+                    android:text="Security"
+                    app:layout_constraintStart_toEndOf="@id/checkBoxCorePS"
+                    app:layout_constraintTop_toBottomOf="@+id/checkBoxDatacomm" />
+
+                <TextView
+                    android:id="@+id/categoryTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Category"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/checkBoxSecurity" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/checkBoxAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Add/Upgrade Resource"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/categoryTitle" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/checkBoxAudit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Audit/Rehearsal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/checkBoxAdd"/>
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/checkBoxHQ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="HQ Project"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkBoxAudit" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/checkBoxReconfig"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Reconfiguration"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkBoxHQ" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/checkBoxCorrective"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Corrective/Preventive"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkBoxReconfig" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/checkBoxOther"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Other"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkBoxCorrective" />
+
+                <Button
+                    android:id="@+id/button_submitFilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FILTER"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/checkBoxOther" />
+
+                <Button
+                    android:id="@+id/button_cancelFilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:text="CLEAR"
+                    app:layout_constraintStart_toEndOf="@id/button_submitFilter"
+                    app:layout_constraintTop_toBottomOf="@id/checkBoxOther" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tvActivityCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layoutSearch"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="8dp"
+        android:text="Activity Found: 0"
+        android:textSize="12sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewActivityLog"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tvActivityCounter"
+        android:padding="6dp" />
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        app:fab_addButtonColorNormal="@color/primaryColor"
+        app:fab_addButtonColorPressed="@color/secondaryDarkColor"
+        app:fab_labelStyle="@style/custom_floating_buttons">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_addBroadcast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/primaryColor"
+            app:fab_colorPressed="@color/secondaryDarkColor"
+            app:fab_icon="@drawable/ic_baseline_crisis_alert_24"
+            app:fab_size="mini"
+            app:fab_title="Broadcast Activity" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_addTroubleshootINC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/primaryColor"
+            app:fab_colorPressed="@color/secondaryDarkColor"
+            app:fab_icon="@drawable/ic_baseline_error_24"
+            app:fab_size="mini"
+            app:fab_title="Add Troubleshoot INC/IM" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_addActivityCRQ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/primaryColor"
+            app:fab_colorPressed="@color/secondaryDarkColor"
+            app:fab_icon="@drawable/ic_baseline_playlist_add_24"
+            app:fab_size="mini"
+            app:fab_title="Add Activity CRQ/WO" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_addPICPartner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/primaryColor"
+            app:fab_colorPressed="@color/secondaryDarkColor"
+            app:fab_icon="@drawable/ic_baseline_person_add_24"
+            app:fab_size="mini"
+            app:fab_title="Add PIC Partner" />
+
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+    <!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+    <!--        android:id="@+id/fabBackTop"-->
+    <!--        android:layout_below="@id/layoutSearch"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        android:layout_centerHorizontal="true"-->
+    <!--        android:background="#6D353232"-->
+    <!--        android:backgroundTint="#6D353232"-->
+    <!--        app:borderWidth="0dp"-->
+    <!--        android:src="@drawable/arrow_upward"-->
+    <!--        app:rippleColor="#6D353232"/>-->
+
+
+
+
+    <Button
+        android:id="@+id/fabBackTop"
+        android:foreground="?attr/selectableItemBackground"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layoutSearch"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_to_top"
+        android:drawableLeft="@drawable/ic_baseline_keyboard_arrow_up_12"
+        android:minHeight="10dp"
+        android:text="Back to top"
+        android:textSize="10sp" />
+
+
+</RelativeLayout>

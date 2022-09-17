@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="#fff"
+    android:foregroundTint="#fff"
+    tools:context=".authentication.LoginActivity">
+
+    <RelativeLayout
+        android:id="@+id/loginActivity_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/white_circle"
+        android:padding="5dp"
+        android:translationZ="90dp"
+        android:visibility="gone"
+        android:elevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:translationZ="90dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </RelativeLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_login"
+        android:layout_width="145dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="200dp"
+        android:background="@drawable/btn_bg"
+        android:fontFamily="@font/poppins_medium"
+        android:foreground="?attr/selectableItemBackground"
+        android:text="Login"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textColorLink="#00FFFFFF"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/inputPassword"
+        android:layout_width="305dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="36dp"
+        android:background="@drawable/input_bg"
+        android:backgroundTint="#F2F2F2"
+        android:drawableLeft="@drawable/icon_lock"
+        android:drawablePadding="8dp"
+        android:ems="10"
+        android:fontFamily="@font/poppins"
+        android:foregroundTint="#F2F2F2"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:padding="8dp"
+        android:textColorHint="#959595"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/inputUser"
+        android:layout_width="305dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="21dp"
+        android:background="@drawable/input_bg"
+        android:backgroundTint="#F2F2F2"
+        android:drawableLeft="@drawable/icon_user"
+        android:drawablePadding="8dp"
+        android:ems="10"
+        android:fontFamily="@font/poppins"
+        android:foregroundTint="#F2F2F2"
+        android:hint="Username"
+        android:inputType="textPersonName"
+        android:padding="8dp"
+        android:textColorHint="#959595"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toTopOf="@+id/inputPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/logoLogin"
+        android:layout_width="231dp"
+        android:layout_height="124dp"
+        android:layout_marginBottom="39dp"
+        app:layout_constraintBottom_toTopOf="@+id/inputUser"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/logo_telkomsel_baru" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
